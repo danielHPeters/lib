@@ -14,9 +14,9 @@ namespace rafisa\lib\src\render;
  */
 abstract class ViewRenderer {
 
-    public static function renderTemplate(string $resource, $vars = null) {
+    public static function renderTemplate(string $resource, string $location = '', $vars = null) {
 
-        $html = file_get_contents(dirname(__FILE__) . '/../../../../templates/' . $resource . '.tpl.php');
+        $html = file_get_contents($location . '/templates/' . $resource . '.tpl.php');
 
         if ($vars !== null) {
 

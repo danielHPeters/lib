@@ -70,7 +70,6 @@ class RouteSimple {
         $routeFound = false;
 
         foreach (self::$routes as $route) {
-
             if (RoutesConfig::get('basepath')) {
 
                 $route['expression'] = '(' . RoutesConfig::get('basepath') . ')/' . $route['expression'];
