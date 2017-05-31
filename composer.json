@@ -1,0 +1,11 @@
+{
+    "name": "rafisa/lib",
+    "description": "Rafisa standard library.",
+    "authors": [
+        {
+            "name": "Daniel Peters",
+            "email": "daniel.peters@rafisa.ch"
+        }
+    ],
+    "require": {}
+}
