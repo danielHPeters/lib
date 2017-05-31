@@ -18,8 +18,9 @@ class GalleryGenerator {
      * 
      * @param string $thumbsPath
      * @param string $imgsPath
+     * @param string $imageTemplate
      */
-    public static function createGalleryFromDir(string $thumbsPath, string $imgsPath) {
+    public static function createGalleryFromDir(string $thumbsPath, string $imgsPath, string $imageTemplate) {
 
         $files = scandir($thumbsPath);
 
@@ -35,7 +36,7 @@ class GalleryGenerator {
 
                 // Generate a container for each image
 
-                include dirname(__FILE__) . '/../../../templates/image-container.tpl.php';
+                include $imageTemplate;
             } elseif (is_dir($thumbsPath . $file) && $file !== '..' && $file !== '.') {
                 self::createGalleryFromDir($thumbsPath  . $file . '/', $imgsPath  . $file . '/');
             }
