@@ -1,0 +1,63 @@
+<?php
+
+/**
+ * © Rafisa Informatik.
+ * Alle Rechte Vorbehalten
+ */
+
+namespace rafisa\lib\src\html;
+
+/**
+ * Description of WebColor
+ *
+ * @author d.peters
+ */
+class WebColor {
+
+    /**
+     * Black and white
+     */
+    const BLACK = '#000000';
+    const WHITE = '#FFFFFF';
+
+    /**
+     * RGB
+     */
+    const RED = '#FF0000';
+    const GREEN = '#00FF00';
+    const BLUE = '#0000FF';
+
+    /**
+     * Other colors
+     */
+    const GOLD = '#FFD700';
+    const NAVY = '#000080';
+    const ORANGE = '#FFA500';
+    const TEAL = '#008080';
+    const TURQOISE = '#40ED0';
+    const VIOLET = '#EE82EE';
+    const YELLOW = '#FFFF00';
+
+    /**
+     * The hex value of the generated colors
+     * @var string 
+     */
+    private $color;
+
+    /**
+     * Constructor to create new color
+     * @param string $hexValue
+     */
+    public function __construct(string $hexValue) {
+        $this->color = '#' . $hexValue;
+    }
+
+    /**
+     * Get the hexvalue of the generated color
+     * @return string
+     */
+    public function getColor(): string {
+        return $this->color;
+    }
+
+}
