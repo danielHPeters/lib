@@ -36,8 +36,7 @@ class RouteSimple {
         $parsedUrl = parse_url($_SERVER['REQUEST_URI']); //URI zerlegen
 
         if (isset($parsedUrl['path'])) {
-            $url = str_replace('rafisa/','',$parsedUrl['path']);
-            self::$path = trim($url, '/');
+            self::$path = trim($parsedUrl['path'], '/');
         } else {
             self::$path = '';
         }
