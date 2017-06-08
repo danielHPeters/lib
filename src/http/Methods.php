@@ -14,7 +14,7 @@ use rafisa\lib\src\util\Enum;
  *
  * @author d.peters
  */
-class Methods extends Enum {
+abstract class Methods extends Enum {
 
     const GET = 0;
     const HEAD = 1;
