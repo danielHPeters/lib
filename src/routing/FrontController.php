@@ -8,24 +8,38 @@
 namespace rafisa\lib\src\routing;
 
 /**
- * Description of FrontCOntroller
+ * Description of FrontController
  *
  * @author d.peters
  */
 class FrontController {
-    
+
     private $router;
-    
+
+    /**
+     *
+     * @var type 
+     */
     private $dispatcher;
 
-
+    /**
+     * 
+     * @param Router $router
+     * @param Dispatcher $dispatcher
+     */
     public function __construct(Router $router, Dispatcher $dispatcher) {
         $this->router = $router;
         $this->dispatcher = $dispatcher;
     }
-    
-    public function run(Request $request, Response $response){
+
+    /**
+     * 
+     * @param Request $request
+     * @param Response $response
+     */
+    public function run(Request $request, Response $response) {
         $route = $this->router->route($request, $response);
         $this->dispatcher->dispatch($route, $request, $response);
     }
+
 }

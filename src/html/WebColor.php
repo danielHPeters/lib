@@ -42,22 +42,22 @@ class WebColor {
      * The hex value of the generated colors
      * @var string 
      */
-    private $color;
+    private $value;
 
     /**
      * Constructor to create new color
-     * @param string $hexValue
+     * @param string $value
      */
-    public function __construct(string $hexValue) {
-        $this->color = '#' . $hexValue;
+    public function __construct(string $value) {
+        $this->value = '#' . $value;
     }
 
     /**
      * Get the hexvalue of the generated color
      * @return string
      */
-    public function getColor(): string {
-        return $this->color;
+    public function getValue(): string {
+        return $this->value;
     }
 
 }
