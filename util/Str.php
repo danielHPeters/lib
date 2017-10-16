@@ -13,5 +13,4 @@ abstract class Str
     {
         return substr($string, $start);
     }
-
 }
