@@ -7,23 +7,22 @@ use Exception;
 /**
  * Description of View
  *
- * @author d.peters
+ * @author  d.peters
  * @version 1.0
  */
 class View
 {
+    /**
+     *
+     * @var string
+     */
+    private $pathToTemplates;
 
     /**
      *
      * @var string
      */
-    private $path;
-
-    /**
-     *
-     * @var string
-     */
-    private $template;
+    private $file;
 
     /**
      *
@@ -38,12 +37,38 @@ class View
     private $html;
 
     /**
+     * View constructor.
      *
-     * @param string $template
+     * @param string $pathToTemplates
+     * @param string $file
      */
-    public function __construct(string $template = 'default')
+    public function __construct(string $pathToTemplates, string $file = 'default')
     {
-        $this->template = $template;
+        $this->pathToTemplates = $pathToTemplates;
+        $this->file = $file;
+        $this->vars = [];
+    }
+
+    /**
+     *
+     * @throws Exception
+     */
+    public function load()
+    {
+        $file = $this->pathToTemplates . '/' . $this->file . '.tpl';
+
+        if (file_exists($file)) {
+            $content = file_get_contents($file);
+
+            foreach ($this->vars as $key => $value) {
+                $toReplace = '{' . $key . '}';
+                $content = str_replace($toReplace, $value, $content);
+            }
+
+            $this->html = $content;
+        } else {
+            throw new Exception('Template not found.');
+        }
     }
 
     /**
@@ -51,26 +76,16 @@ class View
      * @param string $key
      * @param string $value
      */
-    public function assignVar(string $key, string $value)
+    public function setVar(string $key, string $value)
     {
         $this->vars[$key] = $value;
     }
 
     /**
-     *
-     * @throws Exception
+     * @return string
      */
-    public function loadTemplate()
+    public function getHtml(): string
     {
-        $file = $this->path . '/' . $this->template . '.php';
-
-        if (file_exists($file)) {
-            ob_start();
-            include $file;
-            $this->html = ob_get_contents();
-            ob_end_clean();
-        } else {
-            throw new Exception('Template not found.');
-        }
+        return $this->html;
     }
 }

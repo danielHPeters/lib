@@ -11,7 +11,6 @@ namespace rafisa\lib\chat;
  */
 class ChatServer
 {
-    private $connectedUsers;
+    private $connectedClients;
     private $status;
 }
-

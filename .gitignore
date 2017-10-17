@@ -50,3 +50,6 @@ fabric.properties
 
 .directory
 Thumbs.db
+
+vendor/
+.idea/checkstyle-idea.xml

@@ -15,21 +15,21 @@ class PageLoader
      *
      * @var string
      */
-    private $pagesPath;
+    private $pathToHtml;
 
     /**
      * PageLoader constructor.
      *
-     * @param string $pagesPath
+     * @param string $pathToHtml
      */
-    public function __construct(string $pagesPath)
+    public function __construct(string $pathToHtml)
     {
-        $this->pagesPath = $pagesPath;
+        $this->pathToHtml = $pathToHtml;
     }
 
     public function loadHtmlPage(string $page)
     {
-        $htmlFile = $this->pagesPath . $page . '.html';
+        $htmlFile = $this->pathToHtml . $page . '.html';
 
         return file_exists($htmlFile) ? file_get_contents($htmlFile) : 'Page not found!';
     }

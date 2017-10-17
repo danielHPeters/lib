@@ -1,12 +1,8 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: daniel
- * Date: 17.10.17
- * Time: 10:07
- */
 
-class ISendAble
+namespace rafisa\lib\notes;
+
+interface ISendAble
 {
-
+    public function send();
 }

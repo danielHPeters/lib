@@ -7,5 +7,7 @@
             "email": "daniel.peters@rafisa.ch"
         }
     ],
-    "require": {}
+    "require": {
+        "phpunit/phpunit": "^6.4"
+    }
 }

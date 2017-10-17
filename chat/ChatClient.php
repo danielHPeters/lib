@@ -1,15 +1,17 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: daniel
- * Date: 17.10.17
- * Time: 14:16
- */
 
 namespace rafisa\lib\chat;
 
-
+/**
+ * Class ChatClient
+ *
+ * @author  d.peters
+ * @version 1.0
+ * @package rafisa\lib\chat
+ */
 class ChatClient
 {
-
+    private $user;
+    private $session;
+    private $message;
 }

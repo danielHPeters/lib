@@ -1,6 +1,6 @@
 <?php
 
-namespace rafisa\lib\auth;
+namespace rafisa\lib\session;
 
 /**
  * Description of Verifier

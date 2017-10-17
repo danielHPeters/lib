@@ -1,15 +1,13 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: daniel
- * Date: 17.10.17
- * Time: 14:07
- */
 
 namespace rafisa\lib\chat;
 
 
-class EServerStatus
-{
+use rafisa\lib\util\Enum;
 
+class EServerStatus extends Enum
+{
+    const RUNNING = 0;
+    const STOPPING = 1;
+    const DEACTIVATED = 2;
 }

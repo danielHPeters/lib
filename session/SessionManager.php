@@ -1,6 +1,6 @@
 <?php
 
-namespace rafisa\lib\auth;
+namespace rafisa\lib\session;
 
 /**
  * Description of SessionManager
@@ -9,35 +9,40 @@ namespace rafisa\lib\auth;
  */
 class SessionManager
 {
-    public static function startSession(string $name, int $limit = 0, $path = '/', $domain = null, $secure = null)
-    {
+    public static function startSession(
+        string $name,
+        int $limit = 0,
+        string $path = '/',
+        string $domain = '.localhost',
+        bool $secure = true
+    ) {
 
-        session_name($name . 'Session');
+        session_name($name . ' Session');
 
         $domain = isset($domain) ? $domain : isset($_SERVER['SERVER_NAME']);
 
-        $https = isset($secure) ? $secure : isset($_SERVER['HTTPS']);
+        $https = $secure ? $secure : isset($_SERVER['HTTPS']);
 
-        session_set_cookie_params($limit, $path, $domain, $secure, true);
+        session_set_cookie_params($limit, $path, $domain, $https, true);
         session_start();
 
         if (!self::hijackAttempted()) {
             $_SESSION = [];
-            $_SESSION['IPaddress'] = $_SERVER['REMOTE_ADDR'];
+            $_SESSION['ipAddress'] = $_SERVER['REMOTE_ADDR'];
             $_SESSION['userAgent'] = $_SERVER['HTTP_USER_AGENT'];
         }
+        session_write_close();
     }
 
     public static function hijackAttempted()
     {
-
         $hijackedAttempted = true;
 
-        if (!isset($_SESSION['IPaddress']) || !isset($_SESSION['userAgent'])) {
+        if (!isset($_SESSION['ipAddress']) || !isset($_SESSION['userAgent'])) {
             $hijackedAttempted = false;
         }
 
-        if ($_SESSION['IPaddress'] != $_SERVER['REMOTE_ADDR']) {
+        if ($_SESSION['ipAddress'] != $_SERVER['REMOTE_ADDR']) {
             $hijackedAttempted = false;
         }
 
@@ -50,14 +55,12 @@ class SessionManager
 
     public static function regenerateSession()
     {
-
         if (!isset($_SESSION['OBSOLETE']) || $_SESSION['OBSOLETE'] === false) {
             $_SESSION['OBSOLETE'] = true;
             $_SESSION['EXPIRES'] = time() + 10;
 
             session_regenerate_id(false);
 
-            $newSession = session_id();
             session_write_close();
         }
     }
