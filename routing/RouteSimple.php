@@ -5,8 +5,9 @@ namespace rafisa\lib\routing;
 /**
  * Class RouteSimple
  *
- * @package rafisa\lib\routing
+ * @author  d.peters
  * @version 1.0
+ * @package rafisa\lib\routing
  */
 class RouteSimple
 {
@@ -21,7 +22,7 @@ class RouteSimple
     public static $routes404 = [];
 
     /**
-     * @var
+     * @var string
      */
     public static $path;
 
@@ -30,19 +31,13 @@ class RouteSimple
      */
     public static function init()
     {
-
-        $parsedUrl = parse_url($_SERVER['REQUEST_URI']); // split URI
-
-        if (isset($parsedUrl['path'])) {
-            self::$path = trim($parsedUrl['path'], '/');
-        } else {
-            self::$path = '';
-        }
+        $parsedUrl = parse_url($_SERVER['REQUEST_URI']);
+        self::$path = isset($parsedUrl['path']) ? trim($parsedUrl['path'], '/') : '';
     }
 
     /**
-     * @param $expression
-     * @param $function
+     * @param string   $expression
+     * @param callable $function
      */
     public static function add(string $expression, callable $function)
     {
@@ -50,19 +45,15 @@ class RouteSimple
     }
 
     /**
-     * @param $function
+     * @param callable $function
      */
     public static function add404(callable $function)
     {
         array_push(self::$routes404, $function);
     }
 
-    /**
-     *
-     */
     public static function run()
     {
-
         $routeFound = false;
 
         foreach (self::$routes as $route) {
@@ -71,10 +62,10 @@ class RouteSimple
             }
 
             //Add 'find string start' automatically
-            $route['expression'] = '^' . $route['expression'];
+            $route['expression'] = '^' . $route['expression'] . '$';
 
             //Add 'find string end' automatically
-            $route['expression'] = $route['expression'] . '$';
+            //$route['expression'] = $route['expression'] . '$';
 
             //check match
             if (preg_match('#' . $route['expression'] . '#', self::$path, $matches)) {
