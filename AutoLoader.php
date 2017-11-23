@@ -18,9 +18,9 @@ abstract class AutoLoader
     {
         spl_autoload_register(
             function ($class) {
-
                 $file = str_replace('\\', '/', $class);
-                $relativeUrl = dirname(__FILE__) . '/../../' . $file . '.php';
+                $file = str_replace('rafisa/', '/', $file);
+                $relativeUrl = dirname(__FILE__) . '/../' . $file . '.php';
                 if (file_exists($relativeUrl)) {
                     require_once $relativeUrl;
                 }
