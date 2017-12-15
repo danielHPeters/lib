@@ -71,8 +71,8 @@ class TreeNode
         $this->value = $value;
     }
 
-    public function isLeaf()
+    public function isLeaf(): bool
     {
-        return $this->left === null && $this->right === null ? true : false;
+        return $this->left === null && $this->right === null;
     }
 }

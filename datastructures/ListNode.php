@@ -62,6 +62,6 @@ class ListNode
      */
     public function hasNext(): bool
     {
-        return $this->next !== null ? true : false;
+        return $this->next !== null;
     }
 }
