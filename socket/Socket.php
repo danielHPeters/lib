@@ -1,13 +1,15 @@
 <?php
 
-namespace rafisa\lib\src\socket;
+namespace rafisa\lib\socket;
 
 use Exception;
 
 /**
  * Description of Socket
  *
- * @author d.peters
+ * @author Daniel Peters
+ * @version 1.0
+ * @package rafisa\lib\socket
  */
 class Socket
 {
@@ -63,9 +65,10 @@ class Socket
     /**
      *
      * @param string $address
-     * @param int    $port
+     * @param int $port
+     * @throws Exception
      */
-    public function connectToRemote(string $address, $port = 80)
+    public function connectToRemote(string $address, int $port = 80)
     {
         $connected = socket_connect($this->descriptor, $address, $port);
 
@@ -77,9 +80,11 @@ class Socket
     /**
      *
      * @param string $address
-     * @param int    $port
+     * @param int $port
+     *
+     * @throws Exception
      */
-    public function bind(string $address = '127.0.0.1', $port = 5000)
+    public function bind(string $address = '127.0.0.1', int $port = 5000)
     {
         $bound = socket_bind($this->descriptor, $address, $port);
 
@@ -92,7 +97,7 @@ class Socket
      *
      * @param int $backlog
      */
-    public function listen($backlog = 10)
+    public function listen(int $backlog = 10)
     {
         socket_listen($this->descriptor, $backlog);
     }
@@ -100,9 +105,10 @@ class Socket
     /**
      *
      * @param mixed $data
-     * @param mixed $flags
+     * @param int $flags
+     * @throws Exception
      */
-    public function send($data, $flags = 0)
+    public function send($data, int $flags = 0)
     {
         $sent = socket_send($this->descriptor, $data, strlen($data), $flags);
 

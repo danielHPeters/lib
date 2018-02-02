@@ -1,26 +1,37 @@
 <?php
 
-namespace rafisa\lib\src\socket;
+namespace rafisa\lib\socket;
 
 /**
  * Description of SocketProtocols
  *
- * @author d.peters
+ * @author Daniel Peters
+ * @version 1.0
+ * @package rafisa\lib\socket
  */
 class SocketProtocol
 {
-    final public static function ICMP()
+    /**
+     * @return int
+     */
+    final public static function ICMP(): int
     {
         return getprotobyname('icmp');
     }
 
-    final public static function UDP()
+    /**
+     * @return int
+     */
+    final public static function UDP(): int
     {
         return getprotobyname('udp');
     }
 
-    final public static function TCP()
+    /**
+     * @return int
+     */
+    final public static function TCP(): int
     {
-        return getprotobyname('udp');
+        return getprotobyname('tcp');
     }
 }

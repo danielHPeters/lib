@@ -5,7 +5,7 @@ namespace rafisa\lib\routing;
 /**
  * Class RouteSimple
  *
- * @author  d.peters
+ * @author  Daniel Peters
  * @version 1.0
  * @package rafisa\lib\routing
  */
@@ -52,6 +52,9 @@ class RouteSimple
         array_push(self::$routes404, $function);
     }
 
+    /**
+     *
+     */
     public static function run()
     {
         $routeFound = false;

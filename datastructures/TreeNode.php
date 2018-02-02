@@ -5,7 +5,7 @@ namespace rafisa\lib\data;
 /**
  * Description of Node
  *
- * @author  Daniel
+ * @author  Daniel Peters
  * @version 1.0
  */
 class TreeNode
@@ -30,7 +30,7 @@ class TreeNode
 
     /**
      *
-     * @param string   $value
+     * @param string $value
      * @param TreeNode $left
      * @param TreeNode $right
      */
@@ -41,36 +41,57 @@ class TreeNode
         $this->right = $right;
     }
 
+    /**
+     * @return TreeNode
+     */
     public function getLeft(): TreeNode
     {
         return $this->left;
     }
 
+    /**
+     * @return TreeNode
+     */
     public function getRight(): TreeNode
     {
         return $this->right;
     }
 
+    /**
+     * @return string
+     */
     public function getValue()
     {
         return $this->value;
     }
 
+    /**
+     * @param TreeNode $left
+     */
     public function setLeft(TreeNode $left)
     {
         $this->left = $left;
     }
 
+    /**
+     * @param TreeNode $right
+     */
     public function setRight(TreeNode $right)
     {
         $this->right = $right;
     }
 
+    /**
+     * @param $value
+     */
     public function setValue($value)
     {
         $this->value = $value;
     }
 
+    /**
+     * @return bool
+     */
     public function isLeaf(): bool
     {
         return $this->left === null && $this->right === null;

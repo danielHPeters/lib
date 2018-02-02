@@ -5,8 +5,9 @@ namespace rafisa\lib\routing;
 /**
  * Description of Route
  *
- * @author  d.peters
+ * @author  Daniel Peters
  * @version 1.0
+ * @package rafisa\lib\routing
  */
 class Route
 {

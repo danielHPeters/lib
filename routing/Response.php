@@ -7,8 +7,9 @@ use rafisa\lib\collections\ArrayList;
 /**
  * Description of Response
  *
- * @author  d.peters
+ * @author  Daniel Peters
  * @version 1.0
+ * @package rafisa\lib\routing
  */
 class Response
 {

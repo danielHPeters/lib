@@ -2,11 +2,14 @@
 
 namespace rafisa\lib\routing;
 
+use rafisa\lib\collections\ArrayList;
+
 /**
  * Description of Request
  *
- * @author  d.peters
+ * @author  Daniel Peters
  * @version 1.0
+ * @package rafisa\lib\routing
  */
 class Request
 {
@@ -31,7 +34,7 @@ class Request
     public function __construct(string $uri)
     {
         $this->uri = $uri;
-        $this->params = [];
+        $this->params = new ArrayList();
     }
 
     /**
@@ -61,15 +64,14 @@ class Request
      */
     public function getParam(string $key): string
     {
-
         return isset($this->params[$key]) ? $this->params[$key] : '404';
     }
 
     /**
      *
-     * @return array
+     * @return ArrayList
      */
-    public function getParams(): array
+    public function getParams(): ArrayList
     {
         return $this->params;
     }

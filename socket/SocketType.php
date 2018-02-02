@@ -1,17 +1,21 @@
 <?php
 
-namespace rafisa\lib\src\socket;
+namespace rafisa\lib\socket;
+
+use rafisa\lib\util\Enum;
 
 /**
  * Description of SocketTypes
  *
- * @author d.peters
+ * @author Daniel Peters
+ * @version 1.0
+ * @package rafisa\lib\socket
  */
-class SocketType
+abstract class SocketType extends Enum
 {
     const STREAM = SOCK_STREAM;
 
-    const DATAGRAM = SOCK_DATAGRAM;
+    const DATAGRAM = SOCK_DGRAM;
 
     const SEQ_PACKET = SOCK_SEQPACKET;
 

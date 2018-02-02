@@ -1,10 +1,5 @@
 <?php
 
-/**
- * © Rafisa Informatik.
- * Alle Rechte Vorbehalten
- */
-
 namespace rafisa\lib\collections;
 
 /**
@@ -12,22 +7,23 @@ namespace rafisa\lib\collections;
  *
  * @author d.peters
  */
-interface ICollection {
+interface ICollection
+{
 
     /**
-     * 
+     *
      * @param mixed $obj
      */
     public function add($obj);
 
     /**
-     * 
+     *
      * @param array $arr
      */
     public function addAll(array $arr);
 
     /**
-     * 
+     *
      * @param int $key
      * @return mixed
      */
@@ -46,14 +42,14 @@ interface ICollection {
     public function has(int $key): bool;
 
     /**
-     * 
+     *
      * @param mixed $obj
      * @return bool
      */
     public function contains($obj): bool;
 
     /**
-     * 
+     *
      * @param mixed $obj
      * @return int
      */
@@ -65,20 +61,20 @@ interface ICollection {
     public function clear();
 
     /**
-     * 
+     *
      * @param mixed $obj
      * @return int
      */
     public function lastIndexOf($obj): int;
 
     /**
-     * 
+     *
      * @param int $key
      */
     public function remove(int $key);
 
     /**
-     * 
+     *
      * @param int $fromKey
      * @param int $toKey
      */
@@ -101,7 +97,7 @@ interface ICollection {
     public function toArray(): array;
 
     /**
-     * 
+     *
      * @param mixed $obj
      * @return bool
      */

@@ -7,8 +7,9 @@ use rafisa\lib\collections\ArrayList;
 /**
  * Router class for route handlers
  *
- * @author  d.peters
+ * @author  Daniel Peters
  * @version 1.0
+ * @package rafisa\lib\routing
  */
 class Router
 {
@@ -18,7 +19,7 @@ class Router
     private $routes;
 
     /**
-     *
+     * Router constructor.
      */
     public function __construct()
     {

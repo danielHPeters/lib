@@ -5,6 +5,8 @@ namespace rafisa\lib\routing;
 /**
  * Class RoutesConfig
  *
+ * @author Daniel Peters
+ * @version 1.0
  * @package rafisa\lib\routing
  */
 abstract class RoutesConfig

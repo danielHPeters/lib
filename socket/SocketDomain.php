@@ -1,13 +1,17 @@
 <?php
 
-namespace rafisa\lib\src\socket;
+namespace rafisa\lib\socket;
+
+use rafisa\lib\util\Enum;
 
 /**
  * Description of SocketDomains
  *
- * @author d.peters
+ * @author Daniel Peters
+ * @version 1.0
+ * @package rafisa\lib\socket
  */
-class SocketDomain
+abstract class SocketDomain extends Enum
 {
     const IPV4 = AF_INET;
 

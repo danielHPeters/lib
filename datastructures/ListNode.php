@@ -5,7 +5,8 @@ namespace rafisa\lib\data;
 /**
  * Description of ListNode
  *
- * @author Daniel
+ * @author Daniel Peters
+ * @version 1.0
  */
 class ListNode
 {
@@ -27,6 +28,7 @@ class ListNode
     public function __construct($value)
     {
         $this->value = $value;
+        $this->next = null;
     }
 
     /**
