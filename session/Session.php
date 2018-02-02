@@ -15,6 +15,11 @@ use DateInterval;
 class Session
 {
     /**
+     * @var string
+     */
+    private $id;
+
+    /**
      *
      * @var User
      */
@@ -60,14 +65,16 @@ class Session
     /**
      * Session constructor.
      *
-     * @param User   $user
-     * @param int    $limit
+     * @param string $id
+     * @param User $user
+     * @param int $limit
      * @param string $domain
      * @param string $path
-     * @param bool   $https
+     * @param bool $https
      */
-    public function __construct(User $user, int $limit, string $domain, string $path, bool $https)
+    public function __construct(string $id, User $user, int $limit, string $domain, string $path, bool $https)
     {
+        $this->id = $id;
         $this->user = $user;
         $this->loginTime = new DateTime();
         $this->active = true;
@@ -157,5 +164,13 @@ class Session
     public function setActive(bool $active)
     {
         $this->active = $active;
+    }
+
+    /**
+     * Refresh session id and delete old session.
+     */
+    public function refresh()
+    {
+        session_regenerate_id(true);
     }
 }
