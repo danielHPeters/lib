@@ -58,7 +58,6 @@ class Response
      */
     public function send()
     {
-
         if (!headers_sent()) {
             $this->headers->each(
                 function ($header) {
