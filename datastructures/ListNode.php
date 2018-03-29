@@ -3,7 +3,7 @@
 namespace rafisa\lib\data;
 
 /**
- * Description of ListNode
+ * Description of QueueNode
  *
  * @author Daniel Peters
  * @version 1.0

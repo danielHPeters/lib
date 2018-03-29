@@ -4,6 +4,7 @@ namespace rafisa\lib\data;
 
 use rafisa\lib\collections\IList;
 use rafisa\lib\collections\IQueue;
+use Exception;
 
 /**
  * Description of SinglyList
@@ -58,7 +59,9 @@ class SinglyList implements IQueue, IList
      */
     public function addAll(array $arr)
     {
-        // TODO: Implement addAll() method.
+        foreach ($arr as $object) {
+            $this->add($object);
+        }
     }
 
     /**
@@ -96,7 +99,7 @@ class SinglyList implements IQueue, IList
      */
     public function clear()
     {
-        // TODO: Implement clear() method.
+        $this->head = null;
     }
 
     /**
@@ -167,10 +170,21 @@ class SinglyList implements IQueue, IList
     /**
      * @param int $index
      * @return mixed
+     * @throws Exception
      */
     public function get(int $index)
     {
-        // TODO: Implement get() method.
+        $current = $this->head;
+
+        if ($this->elementsCount === 0 || $index < 0 || $index > $this->elementsCount) {
+            throw new Exception('Invalid index!');
+        }
+
+        for ($i = 0; $i < $index; $i++) {
+            $current = $current->getNext();
+        }
+
+        return $current;
     }
 
     /**
@@ -187,7 +201,10 @@ class SinglyList implements IQueue, IList
      */
     public function poll()
     {
-        // TODO: Implement poll() method.
+        $node = $this->head;
+        $this->head = $this->head->getNext();
+
+        return $node;
     }
 
     /**
@@ -204,6 +221,17 @@ class SinglyList implements IQueue, IList
      */
     public function add($object)
     {
-        // TODO: Implement add() method.
+        $node = new ListNode($object);
+        $currentNode = $this->head;
+
+        if ($this->elementsCount === 0) {
+            $this->head = $node;
+        } else {
+            while ($currentNode->hasNext()) {
+                $currentNode = $currentNode->getNext();
+            }
+            $currentNode->setNext($node);
+        }
+        $this->elementsCount++;
     }
 }
