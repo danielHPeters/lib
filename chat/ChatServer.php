@@ -5,7 +5,8 @@ namespace rafisa\lib\chat;
 /**
  * Class ChatServer
  *
- * @author  d.peters
+ * @author  Daniel Peters.
+ *
  * @version 1.0
  * @package rafisa\lib\chat
  */

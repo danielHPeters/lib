@@ -42,7 +42,7 @@ class View
      * @param string $pathToTemplates
      * @param string $file
      */
-    public function __construct(string $pathToTemplates, string $file = 'page')
+    public function __construct(string $pathToTemplates, string $file = 'layout')
     {
         $this->pathToTemplates = $pathToTemplates;
         $this->file = $file;
