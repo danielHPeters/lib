@@ -53,7 +53,7 @@ class View
      *
      * @throws Exception
      */
-    public function load()
+    private function load()
     {
         $file = $this->pathToTemplates . '/' . $this->file . '.tpl';
 
@@ -83,9 +83,11 @@ class View
 
     /**
      * @return string
+     * @throws Exception
      */
     public function getHtml(): string
     {
+        $this->load();
         return $this->html;
     }
 }
