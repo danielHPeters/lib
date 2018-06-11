@@ -3,7 +3,7 @@
 namespace rafisa\lib\html;
 
 use rafisa\lib\collections\ArrayList;
-use rafisa\lib\collections\ICollection;
+use rafisa\lib\collections\Collection;
 use rafisa\lib\data\IDomNode;
 use rafisa\lib\entities\Entity;
 
@@ -30,13 +30,13 @@ class Html extends Entity implements IDomNode
 
     /**
      *
-     * @var ICollection
+     * @var Collection
      */
     private $classes;
 
     /**
      *
-     * @var ICollection attributes of the html tag
+     * @var Collection attributes of the html tag
      */
     private $attributes;
 

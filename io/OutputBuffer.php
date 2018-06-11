@@ -5,58 +5,36 @@ namespace rafisa\lib\io;
 use Exception;
 
 /**
- * Description of OutputBuffer
+ * Class OutputBuffer.
  *
- * @author  d.peters
+ * @package rafisa\lib\io
+ * @author Daniel Peters
  * @version 1.0
  */
-abstract class OutputBuffer
-{
+abstract class OutputBuffer {
+	final public static function start() {
+		ob_start();
+	}
 
-    /**
-     *
-     */
-    final public static function start()
-    {
-        ob_start();
-    }
+	final public static function getContents(): string {
+		$cont = ob_get_contents();
 
-    /**
-     *
-     * @return string
-     * @throws Exception
-     */
-    final public static function getContents(): string
-    {
+		if ( $cont === false ) {
+			throw new Exception( 'Cannot get contents from output buffer.' );
+		}
 
-        $cont = ob_get_contents();
+		return $cont;
+	}
 
-        if ($cont === false) {
-            throw new Exception('Cannot get contents from output buffer.');
-        }
+	final public static function endClean() {
+		$success = ob_end_clean();
 
-        return $cont;
-    }
+		if ( ! $success ) {
+			throw new Exception( 'Could not clean and close the output buffer.' );
+		}
+	}
 
-    /**
-     *
-     * @throws Exception
-     */
-    final public static function endClean()
-    {
-        $success = ob_end_clean();
-
-        if (!$success) {
-            throw new Exception('Could not clean and close the output buffer.');
-        }
-    }
-
-    /**
-     *
-     */
-    final public static function flush()
-    {
-        ob_flush();
-    }
-
+	final public static function flush() {
+		ob_flush();
+	}
 }

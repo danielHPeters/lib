@@ -3,36 +3,23 @@
 namespace rafisa\lib\party;
 
 use rafisa\lib\collections\ArrayList;
-use rafisa\lib\collections\ICollection;
+use rafisa\lib\collections\Collection;
 
 /**
- * Description of Party
+ * Class Party.
  *
- * @author d.peters
+ * @package rafisa\lib\party
+ * @author Daniel Peters
+ * @version 1.0
  */
-class Party
-{
-    /**
-     *
-     * @var ICollection
-     */
-    private $guests;
+class Party {
+	private $guests;
 
-    /**
-     * Default constructor. Initializes guests list
-     */
-    public function __construct()
-    {
-        $this->guests = new ArrayList();
-    }
+	public function __construct() {
+		$this->guests = new ArrayList();
+	}
 
-    /**
-     * Get the guests list
-     *
-     * @return ICollection list of guests
-     */
-    public function getGuests(): ICollection
-    {
-        return $this->guests;
-    }
+	public function getGuests(): Collection {
+		return $this->guests;
+	}
 }

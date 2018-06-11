@@ -4,51 +4,40 @@ namespace rafisa\lib\accounting;
 
 use DateTime;
 use rafisa\lib\entities\Customer;
-use rafisa\lib\collections\ICollection;
+use rafisa\lib\collections\Collection;
 
 /**
- * Description of Invoice
+ * Description of Invoice.
  *
- * @author Daniel
+ * @author Daniel Peters
+ * @version 1.0
  */
-class Invoice
-{
-    /**
-     *
-     * @var DateTime
-     */
-    private $invoiceDate;
+class Invoice {
+	private $invoiceDate;
+	private $dueDate;
+	private $customer;
+	private $products;
 
-    /**
-     *
-     * @var DateTime
-     */
-    private $dueDate;
+	public function __construct( DateTime $invoiceDate, DateTime $dueDate, Customer $customer, Collection $products ) {
+		$this->invoiceDate = $invoiceDate;
+		$this->dueDate     = $dueDate;
+		$this->customer    = $customer;
+		$this->products    = $products;
+	}
 
-    /**
-     *
-     * @var Customer
-     */
-    private $customer;
+	public function getInvoiceDate(): DateTime {
+		return $this->invoiceDate;
+	}
 
-    /**
-     *
-     * @var ICollection
-     */
-    private $products;
+	public function getDueDate(): DateTime {
+		return $this->dueDate;
+	}
 
-    /**
-     *
-     * @param DateTime    $invoiceDate
-     * @param DateTime    $dueDate
-     * @param Customer    $customer
-     * @param ICollection $products
-     */
-    public function __construct(DateTime $invoiceDate, DateTime $dueDate, Customer $customer, ICollection $products)
-    {
-        $this->invoiceDate = $invoiceDate;
-        $this->dueDate = $dueDate;
-        $this->customer = $customer;
-        $this->products = $products;
-    }
+	public function getCustomer(): Customer {
+		return $this->customer;
+	}
+
+	public function getProducts(): Collection {
+		return $this->products;
+	}
 }

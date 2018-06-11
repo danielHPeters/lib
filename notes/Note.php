@@ -2,85 +2,40 @@
 
 namespace rafisa\lib\notes;
 
+use rafisa\lib\entities\Entity;
+
 /**
- * Class Note
+ * Class Note.
  *
- * @author  d.peters
- * @version 1.0
  * @package rafisa\lib\notes
+ * @author Daniel Peters
+ * @version 1.0
  */
-class Note implements ISendAble
-{
-    /**
-     * @var string
-     */
-    private $id;
+class Note extends Entity implements Sendable {
+	private $author;
+	private $recipient;
+	private $content;
 
-    /**
-     * @var string
-     */
-    private $author;
+	public function __construct( string $id, string $author, string $recipient, string $content ) {
+		parent::__construct( $id );
+		$this->author    = $author;
+		$this->recipient = $recipient;
+		$this->content   = $content;
+	}
 
-    /**
-     * @var string
-     */
-    private $recipient;
+	public function send(): void {
+		// TODO: Implement send() method.
+	}
 
-    /**
-     * @var string
-     */
-    private $content;
+	public function getAuthor(): string {
+		return $this->author;
+	}
 
-    /**
-     * Note constructor.
-     *
-     * @param string $id
-     * @param string $author
-     * @param string $recipient
-     * @param string $content
-     */
-    public function __construct(string $id, string $author, string $recipient, string $content)
-    {
-        $this->id = $id;
-        $this->author = $author;
-        $this->recipient = $recipient;
-        $this->content = $content;
-    }
+	public function getRecipient(): string {
+		return $this->recipient;
+	}
 
-    public function send()
-    {
-        // TODO: Implement send() method.
-    }
-
-    /**
-     * @return string
-     */
-    public function getId(): string
-    {
-        return $this->id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAuthor(): string
-    {
-        return $this->author;
-    }
-
-    /**
-     * @return string
-     */
-    public function getRecipient(): string
-    {
-        return $this->recipient;
-    }
-
-    /**
-     * @return string
-     */
-    public function getContent(): string
-    {
-        return $this->content;
-    }
+	public function getContent(): string {
+		return $this->content;
+	}
 }

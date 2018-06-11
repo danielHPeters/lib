@@ -3,7 +3,7 @@
 namespace rafisa\lib\data;
 
 use rafisa\lib\collections\IList;
-use rafisa\lib\collections\IQueue;
+use rafisa\lib\collections\Queue;
 use Exception;
 
 /**
@@ -13,7 +13,7 @@ use Exception;
  * @version 1.0
  * @package rafisa\lib\collections
  */
-class SinglyList implements IQueue, IList
+class SinglyList implements Queue, IList
 {
     /**
      *

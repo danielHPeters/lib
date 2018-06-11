@@ -3,121 +3,45 @@
 namespace rafisa\lib\file;
 
 /**
- * Description of File
+ * Class File.
  *
- * @author d.peters
+ * @package rafisa\lib\file
+ * @author Daniel Peters
+ * @version 1.0
  */
-class File
-{
-    /**
-     * Name of the file
-     *
-     * @var string
-     */
-    private $name;
+class File {
+	private $name;
+	private $path;
+	private $extension;
+	private $mimeType;
+	private $size;
 
-    /**
-     * Path of the file;
-     *
-     * @var string
-     */
-    private $pathToFile;
+	public function __construct( string $name, string $path, string $extension, string $mimeType, int $size ) {
+		$this->name      = $name;
+		$this->path      = $path;
+		$this->extension = $extension;
+		$this->mimeType  = $mimeType;
+		$this->size      = $size;
+	}
 
-    /**
-     *
-     * @var string
-     */
-    private $fileEnding;
 
-    /**
-     *
-     * @var string
-     */
-    private $mimeType;
+	public function getName(): string {
+		return $this->name;
+	}
 
-    /**
-     *
-     * @var int
-     */
-    private $size;
+	public function getPath(): string {
+		return $this->path;
+	}
 
-    /**
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->name;
-    }
+	public function getExtension(): string {
+		return $this->extension;
+	}
 
-    /**
-     * @param string $name
-     */
-    public function setName(string $name)
-    {
-        $this->name = $name;
-    }
+	public function getMimeType(): string {
+		return $this->mimeType;
+	}
 
-    /**
-     * @return string
-     */
-    public function getPathToFile(): string
-    {
-        return $this->pathToFile;
-    }
-
-    /**
-     * @param string $pathToFile
-     */
-    public function setPathToFile(string $pathToFile)
-    {
-        $this->pathToFile = $pathToFile;
-    }
-
-    /**
-     * @return string
-     */
-    public function getFileEnding(): string
-    {
-        return $this->fileEnding;
-    }
-
-    /**
-     * @param string $fileEnding
-     */
-    public function setFileEnding(string $fileEnding)
-    {
-        $this->fileEnding = $fileEnding;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMimeType(): string
-    {
-        return $this->mimeType;
-    }
-
-    /**
-     * @param string $mimeType
-     */
-    public function setMimeType(string $mimeType)
-    {
-        $this->mimeType = $mimeType;
-    }
-
-    /**
-     * @return int
-     */
-    public function getSize(): int
-    {
-        return $this->size;
-    }
-
-    /**
-     * @param int $size
-     */
-    public function setSize(int $size)
-    {
-        $this->size = $size;
-    }
+	public function getSize(): int {
+		return $this->size;
+	}
 }

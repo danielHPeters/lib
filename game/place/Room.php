@@ -3,7 +3,7 @@
 namespace rafisa\game\place;
 
 use rafisa\lib\collections\ArrayList;
-use rafisa\lib\collections\ICollection;
+use rafisa\lib\collections\Collection;
 
 /**
  * Class Room
@@ -12,192 +12,52 @@ use rafisa\lib\collections\ICollection;
  * @version 1.0
  * @package rafisa\game\place
  */
-class Room
-{
-    /**
-     * @var string
-     */
-    private $name;
+class Room {
+	private $name;
+	private $description;
+	private $north;
+	private $east;
+	private $south;
+	private $west;
+	private $items;
+	private $monsters;
 
-    /**
-     * @var string
-     */
-    private $description;
+	public function __construct( string $name, string $description ) {
+		$this->name        = $name;
+		$this->description = $description;
+		$this->items       = new ArrayList();
+		$this->monsters    = new ArrayList();
+	}
 
-    /**
-     * @var Room
-     */
-    private $north;
+	public function getName(): string {
+		return $this->name;
+	}
 
-    /**
-     * @var Room
-     */
-    private $east;
+	public function getDescription(): string {
+		return $this->description;
+	}
 
-    /**
-     * @var Room
-     */
-    private $south;
+	public function getItems(): Collection {
+		return $this->items;
+	}
 
-    /**
-     * @var Room
-     */
-    private $west;
+	public function getMonsters(): Collection {
+		return $this->monsters;
+	}
 
-    /**
-     * @var ICollection
-     */
-    private $items;
+	public function getNorth(): Room {
+		return $this->north;
+	}
 
-    /**
-     * @var ICollection
-     */
-    private $monsters;
+	public function getEast(): Room {
+		return $this->east;
+	}
 
-    /**
-     *
-     * @param string $name
-     * @param string $description
-     */
-    public function __construct(string $name, string $description)
-    {
-        $this->name = $name;
-        $this->description = $description;
-        $this->items = new ArrayList();
-        $this->monsters = new ArrayList();
-    }
+	public function getSouth(): Room {
+		return $this->south;
+	}
 
-    /**
-     * @param string $name
-     */
-    public function setName(string $name)
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    /**
-     *
-     * @param string $description
-     */
-    public function setDescription(string $description)
-    {
-        $this->description = $description;
-    }
-
-    /**
-     *
-     * @return string
-     */
-    public function getDescription(): string
-    {
-        return $this->description;
-    }
-
-    /**
-     *
-     * @return ICollection
-     */
-    public function getItems(): ICollection
-    {
-        return $this->items;
-    }
-
-    /**
-     *
-     * @return ICollection
-     */
-    public function getMonsters(): ICollection
-    {
-        return $this->monsters;
-    }
-
-    /**
-     *
-     * @return Room
-     */
-    public function getNorth(): Room
-    {
-        return $this->north;
-    }
-
-    /**
-     *
-     * @return Room
-     */
-    public function getEast(): Room
-    {
-        return $this->east;
-    }
-
-    /**
-     * @return Room
-     */
-    public function getSouth(): Room
-    {
-        return $this->south;
-    }
-
-    /**
-     * @return Room
-     */
-    public function getWest(): Room
-    {
-        return $this->west;
-    }
-
-    /**
-     * @param ICollection $items
-     */
-    public function setItems(ICollection $items)
-    {
-        $this->items = $items;
-    }
-
-    /**
-     * @param ICollection $monsters
-     */
-    public function setMonsters(ICollection $monsters)
-    {
-        $this->monsters = $monsters;
-    }
-
-    /**
-     * @param Room $north
-     */
-    public function setNorth(Room $north)
-    {
-        $this->north = $north;
-    }
-
-    /**
-     * @param Room $east
-     */
-    public function setEast(Room $east)
-    {
-        $this->east = $east;
-    }
-
-    /**
-     * @param Room $south
-     */
-    public function setSouth(Room $south)
-    {
-        $this->south = $south;
-    }
-
-    /**
-     * @param Room $west
-     */
-    public function setWest(Room $west)
-    {
-        $this->west = $west;
-    }
+	public function getWest(): Room {
+		return $this->west;
+	}
 }

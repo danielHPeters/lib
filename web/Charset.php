@@ -11,7 +11,6 @@ use rafisa\lib\util\Enum;
  * @version 1.0
  * @package rafisa\lib\web
  */
-abstract class Charset extends Enum
-{
-    const UTF8 = 'UTF-8';
+abstract class Charset extends Enum {
+	const UTF8 = 'UTF-8';
 }

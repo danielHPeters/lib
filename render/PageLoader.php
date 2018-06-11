@@ -3,34 +3,22 @@
 namespace rafisa\lib\render;
 
 /**
- * Class PageLoader
+ * Class PageLoader.
  *
- * @author  d.peters
- * @version 1.0
  * @package rafisa\lib\render
+ * @author Daniel Peters
+ * @version 1.0
  */
-class PageLoader
-{
-    /**
-     *
-     * @var string
-     */
-    private $pathToHtml;
+class PageLoader {
+	private $path;
 
-    /**
-     * PageLoader constructor.
-     *
-     * @param string $pathToHtml
-     */
-    public function __construct(string $pathToHtml)
-    {
-        $this->pathToHtml = $pathToHtml;
-    }
+	public function __construct( string $path ) {
+		$this->path = $path;
+	}
 
-    public function loadHtmlPage(string $page)
-    {
-        $htmlFile = $this->pathToHtml . $page . '.html';
+	public function loadHtmlPage( string $page ) {
+		$htmlFile = $this->path . $page . '.html';
 
-        return file_exists($htmlFile) ? file_get_contents($htmlFile) : 'Page not found!';
-    }
+		return file_exists( $htmlFile ) ? file_get_contents( $htmlFile ) : 'Page not found!';
+	}
 }

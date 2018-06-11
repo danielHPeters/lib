@@ -6,15 +6,13 @@ use rafisa\lib\html\Tag;
 use rafisa\lib\html\Html;
 
 /**
- * Description of HtmlTagFactory
+ * Class HtmlTagFactory.
  *
- * @author  d.peters
- * @version 1.0
+ * @package rafisa\lib\factory
+ * @author Daniel Peters
  */
-abstract class HtmlTagFactory
-{
-    final public static function createHtmlTag(string $tag, string $content): Html
-    {
-        return Tag::isValidKey($tag) ? new Html($tag, $content) : null;
-    }
+abstract class HtmlTagFactory {
+	final public static function createHtmlTag( string $tag, string $content ): Html {
+		return Tag::isValidKey( $tag ) ? new Html( $tag, $content ) : null;
+	}
 }

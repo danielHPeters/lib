@@ -3,14 +3,13 @@
 namespace rafisa\lib\session;
 
 /**
- * Description of Verifier
+ * Class Verifier.
  *
- * @author Daniel
+ * @package rafisa\lib\session
+ * @author Daniel Peters
+ * @version 1.0
  */
-class Verifier
-{
-
-    public function authenticate(Session $session)
-    {
-    }
+class Verifier {
+	public function authenticate( Session $session ) {
+	}
 }

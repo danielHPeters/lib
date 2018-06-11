@@ -2,7 +2,7 @@
 
 namespace rafisa\lib\database;
 
-use rafisa\lib\collections\ICollection;
+use rafisa\lib\collections\Collection;
 use rafisa\lib\collections\ArrayList;
 use rafisa\lib\entities\Entity;
 use InvalidArgumentException;
@@ -104,9 +104,9 @@ abstract class AbstractMapper implements IMapper
      *
      * @param string $conditions
      *
-     * @return ICollection
+     * @return Collection
      */
-    public function find(string $conditions = ''): ICollection
+    public function find(string $conditions = ''): Collection
     {
         $collection = new ArrayList();
         $this->adapter->select($this->table, $conditions);

@@ -7,10 +7,8 @@ namespace rafisa\lib\util;
  *
  * @author d.peters
  */
-abstract class Str
-{
-    final public static function substring($string, $start): string
-    {
-        return substr($string, $start);
-    }
+abstract class Str {
+	final public static function substring( $string, $start ): string {
+		return substr( $string, $start );
+	}
 }

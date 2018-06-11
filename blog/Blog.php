@@ -2,52 +2,29 @@
 
 namespace rafisa\lib\blog;
 
-use rafisa\lib\collections\ICollection;
+use rafisa\lib\collections\Collection;
 use rafisa\lib\collections\ArrayList;
 
 /**
- * Description of Blog
+ * Description of Blog.
  *
- * @author Daniel
+ * @author Daniel Peters
+ * @version 1.0
  */
-class Blog
-{
-    /**
-     *
-     * @var ICollection
-     */
-    private $posts;
+class Blog {
+	private $posts;
+	private $users;
 
-    /**
-     *
-     * @var ICollection
-     */
-    private $users;
+	public function __construct() {
+		$this->posts = new ArrayList();
+		$this->users = new ArrayList();
+	}
 
-    /**
-     *
-     */
-    public function __construct()
-    {
-        $this->posts = new ArrayList();
-        $this->users = new ArrayList();
-    }
+	public function getPosts(): Collection {
+		return $this->posts;
+	}
 
-    /**
-     *
-     * @return ICollection
-     */
-    public function getPosts(): ICollection
-    {
-        return $this->posts;
-    }
-
-    /**
-     *
-     * @return ICollection
-     */
-    public function getUsers(): ICollection
-    {
-        return $this->users;
-    }
+	public function getUsers(): Collection {
+		return $this->users;
+	}
 }

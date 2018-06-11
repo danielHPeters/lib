@@ -3,63 +3,38 @@
 namespace rafisa\lib\observer;
 
 use rafisa\lib\collections\ArrayList;
-use rafisa\lib\collections\ICollection;
-use rafisa\lib\entities\Entity;
+use rafisa\lib\collections\Collection;
 
 /**
- * Description of Observable
+ * Class Observable.
  *
- * @author d.peters
+ * @package rafisa\lib\observer
+ * @author Daniel Peters
+ * @version 1.0
  */
-abstract class Observable extends Entity
-{
-    /**
-     *
-     * @var ICollection container for attached observers
-     */
-    private $observers;
+abstract class Observable {
+	private $observers;
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->observers = new ArrayList();
-    }
+	public function __construct() {
+		$this->observers = new ArrayList();
+	}
 
-    public function getObservers(): ICollection
-    {
-        return $this->observers;
-    }
+	public function getObservers(): Collection {
+		return $this->observers;
+	}
 
-    /**
-     *
-     * @param IObserver $obs
-     */
-    public function attach(IObserver $obs)
-    {
-        $this->observers->add($obs);
-    }
+	public function attach( Observer $obs ): void {
+		$this->observers->add( $obs );
+	}
 
-    /**
-     *
-     * @param IObserver $obs
-     */
-    public function detach(IObserver $obs)
-    {
-        $key = $this->observers->indexOf($obs);
-        $this->observers->remove($key);
-    }
+	public function detach( Observer $obs ): void {
+		$key = $this->observers->indexOf( $obs );
+		$this->observers->remove( $key );
+	}
 
-    /**
-     * Notify observers
-     */
-    public function notify()
-    {
-        $this->observers->each(
-            function (IObserver $obs) {
-                $obs->update($this);
-            }
-        );
-    }
+	public function notify(): void {
+		$this->observers->each( function ( Observer $obs ) {
+			$obs->update( $this );
+		} );
+	}
 }

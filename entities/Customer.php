@@ -5,36 +5,24 @@ namespace rafisa\lib\entities;
 use rafisa\lib\accounting\Address;
 
 /**
- * Description of Customer
+ * Class Customer.
  *
- * @author Daniel
+ * @package rafisa\lib\entities
+ * @author Daniel Peters
+ * @version 1.0
  */
-class Customer extends Person
-{
-    /**
-     *
-     * @var Address
-     */
-    private $address;
+class Customer extends Person {
+	private $address;
 
-    /**
-     *
-     * @param string  $name
-     * @param string  $firstName
-     * @param string  $title
-     * @param string  $birthDate
-     * @param string  $email
-     * @param Address $address
-     */
-    public function __construct(
-        string $name,
-        string $firstName,
-        string $title,
-        string $birthDate,
-        string $email,
-        Address $address
-    ) {
-        parent::__construct($name, $firstName, $title, $birthDate, $email);
-        $this->address = $address;
-    }
+	public function __construct(
+		string $name,
+		string $firstName,
+		string $title,
+		string $birthDate,
+		string $email,
+		Address $address
+	) {
+		parent::__construct( $name, $firstName, $title, $birthDate, $email );
+		$this->address = $address;
+	}
 }

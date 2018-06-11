@@ -18,7 +18,7 @@ class MysqlAdapter implements IAdapter
 
     /**
      *
-     * @var DbConfiguration
+     * @var Configuration
      */
     private $config;
 
@@ -37,9 +37,9 @@ class MysqlAdapter implements IAdapter
     /**
      * Constructor.
      *
-     * @param DbConfiguration $config
+     * @param Configuration $config
      */
-    public function __construct(DbConfiguration $config)
+    public function __construct(Configuration $config)
     {
         $this->config = $config;
     }

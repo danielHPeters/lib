@@ -2,7 +2,7 @@
 
 namespace rafisa\lib\database;
 
-use rafisa\lib\collections\ICollection;
+use rafisa\lib\collections\Collection;
 use rafisa\lib\entities\Entity;
 
 /**
@@ -24,9 +24,9 @@ interface IMapper
     /**
      * @param string $conditions
      *
-     * @return ICollection
+     * @return Collection
      */
-    public function find(string $conditions = ''): ICollection;
+    public function find(string $conditions = ''): Collection;
 
     /**
      *

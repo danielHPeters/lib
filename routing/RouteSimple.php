@@ -9,85 +9,63 @@ namespace rafisa\lib\routing;
  * @version 1.0
  * @package rafisa\lib\routing
  */
-class RouteSimple
-{
-    /**
-     * @var array
-     */
-    public static $routes = [];
+class RouteSimple {
+	public static $routes = [];
+	public static $routes404 = [];
+	public static $path;
 
-    /**
-     * @var array
-     */
-    public static $routes404 = [];
+	public static function init() {
+		$parsedUrl  = parse_url( $_SERVER['REQUEST_URI'] );
+		self::$path = isset( $parsedUrl['path'] ) ? trim( $parsedUrl['path'], '/' ) : '';
+	}
 
-    /**
-     * @var string
-     */
-    public static $path;
+	/**
+	 * @param string $expression
+	 * @param callable $function
+	 */
+	public static function add( string $expression, callable $function ) {
+		array_push( self::$routes, [ 'expression' => $expression, 'function' => $function ] );
+	}
 
-    /**
-     *
-     */
-    public static function init()
-    {
-        $parsedUrl = parse_url($_SERVER['REQUEST_URI']);
-        self::$path = isset($parsedUrl['path']) ? trim($parsedUrl['path'], '/') : '';
-    }
+	/**
+	 * @param callable $function
+	 */
+	public static function add404( callable $function ) {
+		array_push( self::$routes404, $function );
+	}
 
-    /**
-     * @param string   $expression
-     * @param callable $function
-     */
-    public static function add(string $expression, callable $function)
-    {
-        array_push(self::$routes, ['expression' => $expression, 'function' => $function]);
-    }
+	/**
+	 *
+	 */
+	public static function run() {
+		$routeFound = false;
 
-    /**
-     * @param callable $function
-     */
-    public static function add404(callable $function)
-    {
-        array_push(self::$routes404, $function);
-    }
+		foreach ( self::$routes as $route ) {
+			if ( RoutesConfig::get( 'basePath' ) ) {
+				$route['expression'] = '(' . RoutesConfig::get( 'basePath' ) . ')/' . $route['expression'];
+			}
 
-    /**
-     *
-     */
-    public static function run()
-    {
-        $routeFound = false;
+			//Add 'find string start' automatically
+			$route['expression'] = '^' . $route['expression'] . '$';
 
-        foreach (self::$routes as $route) {
-            if (RoutesConfig::get('basePath')) {
-                $route['expression'] = '(' . RoutesConfig::get('basePath') . ')/' . $route['expression'];
-            }
+			//check match
+			if ( preg_match( '#' . $route['expression'] . '#', self::$path, $matches ) ) {
+				array_shift( $matches ); // Always remove first element. This contains the whole string
 
-            //Add 'find string start' automatically
-            $route['expression'] = '^' . $route['expression'] . '$';
+				if ( RoutesConfig::get( 'basePath' ) ) {
+					array_shift( $matches ); // Remove base path
+				}
 
-            //Add 'find string end' automatically
-            //$route['expression'] = $route['expression'] . '$';
+				call_user_func_array( $route['function'], $matches );
 
-            //check match
-            if (preg_match('#' . $route['expression'] . '#', self::$path, $matches)) {
-                array_shift($matches); // Always remove first element. This contains the whole string
+				$routeFound = true;
+			}
+		}
 
-                if (RoutesConfig::get('basePath')) {
-                    array_shift($matches); // Remove base path
-                }
-
-                call_user_func_array($route['function'], $matches);
-
-                $routeFound = true;
-            }
-        }
-
-        if (!$routeFound) {
-            foreach (self::$routes404 as $route404) {
-                call_user_func_array($route404, [self::$path]);
-            }
-        }
-    }
+		if ( ! $routeFound ) {
+			foreach ( self::$routes404 as $route404 ) {
+				call_user_func_array( $route404, [ self::$path ] );
+			}
+		}
+	}
 }

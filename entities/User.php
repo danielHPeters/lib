@@ -5,98 +5,52 @@ namespace rafisa\lib\entities;
 use DateTime;
 
 /**
- * Description of User
+ * Class User.
  *
- * @author  d.peters
+ * @package rafisa\lib\entities
+ * @author Daniel Peters
  * @version 1.0
  */
-class User extends Person
-{
-    /**
-     *
-     * @var string
-     */
-    private $username;
+class User extends Person {
+	private $username;
+	private $password;
+	private $rememberMe;
 
-    /**
-     *
-     * @var string
-     */
-    private $password;
+	public function __construct(
+		string $lastName,
+		string $firstName,
+		string $title,
+		DateTime $birthDate,
+		string $email,
+		string $username,
+		string $password
+	) {
+		parent::__construct( $lastName, $firstName, $title, $birthDate, $email );
+		$this->password = $password;
+		$this->username = $username;
+	}
 
-    /**
-     *
-     * @var bool
-     */
-    private $rememberMe;
+	public function getUsername(): string {
+		return $this->username;
+	}
 
-    /**
-     *
-     * @param string   $lastName
-     * @param string   $firstName
-     * @param string   $title
-     * @param DateTime $birthDate
-     * @param string   $email
-     * @param string   $username
-     * @param string   $password
-     */
-    public function __construct(
-        string $lastName,
-        string $firstName,
-        string $title,
-        DateTime $birthDate,
-        string $email,
-        string $username,
-        string $password
-    ) {
-        parent::__construct($lastName, $firstName, $title, $birthDate, $email);
-        $this->password = $password;
-        $this->username = $username;
-    }
+	public function getPassword(): string {
+		return $this->password;
+	}
 
-    /**
-     *
-     * @return string
-     */
-    public function getUsername(): string
-    {
-        return $this->username;
-    }
+	public function rememberMesIsSet(): bool {
+		return $this->rememberMe;
+	}
 
-    /**
-     *
-     * @return string
-     */
-    public function getPassword(): string
-    {
-        return $this->password;
-    }
+	public function setUsername( string $username ) {
+		$this->username = $username;
+	}
 
-    public function rememberMesIsSet(): bool
-    {
-        return $this->rememberMe;
-    }
+	public function setPassword( string $password ) {
+		$this->password = $password;
+	}
 
-    /**
-     *
-     * @param string $username
-     */
-    public function setUsername(string $username)
-    {
-        $this->username = $username;
-    }
-
-    /**
-     *
-     * @param string $password
-     */
-    public function setPassword(string $password)
-    {
-        $this->password = $password;
-    }
-
-    public function setRememberMe(bool $rememberMe)
-    {
-        $this->rememberMe = $rememberMe;
-    }
+	public function setRememberMe( bool $rememberMe ) {
+		$this->rememberMe = $rememberMe;
+	}
 }

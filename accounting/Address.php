@@ -5,205 +5,63 @@ namespace rafisa\lib\accounting;
 use rafisa\lib\entities\Entity;
 
 /**
- * Description of Address
+ * Description of Address.
  *
- * @author Daniel
+ * @author Daniel Peters
+ * @version 1.0
  */
-class Address extends Entity
-{
-    /**
-     *
-     * @var string
-     */
-    private $street;
+class Address extends Entity {
+	private $street;
+	private $number;
+	private $city;
+	private $zip;
+	private $state;
+	private $country;
+	private $type;
 
-    /**
-     *
-     * @var string
-     */
-    private $number;
+	public function __construct(
+		string $street,
+		string $number,
+		string $city,
+		string $zip,
+		string $state,
+		string $country,
+		string $type
+	) {
+		$this->street  = $street;
+		$this->number  = $number;
+		$this->city    = $city;
+		$this->zip     = $zip;
+		$this->state   = $state;
+		$this->country = $country;
+		$this->type    = $type;
+	}
 
-    /**
-     *
-     * @var string
-     */
-    private $city;
+	public function getStreet(): string {
+		return $this->street;
+	}
 
-    /**
-     *
-     * @var string
-     */
-    private $zip;
+	public function getNumber(): string {
+		return $this->number;
+	}
 
-    /**
-     *
-     * @var string
-     */
-    private $state;
+	public function getCity(): string {
+		return $this->city;
+	}
 
-    /**
-     *
-     * @var string
-     */
-    private $country;
+	public function getZip(): string {
+		return $this->zip;
+	}
 
-    /**
-     *
-     * @var string
-     */
-    private $type;
+	public function getState(): string {
+		return $this->state;
+	}
 
-    /**
-     *
-     * @param string $street
-     * @param string $number
-     * @param string $city
-     * @param string $zip
-     * @param string $state
-     * @param string $country
-     * @param string $type
-     */
-    public function __construct(
-        string $street,
-        string $number,
-        string $city,
-        string $zip,
-        string $state,
-        string $country,
-        string $type
-    ) {
-        $this->street = $street;
-        $this->number = $number;
-        $this->city = $city;
-        $this->zip = $zip;
-        $this->state = $state;
-        $this->country = $country;
-        $this->type = $type;
-    }
+	public function getCountry(): string {
+		return $this->country;
+	}
 
-    /**
-     *
-     * @return string
-     */
-    public function getStreet(): string
-    {
-        return $this->street;
-    }
-
-    /**
-     *
-     * @return string
-     */
-    public function getNumber(): string
-    {
-        return $this->number;
-    }
-
-    /**
-     *
-     * @return string
-     */
-    public function getCity(): string
-    {
-        return $this->city;
-    }
-
-    /**
-     *
-     * @return string
-     */
-    public function getZip(): string
-    {
-        return $this->zip;
-    }
-
-    /**
-     *
-     * @return string
-     */
-    public function getState(): string
-    {
-        return $this->state;
-    }
-
-    /**
-     *
-     * @return string
-     */
-    public function getCountry(): string
-    {
-        return $this->country;
-    }
-
-    /**
-     *
-     * @return string
-     */
-    public function getType(): string
-    {
-        return $this->type;
-    }
-
-    /**
-     *
-     * @param string $street
-     */
-    public function setStreet(string $street)
-    {
-        $this->street = $street;
-    }
-
-    /**
-     *
-     * @param string $number
-     */
-    public function setNumber(string $number)
-    {
-        $this->number = $number;
-    }
-
-    /**
-     *
-     * @param string $city
-     */
-    public function setCity(string $city)
-    {
-        $this->city = $city;
-    }
-
-    /**
-     *
-     * @param string $zip
-     */
-    public function setZip(string $zip)
-    {
-        $this->zip = $zip;
-    }
-
-    /**
-     *
-     * @param string $state
-     */
-    public function setState(string $state)
-    {
-        $this->state = $state;
-    }
-
-    /**
-     *
-     * @param string $country
-     */
-    public function setCountry(string $country)
-    {
-        $this->country = $country;
-    }
-
-    /**
-     *
-     * @param string $type
-     */
-    public function setType(string $type)
-    {
-        $this->type = $type;
-    }
+	public function getType(): string {
+		return $this->type;
+	}
 }

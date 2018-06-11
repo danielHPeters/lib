@@ -5,42 +5,26 @@ namespace rafisa\lib\entities;
 use rafisa\lib\observer\Observable;
 
 /**
- * Description of Car
+ * Class Car.
  *
- * @author  d.peters
+ * @package rafisa\lib\entities
+ * @author Daniel Peters
  * @version 1.0
  */
-class Car extends Observable
-{
-    private $name;
+class Car extends Observable {
+	private $name;
 
-    /**
-     * Constructor
-     *
-     * @param string $name
-     */
-    public function __construct(string $name)
-    {
-        parent::__construct();
-        $this->name = $name;
-    }
+	public function __construct( string $name ) {
+		parent::__construct();
+		$this->name = $name;
+	}
 
-    /**
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->name;
-    }
+	public function getName(): string {
+		return $this->name;
+	}
 
-    /**
-     *
-     * @param string $name
-     */
-    public function setName(string $name)
-    {
-        $this->name = $name;
-        $this->notify();
-    }
+	public function setName( string $name ) {
+		$this->name = $name;
+		$this->notify();
+	}
 }

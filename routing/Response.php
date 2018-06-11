@@ -11,59 +11,28 @@ use rafisa\lib\collections\ArrayList;
  * @version 1.0
  * @package rafisa\lib\routing
  */
-class Response
-{
-    /**
-     *
-     * @var string
-     */
-    private $version;
+class Response {
+	private $version;
+	private $headers;
 
-    /**
-     *
-     * @var ArrayList
-     */
-    private $headers;
+	public function __construct( string $version ) {
+		$this->version = $version;
+		$this->headers = new ArrayList();
+	}
 
-    /**
-     *
-     * @param string $version
-     */
-    public function __construct(string $version)
-    {
-        $this->version = $version;
-        $this->headers = new ArrayList();
-    }
+	public function getVersion(): string {
+		return $this->version;
+	}
 
-    /**
-     *
-     * @return string
-     */
-    public function getVersion(): string
-    {
-        return $this->version;
-    }
+	public function getHeaders(): ArrayList {
+		return $this->headers;
+	}
 
-    /**
-     *
-     * @return ArrayList
-     */
-    public function getHeaders(): ArrayList
-    {
-        return $this->headers;
-    }
-
-    /**
-     *
-     */
-    public function send()
-    {
-        if (!headers_sent()) {
-            $this->headers->each(
-                function ($header) {
-                    header($this->version . ' ' . $header, true);
-                }
-            );
-        }
-    }
+	public function send() {
+		if ( ! headers_sent() ) {
+			$this->headers->each( function ( $header ) {
+				header( $this->version . ' ' . $header, true );
+			} );
+		}
+	}
 }

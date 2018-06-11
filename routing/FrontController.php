@@ -5,42 +5,21 @@ namespace rafisa\lib\routing;
 /**
  * Description of FrontController
  *
+ * @package rafisa\lib\routing
  * @author  Daniel Peters
  * @version 1.0
- * @package rafisa\lib\routing
  */
-class FrontController
-{
-    /**
-     * @var Router
-     */
-    private $router;
+class FrontController {
+	private $router;
+	private $dispatcher;
 
-    /**
-     *
-     * @var Dispatcher
-     */
-    private $dispatcher;
+	public function __construct( Router $router, Dispatcher $dispatcher ) {
+		$this->router     = $router;
+		$this->dispatcher = $dispatcher;
+	}
 
-    /**
-     *
-     * @param Router     $router
-     * @param Dispatcher $dispatcher
-     */
-    public function __construct(Router $router, Dispatcher $dispatcher)
-    {
-        $this->router = $router;
-        $this->dispatcher = $dispatcher;
-    }
-
-    /**
-     *
-     * @param Request  $request
-     * @param Response $response
-     */
-    public function run(Request $request, Response $response)
-    {
-        $route = $this->router->route($request, $response);
-        $this->dispatcher->dispatch($route, $request, $response);
-    }
+	public function run( Request $request, Response $response ) {
+		$route = $this->router->route( $request, $response );
+		$this->dispatcher->dispatch( $route, $request, $response );
+	}
 }

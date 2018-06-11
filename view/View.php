@@ -10,84 +10,80 @@ use Exception;
  * @author  d.peters
  * @version 1.0
  */
-class View
-{
-    /**
-     *
-     * @var string
-     */
-    private $pathToTemplates;
+class View {
+	/**
+	 *
+	 * @var string
+	 */
+	private $pathToTemplates;
 
-    /**
-     *
-     * @var string
-     */
-    private $file;
+	/**
+	 *
+	 * @var string
+	 */
+	private $file;
 
-    /**
-     *
-     * @var array
-     */
-    private $vars;
+	/**
+	 *
+	 * @var array
+	 */
+	private $vars;
 
-    /**
-     *
-     * @var string
-     */
-    private $html;
+	/**
+	 *
+	 * @var string
+	 */
+	private $html;
 
-    /**
-     * View constructor.
-     *
-     * @param string $pathToTemplates
-     * @param string $file
-     */
-    public function __construct(string $pathToTemplates, string $file = 'layout')
-    {
-        $this->pathToTemplates = $pathToTemplates;
-        $this->file = $file;
-        $this->vars = [];
-    }
+	/**
+	 * View constructor.
+	 *
+	 * @param string $pathToTemplates
+	 * @param string $file
+	 */
+	public function __construct( string $pathToTemplates, string $file = 'layout' ) {
+		$this->pathToTemplates = $pathToTemplates;
+		$this->file            = $file;
+		$this->vars            = [];
+	}
 
-    /**
-     *
-     * @throws Exception
-     */
-    private function load()
-    {
-        $file = $this->pathToTemplates . '/' . $this->file . '.tpl';
+	/**
+	 *
+	 * @throws Exception
+	 */
+	private function load() {
+		$file = $this->pathToTemplates . '/' . $this->file . '.tpl';
 
-        if (file_exists($file)) {
-            $content = file_get_contents($file);
+		if ( file_exists( $file ) ) {
+			$content = file_get_contents( $file );
 
-            foreach ($this->vars as $key => $value) {
-                $toReplace = '{' . $key . '}';
-                $content = str_replace($toReplace, $value, $content);
-            }
+			foreach ( $this->vars as $key => $value ) {
+				$toReplace = '{' . $key . '}';
+				$content   = str_replace( $toReplace, $value, $content );
+			}
 
-            $this->html = $content;
-        } else {
-            throw new Exception('Template not found.');
-        }
-    }
+			$this->html = $content;
+		} else {
+			throw new Exception( 'Template not found.' );
+		}
+	}
 
-    /**
-     *
-     * @param string $key
-     * @param string $value
-     */
-    public function setVar(string $key, string $value)
-    {
-        $this->vars[$key] = $value;
-    }
+	/**
+	 *
+	 * @param string $key
+	 * @param string $value
+	 */
+	public function setVar( string $key, string $value ) {
+		$this->vars[ $key ] = $value;
+	}
 
-    /**
-     * @return string
-     * @throws Exception
-     */
-    public function getHtml(): string
-    {
-        $this->load();
-        return $this->html;
-    }
+	/**
+	 * @return string
+	 * @throws Exception
+	 */
+	public function getHtml(): string {
+		$this->load();
+
+		return $this->html;
+	}
 }

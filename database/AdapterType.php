@@ -10,11 +10,10 @@ use rafisa\lib\util\Enum;
  * @author  d.peters
  * @version 1.0
  */
-abstract class AdapterType extends Enum
-{
-    const PG = 'postgres';
-    const MYSQL = 'mysql';
-    const MS_SQL = 'mssql';
-    const MONGO = 'mongodb';
-    const ORACLE = 'oracle';
+abstract class AdapterType extends Enum {
+	const PG = 'postgres';
+	const MYSQL = 'mysql';
+	const MS_SQL = 'mssql';
+	const MONGO = 'mongodb';
+	const ORACLE = 'oracle';
 }

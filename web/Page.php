@@ -3,43 +3,19 @@
 namespace rafisa\lib\web;
 
 /**
- * Class Page
+ * Class Page.
  *
- * @author  d.peters
- * @version 1.0
  * @package rafisa\lib\web
+ * @author Daniel Peters
+ * @version 1.0
  */
-class Page
-{
-    /**
-     * @var string
-     */
-    private $title;
-
-    /**
-     * @var string
-     */
-    private $charset;
-
-    /**
-     * @var mixed
-     */
-    private $navbar;
-
-    /**
-     * @var mixed
-     */
-    private $header;
-
-    /**
-     * @var mixed
-     */
-    private $content;
-
-    /**
-     * @var mixed
-     */
-    private $footer;
+class Page {
+	private $title;
+	private $charset;
+	private $navbar;
+	private $header;
+	private $content;
+	private $footer;
 }
 
 

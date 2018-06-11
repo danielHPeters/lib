@@ -7,170 +7,83 @@ use rafisa\lib\entities\User;
 use DateInterval;
 
 /**
- * Description of Session
+ * Class Session.
  *
- * @author  d.peters
+ * @package rafisa\lib\session
+ * @author Daniel Peters
  * @version 1.0
  */
-class Session
-{
-    /**
-     * @var string
-     */
-    private $id;
+class Session {
+	private $id;
+	private $user;
+	private $loginTime;
+	private $active;
+	private $limit;
+	private $domain;
+	private $path;
+	private $https;
 
-    /**
-     *
-     * @var User
-     */
-    private $user;
+	/**
+	 * Session constructor.
+	 *
+	 * @param string $id
+	 * @param User $user
+	 * @param int $limit
+	 * @param string $domain
+	 * @param string $path
+	 * @param bool $https
+	 */
+	public function __construct( string $id, User $user, int $limit, string $domain, string $path, bool $https ) {
+		$this->id        = $id;
+		$this->user      = $user;
+		$this->loginTime = new DateTime();
+		$this->active    = true;
+		$this->limit     = $limit;
+		$this->domain    = $domain;
+		$this->path      = $path;
+		$this->https     = $https;
+	}
 
-    /**
-     *
-     * @var DateTime
-     */
-    private $loginTime;
+	public function getUser(): User {
+		return $this->user;
+	}
 
-    /**
-     *
-     * @var bool
-     */
-    private $active;
+	public function getLoginTime(): DateTime {
+		return $this->loginTime;
+	}
 
-    /**
-     * @var string
-     */
-    private $name;
+	public function getElapsedTime(): DateInterval {
+		return $this->loginTime->diff( new DateTime() );
+	}
 
-    /**
-     * @var int
-     */
-    private $limit;
+	public function isActive(): bool {
+		return $this->active;
+	}
 
-    /**
-     * @var string
-     */
-    private $domain;
+	public function getLimit(): int {
+		return $this->limit;
+	}
 
-    /**
-     * @var string
-     */
-    private $path;
+	public function getDomain(): string {
+		return $this->domain;
+	}
 
-    /**
-     * @var bool
-     */
-    private $https;
+	public function getPath(): string {
+		return $this->path;
+	}
 
-    /**
-     * Session constructor.
-     *
-     * @param string $id
-     * @param User $user
-     * @param int $limit
-     * @param string $domain
-     * @param string $path
-     * @param bool $https
-     */
-    public function __construct(string $id, User $user, int $limit, string $domain, string $path, bool $https)
-    {
-        $this->id = $id;
-        $this->user = $user;
-        $this->loginTime = new DateTime();
-        $this->active = true;
-        $this->name = $user->getUsername();
-        $this->limit = $limit;
-        $this->domain = $domain;
-        $this->path = $path;
-        $this->https = $https;
-    }
+	public function isHttps(): bool {
+		return $this->https;
+	}
 
-    /**
-     *
-     * @return User
-     */
-    public function getUser(): User
-    {
-        return $this->user;
-    }
+	public function setActive( bool $active ) {
+		$this->active = $active;
+	}
 
-    /**
-     *
-     * @return DateTime
-     */
-    public function getLoginTime(): DateTime
-    {
-        return $this->loginTime;
-    }
-
-    public function getElapsedTime(): DateInterval
-    {
-        return $this->loginTime->diff(new DateTime());
-    }
-
-    /**
-     *
-     * @return bool
-     */
-    public function isActive(): bool
-    {
-        return $this->active;
-    }
-
-    /**
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    /**
-     * @return int
-     */
-    public function getLimit(): int
-    {
-        return $this->limit;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDomain(): string
-    {
-        return $this->domain;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPath(): string
-    {
-        return $this->path;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isHttps(): bool
-    {
-        return $this->https;
-    }
-
-    /**
-     *
-     * @param bool $active
-     */
-    public function setActive(bool $active)
-    {
-        $this->active = $active;
-    }
-
-    /**
-     * Refresh session id and delete old session.
-     */
-    public function refresh()
-    {
-        session_regenerate_id(true);
-    }
+	/**
+	 * Refresh session id and delete old session.
+	 */
+	public function refresh() {
+		session_regenerate_id( true );
+	}
 }

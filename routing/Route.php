@@ -3,54 +3,26 @@
 namespace rafisa\lib\routing;
 
 /**
- * Description of Route
+ * Description of Route.
  *
+ * @package rafisa\lib\routing
  * @author  Daniel Peters
  * @version 1.0
- * @package rafisa\lib\routing
  */
-class Route
-{
-    /**
-     *
-     * @var string
-     */
-    private $path;
+class Route {
+	private $path;
+	private $controllerClass;
 
-    /**
-     *
-     * @var string
-     */
-    private $controllerClass;
+	public function __construct( string $path, string $controllerClass ) {
+		$this->path            = $path;
+		$this->controllerClass = $controllerClass;
+	}
 
-    /**
-     *
-     * @param string $path
-     * @param string $controllerClass
-     */
-    public function __construct(string $path, string $controllerClass)
-    {
-        $this->path = $path;
-        $this->controllerClass = $controllerClass;
-    }
+	public function match( Request $request ): bool {
+		return $this->path === $request->getUri();
+	}
 
-    /**
-     *
-     * @param Request $request
-     *
-     * @return bool
-     */
-    public function match(Request $request): bool
-    {
-        return $this->path === $request->getUri();
-    }
-
-    /**
-     *
-     * @return IController
-     */
-    public function createController(): IController
-    {
-        return new $this->controllerClass;
-    }
+	public function createController(): Controller {
+		return new $this->controllerClass;
+	}
 }

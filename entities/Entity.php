@@ -3,43 +3,20 @@
 namespace rafisa\lib\entities;
 
 /**
- * Class Entity
+ * Class Entity.
  *
- * @author  Daniel Peters
- * @package rafisa\entities
- * @version 26.04.217
+ * @package rafisa\lib\entities
+ * @author Daniel Peters
+ * @version 1.0
  */
-abstract class Entity
-{
-    /**
-     * Id of the Entity
-     *
-     * @var string
-     */
-    private $id;
+abstract class Entity {
+	protected $id;
 
-    /**
-     * Get the id of the entity
-     *
-     * @return string
-     */
-    public function getId(): string
-    {
-        return $this->id;
-    }
+	public function __construct($id) {
+		$this->id = $id;
+	}
 
-    /**
-     * Set the id of the entity
-     *
-     * @param string $id
-     */
-    public function setId(string $id)
-    {
-        $this->id = $id;
-    }
-
-    public function toArray(): array
-    {
-        return [];
-    }
+	public function getId(): string {
+		return $this->id;
+	}
 }
