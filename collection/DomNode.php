@@ -10,19 +10,19 @@ namespace rafisa\lib\collection;
  * @version 1.0
  */
 interface DomNode {
-	public function getName(): string;
+	public function getTagName(): string;
 
 	public function getText(): string;
 
 	public function getChildren(): ArrayList;
 
-	public function getClasses(): ArrayList;
+	public function getClassList(): ArrayList;
 
 	public function getAttributes(): ArrayList;
 
 	public function getHtml(): string;
 
-	public function setName( string $name ): void;
+	public function setTagName( string $name ): void;
 
 	public function setText( string $text ): void;
 }

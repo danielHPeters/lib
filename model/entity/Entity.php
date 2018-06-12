@@ -12,11 +12,15 @@ namespace rafisa\lib\model\entity;
 abstract class Entity {
 	protected $id;
 
-	public function __construct($id) {
+	public function __construct( string $id ) {
 		$this->id = $id;
 	}
 
 	public function getId(): string {
 		return $this->id;
+	}
+
+	public function toArray(): array {
+		return [];
 	}
 }

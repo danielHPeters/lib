@@ -4,178 +4,113 @@ namespace rafisa\lib\database;
 
 use rafisa\lib\collection\Collection;
 use rafisa\lib\collection\ArrayList;
-use rafisa\lib\entities\Entity;
+use rafisa\lib\model\entity\Entity;
 use InvalidArgumentException;
 
+
 /**
- * Description of AbstractMapper
+ * Class AbstractMapper.
  *
- * @author  d.peters
+ * @package rafisa\lib\database
+ * @author Daniel Peters
  * @version 1.0
  */
-abstract class AbstractMapper implements IMapper
-{
-    /**
-     * Database adapter
-     *
-     * @var IAdapter
-     */
-    private $adapter;
+abstract class AbstractMapper implements Mapper {
+	private $adapter;
+	private $table;
+	private $class;
 
-    /**
-     * Entity table
-     *
-     * @var string
-     */
-    private $table;
+	/**
+	 *
+	 * @param Adapter $adapter
+	 * @param string $table
+	 * @param Entity $class
+	 */
+	public function __construct( Adapter $adapter, string $table, Entity $class ) {
+		$this->adapter = $adapter;
+		$this->table   = $table;
+		$this->class   = $class;
+	}
 
-    /**
-     * Entity class
-     *
-     * @var Entity
-     */
-    private $class;
+	public function getAdapter(): Adapter {
+		return $this->adapter;
+	}
 
-    /**
-     *
-     * @param IAdapter $adapter
-     * @param string   $table
-     * @param Entity   $class
-     */
-    public function __construct(IAdapter $adapter, string $table, Entity $class)
-    {
-        $this->adapter = $adapter;
-        $this->table = $table;
-        $this->class = $class;
-    }
+	public function getTable(): string {
+		return $this->table;
+	}
 
-    /**
-     *
-     * @return IAdapter
-     */
-    public function getAdapter(): IAdapter
-    {
-        return $this->adapter;
-    }
+	public function getClass(): Entity {
+		return $this->class;
+	}
 
-    /**
-     *
-     * @return string
-     */
-    public function getTable(): string
-    {
-        return $this->table;
-    }
+	/**
+	 *
+	 * @param string $table
+	 *
+	 * @throws InvalidArgumentException thrown on empty table string
+	 */
+	public function setTable( string $table ) {
+		if ( empty( $table ) ) {
+			throw new InvalidArgumentException( 'Table string is empty' );
+		} else {
+			$this->table = $table;
+		}
+	}
 
-    /**
-     *
-     * @return Entity
-     */
-    public function getClass(): Entity
-    {
-        return $this->class;
-    }
+	public function setClass( Entity $class ) {
+		$this->class = $class;
+	}
 
-    /**
-     *
-     * @param string $table the entity table
-     *
-     * @throws InvalidArgumentException thrown on empty table string
-     */
-    public function setTable(string $table)
-    {
-        if (empty($table)) {
-            throw new InvalidArgumentException('Table string is empty');
-        } else {
-            $this->table = $table;
-        }
-    }
+	public function find( string $conditions = '' ): Collection {
+		$collection = new ArrayList();
+		$this->adapter->select( $this->table, $conditions );
 
-    /**
-     *
-     * @param Entity $class
-     */
-    public function setClass(Entity $class)
-    {
-        $this->class = $class;
-    }
+		while ( $data = $this->adapter->fetch() ) {
+			$collection->add( $data );
+		}
 
-    /**
-     *
-     * @param string $conditions
-     *
-     * @return Collection
-     */
-    public function find(string $conditions = ''): Collection
-    {
-        $collection = new ArrayList();
-        $this->adapter->select($this->table, $conditions);
+		return $collection;
+	}
 
-        while ($data = $this->adapter->fetch()) {
-            $collection->add($data);
-        }
+	public function findById( int $id ): Entity {
+		$this->adapter->select( $this->table, 'id = ' . $id );
+		$data = $this->adapter->fetch();
 
-        return $collection;
-    }
+		return $data !== null ? $this->createEntity( $data ) : null;
+	}
 
-    /**
-     *
-     * @param int $id
-     *
-     * @return Entity
-     */
-    public function findById(int $id): Entity
-    {
-        $this->adapter->select($this->table, 'id = ' . $id);
-        $data = $this->adapter->fetch();
+	/**
+	 *
+	 * @param Entity $entity
+	 */
+	public function insert( Entity $entity ) {
+		if ( ! $entity instanceof $this->class ) {
+			throw new InvalidArgumentException( 'The entity must be an instance of ' . $this->class . '.' );
+		}
 
-        return $data !== null ? $this->createEntity($data) : null;
-    }
+		return $this->adapter->insert( $this->table, $entity->toArray() );
+	}
 
-    /**
-     *
-     * @param Entity $entity
-     */
-    public function insert(Entity $entity)
-    {
-        if (!$entity instanceof $this->class) {
-            throw new InvalidArgumentException('The entity must be an instance of ' . $this->class . '.');
-        }
+	public function update( Entity $entity ) {
+		if ( ! $entity instanceof $this->class ) {
+			throw new InvalidArgumentException( 'The entity must be an instance of ' . $this->class . '.' );
+		}
+		$id   = $entity->getId();
+		$data = $entity->toArray();
+		unset( $data['id'] );
 
-        return $this->adapter->insert($this->table, $entity->toArray());
-    }
+		return $this->adapter->update( $this->table, $data, 'id = ' . $id );
+	}
 
-    /**
-     *
-     * @param Entity $entity
-     */
-    public function update(Entity $entity)
-    {
-        if (!$entity instanceof $this->class) {
-            throw new InvalidArgumentException('The entity must be an instance of ' . $this->class . '.');
-        }
+	public function delete( Entity $entity ) {
+		if ( ! $entity instanceof $this->class ) {
+			throw new InvalidArgumentException( 'The entity must be an instance of ' . $this->class . '.' );
+		}
+		$id = $entity->getId();
 
-        $id = $entity->getId();
-        $data = $entity->toArray();
-        unset($data['id']);
+		return $this->adapter->delete( $this->table, 'id = ' . $id );
+	}
 
-        return $this->adapter->update($this->table, $data, 'id = ' . $id);
-    }
-
-    /**
-     *
-     * @param Entity $entity
-     */
-    public function delete(Entity $entity)
-    {
-        if (!$entity instanceof $this->class) {
-            throw new InvalidArgumentException('The entity must be an instance of ' . $this->class . '.');
-        }
-
-        $id = $entity->getId();
-
-        return $this->adapter->delete($this->table, 'id = ' . $id);
-    }
-
-    abstract protected function createEntity(array $data): Entity;
+	abstract protected function createEntity( array $data ): Entity;
 }

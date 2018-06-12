@@ -2,14 +2,16 @@
 
 namespace rafisa\lib\html;
 
+use rafisa\lib\util\Enum;
+
 /**
- * Class WebColor.
+ * Class Color.
  *
  * @package rafisa\lib\html
  * @author Daniel Peters
  * @version 1.0
  */
-class WebColor {
+class Color extends Enum {
 	/**
 	 * Black and white
 	 */

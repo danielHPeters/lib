@@ -1,15 +1,16 @@
 <?php
 
 namespace rafisa\lib\database;
+use rafisa\lib\util\Enum;
 
 /**
- * Class SQL.
+ * Class Sql.
  *
  * @package rafisa\lib\database
  * @author Daniel Peters
  * @version 1.0
  */
-class SQL {
+class Sql extends Enum {
 	const WHERE = 'WHERE';
 	const HAVING = 'HAVING';
 	const INSERT_INTO = 'INSERT INTO';

@@ -5,9 +5,10 @@ namespace rafisa\lib\html;
 use rafisa\lib\util\Enum;
 
 /**
- * Enum defining html tags
+ * Enum class Tag
  *
- * @author  d.peters
+ * @package rafisa\lib\html
+ * @author Daniel Peters
  * @version 1.0
  */
 abstract class Tag extends Enum {

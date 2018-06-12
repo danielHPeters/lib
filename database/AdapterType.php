@@ -5,9 +5,10 @@ namespace rafisa\lib\database;
 use rafisa\lib\util\Enum;
 
 /**
- * Description of AdapterType
+ * Class AdapterType.
  *
- * @author  d.peters
+ * @package rafisa\lib\database
+ * @author Daniel Peters
  * @version 1.0
  */
 abstract class AdapterType extends Enum {

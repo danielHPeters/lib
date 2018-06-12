@@ -3,9 +3,8 @@
 namespace rafisa\lib\html;
 
 use rafisa\lib\collection\ArrayList;
-use rafisa\lib\collection\Collection;
-use rafisa\lib\data\IDomNode;
-use rafisa\lib\entities\Entity;
+use rafisa\lib\collection\DomNode;
+use rafisa\lib\model\entity\Entity;
 
 /**
  * Description of Html
@@ -13,145 +12,86 @@ use rafisa\lib\entities\Entity;
  * @author  d.peters
  * @version 1.0
  */
-class Html extends Entity implements IDomNode
-{
-    /**
-     * Name of the tag. e.g. div, body, h1
-     *
-     * @var string
-     */
-    private $name;
+class Html extends Entity implements DomNode {
+	private $tagName;
+	private $text;
+	private $classList;
+	private $attributes;
 
-    /**
-     *
-     * @var string
-     */
-    private $text;
+	/**
+	 *
+	 * @var ArrayList
+	 */
+	private $children;
 
-    /**
-     *
-     * @var Collection
-     */
-    private $classes;
+	public function __construct( Tag $tagName ) {
+		parent::__construct( '' );
+		$this->tagName    = $tagName;
+		$this->text       = '';
+		$this->classList  = new ArrayList();
+		$this->attributes = new ArrayList();
+		$this->children   = new ArrayList();
+	}
 
-    /**
-     *
-     * @var Collection attributes of the html tag
-     */
-    private $attributes;
+	public function getHtml(): string {
+		$content = '';
 
-    /**
-     *
-     * @var ArrayList
-     */
-    private $children;
+		if ( $this->children->isEmpty() ) {
+			$content = $this->text;
+		} else {
+			$this->children->each(
+				function ( Html $element ) use ( &$content ) {
+					$content .= $element->getHtml();
+				}
+			);
+		}
 
-    /**
-     * Html constructor.
-     *
-     * @param string $name
-     * @param string $text
-     * @param string $id
-     */
-    public function __construct(string $name, string $text, string $id = '')
-    {
-        $this->setId($id);
-        $this->name = $name;
-        $this->text = $text;
-        $this->classes = new ArrayList();
-        $this->attributes = new ArrayList();
-        $this->children = new ArrayList();
-    }
+		return '<' . $this->tagName . '' .
+		       ( ( $this->getId() !== '' ) ? ' id="' . $this->getId() . '" ' : '' ) .
+		       ( ( ! $this->classList->isEmpty() ) ? 'class="' . implode( ' ', $this->classList->toArray() ) . '"' : '' ) . '>' .
+		       $content .
+		       '</' . $this->tagName . '>';
+	}
 
-    /**
-     * @return string
-     */
-    public function getHtml(): string
-    {
+	public function getTagName(): string {
+		return $this->tagName;
+	}
 
-        $content = '';
+	public function getText(): string {
+		return $this->text;
+	}
 
-        if ($this->children->isEmpty()) {
-            $content = $this->text;
-        } else {
-            $this->children->each(
-                function (Html $element) use (&$content) {
-                    $content .= $element->getHtml();
-                }
-            );
-        }
-        return '<' . $this->name . '' .
-            (($this->getId() !== '') ? ' id="' . $this->getId() . '" ' : '') .
-            ((!$this->classes->isEmpty()) ? 'class="' . implode(' ', $this->classes->toArray()) . '"' : '') . '>' .
-            $content .
-            '</' . $this->name . '>';
-    }
+	public function getClassList(): ArrayList {
+		return $this->classList;
+	}
 
-    /**
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->name;
-    }
+	public function getAttributes(): ArrayList {
+		return $this->attributes;
+	}
 
-    /**
-     * @return string
-     */
-    public function getText(): string
-    {
-        return $this->text;
-    }
+	public function getChildren(): ArrayList {
+		return $this->children;
+	}
 
-    /**
-     * @return ArrayList
-     */
-    public function getClasses(): ArrayList
-    {
-        return $this->classes;
-    }
+	public function setTagName( string $tagName ): void {
+		$this->tagName = $tagName;
+	}
 
-    /**
-     * @return ArrayList
-     */
-    public function getAttributes(): ArrayList
-    {
-        return $this->attributes;
-    }
+	/**
+	 * Replace content with the passed string.
+	 *
+	 * @param string $text
+	 */
+	public function setText( string $text ): void {
+		$this->text = $text;
+	}
 
-    /**
-     * @return ArrayList
-     */
-    public function getChildren(): ArrayList
-    {
-        return $this->children;
-    }
-
-    /**
-     * @param string $tagName
-     */
-    public function setName(string $tagName)
-    {
-        $this->name = $tagName;
-    }
-
-    /**
-     * Replace content with the passed string
-     *
-     * @param string $text
-     */
-    public function setText(string $text)
-    {
-        $this->text = $text;
-    }
-
-    /**
-     * Append a string to the content of this tag
-     *
-     * @param string $text
-     */
-    public function appendText(string $text)
-    {
-        $this->text .= $text;
-    }
+	/**
+	 * Append a string to the content of this tag.
+	 *
+	 * @param string $text
+	 */
+	public function appendText( string $text ) {
+		$this->text .= $text;
+	}
 }

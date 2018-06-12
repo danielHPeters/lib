@@ -2,6 +2,8 @@
 
 namespace rafisa\lib\file;
 
+use rafisa\lib\util\Enum;
+
 /**
  * Class FileExtension.
  *
@@ -9,7 +11,7 @@ namespace rafisa\lib\file;
  * @author Daniel Peters
  * @version 1.0
  */
-abstract class FileExtension {
+abstract class FileExtension extends Enum {
 	const PHP = 'php';
 	const JAVA = 'java';
 	const JAR = 'jar';
