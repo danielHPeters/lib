@@ -2,7 +2,7 @@
 
 namespace rafisa\lib\database;
 
-use rafisa\lib\collections\Collection;
+use rafisa\lib\collection\Collection;
 use rafisa\lib\entities\Entity;
 
 /**

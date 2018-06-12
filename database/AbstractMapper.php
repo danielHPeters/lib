@@ -2,8 +2,8 @@
 
 namespace rafisa\lib\database;
 
-use rafisa\lib\collections\Collection;
-use rafisa\lib\collections\ArrayList;
+use rafisa\lib\collection\Collection;
+use rafisa\lib\collection\ArrayList;
 use rafisa\lib\entities\Entity;
 use InvalidArgumentException;
 

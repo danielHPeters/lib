@@ -5,46 +5,22 @@ namespace rafisa\lib\view;
 use Exception;
 
 /**
- * Description of View
+ * Class View.
  *
- * @author  d.peters
+ * @package rafisa\lib\view
+ * @author Daniel Peters
  * @version 1.0
  */
 class View {
-	/**
-	 *
-	 * @var string
-	 */
-	private $pathToTemplates;
-
-	/**
-	 *
-	 * @var string
-	 */
+	private $templatesPath;
 	private $file;
-
-	/**
-	 *
-	 * @var array
-	 */
 	private $vars;
-
-	/**
-	 *
-	 * @var string
-	 */
 	private $html;
 
-	/**
-	 * View constructor.
-	 *
-	 * @param string $pathToTemplates
-	 * @param string $file
-	 */
-	public function __construct( string $pathToTemplates, string $file = 'layout' ) {
-		$this->pathToTemplates = $pathToTemplates;
-		$this->file            = $file;
-		$this->vars            = [];
+	public function __construct( string $pathToTemplates, string $file ) {
+		$this->templatesPath = $pathToTemplates;
+		$this->file          = $file;
+		$this->vars          = [];
 	}
 
 	/**
@@ -52,7 +28,7 @@ class View {
 	 * @throws Exception
 	 */
 	private function load() {
-		$file = $this->pathToTemplates . '/' . $this->file . '.tpl';
+		$file = $this->templatesPath . '/' . $this->file . '.tpl';
 
 		if ( file_exists( $file ) ) {
 			$content = file_get_contents( $file );
@@ -68,11 +44,6 @@ class View {
 		}
 	}
 
-	/**
-	 *
-	 * @param string $key
-	 * @param string $value
-	 */
 	public function setVar( string $key, string $value ) {
 		$this->vars[ $key ] = $value;
 	}
