@@ -1,13 +1,13 @@
 <?php
 
-namespace rafisa\lib\model\accounting;
+namespace lib\model\accounting;
 
-use rafisa\lib\model\entity\Entity;
+use lib\model\entity\Entity;
 
 /**
  * Class Address.
  *
- * @package rafisa\lib\model\accounting
+ * @package lib\model\accounting
  * @author Daniel Peters
  * @version 1.0
  */

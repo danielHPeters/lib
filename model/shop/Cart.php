@@ -1,14 +1,14 @@
 <?php
 
-namespace rafisa\lib\model\shop;
+namespace lib\model\shop;
 
-use rafisa\lib\collection\ArrayList;
-use rafisa\lib\collection\Collection;
+use lib\collection\ArrayList;
+use lib\collection\Collection;
 
 /**
  * Class Cart.
  *
- * @package rafisa\lib\model\shop
+ * @package lib\model\shop
  * @author Daniel Peters
  * @version 1.0
  */

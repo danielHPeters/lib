@@ -1,13 +1,13 @@
 <?php
 
-namespace rafisa\lib\database;
+namespace lib\database;
 
-use rafisa\lib\util\Enum;
+use lib\util\Enum;
 
 /**
  * Class AdapterType.
  *
- * @package rafisa\lib\database
+ * @package lib\database
  * @author Daniel Peters
  * @version 1.0
  */

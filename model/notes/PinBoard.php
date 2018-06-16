@@ -1,16 +1,16 @@
 <?php
 
-namespace rafisa\lib\model\notes;
+namespace lib\model\notes;
 
-use rafisa\lib\collection\ArrayList;
-use rafisa\lib\collection\Collection;
-use rafisa\lib\model\entity\Entity;
-use rafisa\lib\model\entity\User;
+use lib\collection\ArrayList;
+use lib\collection\Collection;
+use lib\model\entity\Entity;
+use lib\model\entity\User;
 
 /**
  * Class PinBoard.
  *
- * @package rafisa\lib\model\notes
+ * @package lib\model\notes
  * @author Daniel Peters
  * @version 1.0
  */

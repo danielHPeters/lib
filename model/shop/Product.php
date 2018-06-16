@@ -1,13 +1,13 @@
 <?php
 
-namespace rafisa\lib\model\shop;
+namespace lib\model\shop;
 
-use rafisa\lib\model\entity\Entity;
+use lib\model\entity\Entity;
 
 /**
  * Class Product.
  *
- * @package rafisa\lib\model\shop
+ * @package lib\model\shop
  * @author Daniel Peters
  * @version 1.0
  */

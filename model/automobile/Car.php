@@ -1,13 +1,13 @@
 <?php
 
-namespace rafisa\lib\model\automobile;
+namespace lib\model\automobile;
 
-use rafisa\lib\observer\Observable;
+use lib\util\observer\Observable;
 
 /**
  * Class Car.
  *
- * @package rafisa\lib\model\automobile
+ * @package lib\model\automobile
  * @author Daniel Peters
  * @version 1.0
  */

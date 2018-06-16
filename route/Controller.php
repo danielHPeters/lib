@@ -1,13 +1,13 @@
 <?php
 
-namespace rafisa\lib\route;
+namespace lib\route;
 
 use Closure;
 
 /**
  * Interface Controller.
  *
- * @package rafisa\lib\route
+ * @package lib\route
  * @author Daniel Peters
  * @version 1.0
  */

@@ -1,13 +1,13 @@
 <?php
 
-namespace rafisa\lib\model\chat;
+namespace lib\model\chat;
 
-use rafisa\lib\util\Enum;
+use lib\util\Enum;
 
 /**
  * Class ServerStatus.
  *
- * @package rafisa\lib\model\chat
+ * @package lib\model\chat
  * @@author Daniel Peters
  * @version 1.0
  */

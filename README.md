@@ -1,2 +1,2 @@
 # lib
-Under construction.
+Personal PHP Library & Framework.

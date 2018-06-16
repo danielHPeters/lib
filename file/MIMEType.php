@@ -1,15 +1,16 @@
 <?php
 
-namespace rafisa\lib\file;
+namespace lib\file;
+use lib\util\Enum;
 
 /**
  * Enum class MIMEType.
  *
- * @package rafisa\lib\file
+ * @package lib\file
  * @author Daniel Peters
  * @version 1.0
  */
-class MIMEType {
+class MIMEType extends Enum {
 	const TEXT = 'text/plain';
 	const TEXT_APPLICATION = 'application/plain';
 	const JPEG = 'image/jpeg';

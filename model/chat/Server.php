@@ -1,12 +1,12 @@
 <?php
 
-namespace rafisa\lib\model\chat;
-use rafisa\lib\collection\ArrayList;
+namespace lib\model\chat;
+use lib\collection\ArrayList;
 
 /**
  * Class Server.
  *
- * @package rafisa\lib\model\chat
+ * @package lib\model\chat
  * @author  Daniel Peters
  * @version 1.0
  */

@@ -1,11 +1,11 @@
 <?php
 
-namespace rafisa\lib\database;
+namespace lib\database;
 
 /**
  * Interface Adapter which defines the CRUD and connection methods.
  *
- * @package rafisa\lib\database
+ * @package lib\database
  * @author Daniel Peters
  * @version 1.0
  */

@@ -1,6 +1,6 @@
 <?php
 
-namespace rafisa\lib\collection;
+namespace lib\collection;
 
 use ArrayAccess;
 use Exception;
@@ -8,7 +8,7 @@ use Exception;
 /**
  * Class Stack.
  *
- * @package rafisa\lib\collection
+ * @package lib\collection
  * @author Daniel Peters
  * @version 1.0
  */
@@ -18,7 +18,7 @@ class Stack implements ArrayAccess {
 	/**
 	 * Adds an object to the top of this stack.
 	 *
-	 * @param mixed $obj object to be added
+	 * @param mixed $obj Object to be added
 	 */
 	public function push( $obj ): void {
 		array_unshift( $this->arr, $obj );
@@ -26,8 +26,9 @@ class Stack implements ArrayAccess {
 
 	/**
 	 * Returns and removes the top item of this stack.
-	 * @return mixed topmost item in the stack
-	 * @throws Exception if the stack is empty
+	 *
+	 * @return mixed Topmost item in the stack
+	 * @throws Exception If the stack is empty
 	 */
 	public function pop() {
 		if ( $this->isEmpty() ) {
@@ -42,7 +43,8 @@ class Stack implements ArrayAccess {
 
 	/**
 	 * Returns the topmost item without removing it.
-	 * @return mixed the topmost item
+	 *
+	 * @return mixed The topmost item
 	 */
 	public function peek() {
 		return $this->arr[0];
@@ -51,7 +53,7 @@ class Stack implements ArrayAccess {
 	/**
 	 * @param $obj
 	 *
-	 * @return int returns the index of the first occurrence of the object or -1 if not in this ArrayList
+	 * @return int The index of the first occurrence of the object or -1 if not in this ArrayList
 	 */
 	public function indexOf( $obj ): int {
 		$search = array_search( $obj, $this->arr );
@@ -61,6 +63,7 @@ class Stack implements ArrayAccess {
 
 	/**
 	 * Check if this stack is empty.
+	 *
 	 * @return bool
 	 */
 	public function isEmpty(): bool {

@@ -1,13 +1,13 @@
 <?php
 
-namespace rafisa\lib\model\entity;
+namespace lib\model\entity;
 
-use rafisa\lib\model\accounting\Address;
+use lib\model\accounting\Address;
 
 /**
  * Class Customer.
  *
- * @package rafisa\lib\model\entity
+ * @package lib\model\entity
  * @author Daniel Peters
  * @version 1.0
  */

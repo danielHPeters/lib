@@ -1,13 +1,13 @@
 <?php
 
-namespace rafisa\lib\util\socket;
+namespace lib\util\socket;
 
-use rafisa\lib\util\Enum;
+use lib\util\Enum;
 
 /**
- * Description of SocketTypes.
+ * Enum class SocketTypes.
  *
- * @package rafisa\lib\util\socket
+ * @package lib\util\socket
  * @author Daniel Peters
  * @version 1.0
  */

@@ -1,12 +1,12 @@
 <?php
 
-namespace rafisa\lib\database;
-use rafisa\lib\util\Enum;
+namespace lib\database;
+use lib\util\Enum;
 
 /**
  * Class Sql.
  *
- * @package rafisa\lib\database
+ * @package lib\database
  * @author Daniel Peters
  * @version 1.0
  */

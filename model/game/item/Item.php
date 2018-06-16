@@ -1,13 +1,13 @@
 <?php
 
-namespace rafisa\lib\model\game\item;
+namespace lib\model\game\item;
 
-use rafisa\lib\model\game\item\action\ItemAction;
+use lib\model\game\item\action\ItemAction;
 
 /**
  * Class Item.
  *
- * @package rafisa\lib\model\game\item
+ * @package lib\model\game\item
  * @author Daniel Peters
  * @version 1.0
  */

@@ -1,14 +1,14 @@
 <?php
 
-namespace rafisa\lib\model\party;
+namespace lib\model\party;
 
-use rafisa\lib\collection\ArrayList;
-use rafisa\lib\collection\Collection;
+use lib\collection\ArrayList;
+use lib\collection\Collection;
 
 /**
  * Class Party.
  *
- * @package rafisa\lib\model\party
+ * @package lib\model\party
  * @author Daniel Peters
  * @version 1.0
  */

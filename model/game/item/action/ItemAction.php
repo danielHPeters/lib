@@ -1,11 +1,11 @@
 <?php
 
-namespace rafisa\lib\model\game\item\action;
+namespace lib\model\game\item\action;
 
 /**
  * Interface ItemAction.
  *
- * @package rafisa\lib\model\game\item\action
+ * @package lib\model\game\item\action
  * @author Daniel Peters
  * @version 1.0
  */

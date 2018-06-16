@@ -1,11 +1,11 @@
 <?php
 
-namespace rafisa\lib\route;
+namespace lib\route;
 
 /**
  * Description of Dispatcher.
  *
- * @package rafisa\lib\route
+ * @package lib\route
  * @author  Daniel Peters
  * @version 1.0
  */

@@ -1,13 +1,13 @@
 <?php
 
-namespace rafisa\lib\view;
+namespace lib\view;
 
 use Exception;
 
 /**
  * Class View.
  *
- * @package rafisa\lib\view
+ * @package lib\view
  * @author Daniel Peters
  * @version 1.0
  */
@@ -23,10 +23,6 @@ class View {
 		$this->vars          = [];
 	}
 
-	/**
-	 *
-	 * @throws Exception
-	 */
 	private function load() {
 		$file = $this->templatesPath . '/' . $this->file . '.tpl';
 
@@ -48,10 +44,6 @@ class View {
 		$this->vars[ $key ] = $value;
 	}
 
-	/**
-	 * @return string
-	 * @throws Exception
-	 */
 	public function getHtml(): string {
 		$this->load();
 

@@ -1,15 +1,16 @@
 <?php
 
-namespace rafisa\lib\html;
+namespace lib\html;
 
-use rafisa\lib\collection\ArrayList;
-use rafisa\lib\collection\DomNode;
-use rafisa\lib\model\entity\Entity;
+use lib\collection\ArrayList;
+use lib\collection\DomNode;
+use lib\model\entity\Entity;
 
 /**
- * Description of Html
+ * Class Html.
  *
- * @author  d.peters
+ * @package lib\html
+ * @author Daniel Peters
  * @version 1.0
  */
 class Html extends Entity implements DomNode {
@@ -17,11 +18,6 @@ class Html extends Entity implements DomNode {
 	private $text;
 	private $classList;
 	private $attributes;
-
-	/**
-	 *
-	 * @var ArrayList
-	 */
 	private $children;
 
 	public function __construct( Tag $tagName ) {
@@ -57,8 +53,21 @@ class Html extends Entity implements DomNode {
 		return $this->tagName;
 	}
 
+	public function setTagName( string $tagName ): void {
+		$this->tagName = $tagName;
+	}
+
 	public function getText(): string {
 		return $this->text;
+	}
+
+	/**
+	 * Replace content with the passed string.
+	 *
+	 * @param string $text
+	 */
+	public function setText( string $text ): void {
+		$this->text = $text;
 	}
 
 	public function getClassList(): ArrayList {
@@ -71,19 +80,6 @@ class Html extends Entity implements DomNode {
 
 	public function getChildren(): ArrayList {
 		return $this->children;
-	}
-
-	public function setTagName( string $tagName ): void {
-		$this->tagName = $tagName;
-	}
-
-	/**
-	 * Replace content with the passed string.
-	 *
-	 * @param string $text
-	 */
-	public function setText( string $text ): void {
-		$this->text = $text;
 	}
 
 	/**

@@ -1,11 +1,13 @@
 <?php
 
-namespace rafisa\lib\session;
+namespace lib\session;
 
 /**
- * Description of SessionManager
+ * Class SessionManager.
  *
- * @author d.peters
+ * @package lib\session
+ * @author Daniel Peters
+ * @version 1.0
  */
 class SessionManager {
 	public static function startSession(

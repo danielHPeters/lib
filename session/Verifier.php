@@ -1,11 +1,11 @@
 <?php
 
-namespace rafisa\lib\session;
+namespace lib\session;
 
 /**
  * Class Verifier.
  *
- * @package rafisa\lib\session
+ * @package lib\session
  * @author Daniel Peters
  * @version 1.0
  */

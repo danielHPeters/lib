@@ -1,13 +1,13 @@
 <?php
 
-namespace rafisa\lib\util;
+namespace lib\util;
 
 use ReflectionClass;
 
 /**
  * Class Enum.
  *
- * @package rafisa\lib\util
+ * @package lib\util
  * @author Daniel Peters
  * @version 1.0
  */

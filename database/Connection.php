@@ -1,6 +1,6 @@
 <?php
 
-namespace rafisa\lib\database;
+namespace lib\database;
 
 use PDO;
 
@@ -8,7 +8,7 @@ use PDO;
  * Class Connection
  *
  *
- * @package rafisa\lib\database
+ * @package lib\database
  * @author Daniel Peters
  * @version 1.0
  */

@@ -1,14 +1,14 @@
 <?php
 
-namespace rafisa\lib\model\blog;
+namespace lib\model\blog;
 
-use rafisa\lib\collection\Collection;
-use rafisa\lib\collection\ArrayList;
+use lib\collection\Collection;
+use lib\collection\ArrayList;
 
 /**
  * Class Blog.
  *
- * @package rafisa\lib\model\blog
+ * @package lib\model\blog
  * @author Daniel Peters
  * @version 1.0
  */

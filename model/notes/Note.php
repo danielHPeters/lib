@@ -1,13 +1,13 @@
 <?php
 
-namespace rafisa\lib\model\notes;
+namespace lib\model\notes;
 
-use rafisa\lib\model\entity\Entity;
+use lib\model\entity\Entity;
 
 /**
  * Class Note.
  *
- * @package rafisa\lib\model\notes
+ * @package lib\model\notes
  * @author Daniel Peters
  * @version 1.0
  */

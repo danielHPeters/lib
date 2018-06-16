@@ -1,11 +1,13 @@
 <?php
 
-namespace rafisa\lib\util;
+namespace lib\util;
 
 /**
- * Description of Str
+ * Class Str.
  *
- * @author d.peters
+ * @package lib\util
+ * @author Daniel Peters
+ * @version 1.0
  */
 abstract class Str {
 	final public static function substring( $string, $start ): string {

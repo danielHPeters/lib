@@ -1,13 +1,13 @@
 <?php
 
-namespace rafisa\lib\http;
+namespace lib\http;
 
-use rafisa\lib\util\Enum;
+use lib\util\Enum;
 
 /**
  * Class Methods.
  *
- * @package rafisa\lib\http
+ * @package lib\http
  * @author Daniel Peters
  * @version 1.0
  */

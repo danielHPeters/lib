@@ -1,11 +1,11 @@
 <?php
 
-namespace rafisa\lib\util\socket;
+namespace lib\util\socket;
 
 /**
- * Description of SocketProtocols.
+ * Class SocketProtocols.
  *
- * @package rafisa\lib\util\socket
+ * @package lib\util\socket
  * @author Daniel Peters
  * @version 1.0
  */

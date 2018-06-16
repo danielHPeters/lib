@@ -1,13 +1,13 @@
 <?php
 
-namespace rafisa\lib\model\game\character;
+namespace lib\model\game\character;
 
-use rafisa\lib\model\entity\Entity;
+use lib\model\entity\Entity;
 
 /**
  * Class Monster.
  *
- * @package rafisa\lib\model\game\character
+ * @package lib\model\game\character
  * @author Daniel Petes
  * @version 1.0
  */

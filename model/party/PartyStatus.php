@@ -1,13 +1,13 @@
 <?php
 
-namespace rafisa\lib\model\party;
+namespace lib\model\party;
 
-use rafisa\lib\util\Enum;
+use lib\util\Enum;
 
 /**
  * Class PartyStatus.
  *
- * @package rafisa\lib\model\party
+ * @package lib\model\party
  * @author Daniel Peters
  * @version 1.0
  */

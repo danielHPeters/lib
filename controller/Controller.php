@@ -1,11 +1,11 @@
 <?php
 
-namespace rafisa\lib\controller;
+namespace lib\controller;
 
 /**
  * Interface Controller.
  *
- * @package rafisa\lib\controller
+ * @package lib\controller
  * @author Daniel Peters
  * @version 1.0
  */

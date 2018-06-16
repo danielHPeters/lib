@@ -1,31 +1,24 @@
 <?php
 
-namespace rafisa\lib;
+namespace lib;
 
 /**
- * Description of AutoLoader
+ * Class AutoLoader.
  *
- * @author d.peters
+ * @package lib
+ * @author Daniel Peters
  * @version 1.0
  */
-abstract class AutoLoader
-{
-
-    /**
-     * Autoload Classes
-     */
-    public static function register()
-    {
-        spl_autoload_register(
-            function ($class) {
-                $file = str_replace('\\', '/', $class);
-                $file = str_replace('rafisa/', '/', $file);
-                $file = str_replace('rio/', '../', $file);
-                $relativeUrl = dirname(__FILE__) . '/../' . $file . '.php';
-                if (file_exists($relativeUrl)) {
-                    require_once $relativeUrl;
-                }
-            }
-        );
-    }
+abstract class AutoLoader {
+	public static function register() {
+		spl_autoload_register(
+			function ( $class ) {
+				$file        = str_replace( '\\', '/', $class );
+				$relativeUrl = dirname( __FILE__ ) . '/../' . $file . '.php';
+				if ( file_exists( $relativeUrl ) ) {
+					require_once $relativeUrl;
+				}
+			}
+		);
+	}
 }

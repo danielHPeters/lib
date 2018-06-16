@@ -1,13 +1,13 @@
 <?php
 
-namespace rafisa\lib\math;
+namespace lib\math;
 
 use Exception;
 
 /**
  * Class Matrix.
  *
- * @package rafisa\lib\math
+ * @package lib\math
  * @author Daniel Peters
  * @version 1.0
  */

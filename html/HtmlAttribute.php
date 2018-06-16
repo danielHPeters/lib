@@ -1,15 +1,17 @@
 <?php
 
-namespace rafisa\lib\html;
+namespace lib\html;
+
+use lib\util\Enum;
 
 /**
- * Reference for html attributes with their corresponding tags.
+ * Reference of html attributes with their corresponding tags.
  *
- * @author  d.peters
+ * @package lib\html
+ * @author Daniel Peters
  * @version 1.0
- * @package rafisa\html
  */
-class HtmlAttribute {
+class HtmlAttribute extends Enum {
 	const ACCEPT = [ 'name' => 'accept', 'for' => [ Tag::INPUT ] ];
 	const ACCEPT_CHARSET = [ 'name' => 'accept-charset', 'for' => [ Tag::FORM ] ];
 	const ACTION = [ 'name' => 'action', 'for' => [ Tag::FORM ] ];

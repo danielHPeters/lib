@@ -1,6 +1,6 @@
 <?php
 
-namespace rafisa\lib\database;
+namespace lib\database;
 
 use InvalidArgumentException;
 use RuntimeException;
@@ -9,7 +9,7 @@ use mysqli_result;
 /**
  * Class MysqlAdapter.
  *
- * @package rafisa\lib\database
+ * @package lib\database
  * @author Daniel Peters
  * @version 1.0
  */
@@ -18,11 +18,6 @@ class MysqlAdapter implements Adapter {
 	private $link;
 	private $result;
 
-	/**
-	 * Constructor.
-	 *
-	 * @param Configuration $config
-	 */
 	public function __construct( Configuration $config ) {
 		$this->config = $config;
 	}

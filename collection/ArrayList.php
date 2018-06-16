@@ -1,6 +1,6 @@
 <?php
 
-namespace rafisa\lib\collection;
+namespace lib\collection;
 
 use Exception;
 use ArrayAccess;
@@ -9,7 +9,7 @@ use Iterator;
 /**
  * Class ArrayList.
  *
- * @package rafisa\lib\collection
+ * @package lib\collection
  * @author Daniel Peters
  * @version 1.0
  */
@@ -94,7 +94,7 @@ class ArrayList implements Collection, ArrayAccess, Iterator {
 	 *
 	 * @param $obj
 	 *
-	 * @return int returns the index of the first occurrence of the object or -1 if not in this ArrayList
+	 * @return int Returns the index of the first occurrence of the object or -1 if not in this ArrayList
 	 */
 	public function indexOf( $obj ): int {
 		$search = array_search( $obj, $this->arr, true );

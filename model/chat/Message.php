@@ -1,14 +1,14 @@
 <?php
 
-namespace rafisa\lib\model\chat;
+namespace lib\model\chat;
 
-use rafisa\lib\model\entity\User;
-use rafisa\lib\model\entity\Entity;
+use lib\model\entity\User;
+use lib\model\entity\Entity;
 
 /**
  * Class Message.
  *
- * @package rafisa\lib\model\chat
+ * @package lib\model\chat
  * @author  Daniel Peters
  * @version 1.0
  */

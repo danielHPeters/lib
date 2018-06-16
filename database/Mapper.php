@@ -1,14 +1,14 @@
 <?php
 
-namespace rafisa\lib\database;
+namespace lib\database;
 
-use rafisa\lib\collection\Collection;
-use rafisa\lib\model\entity\Entity;
+use lib\collection\Collection;
+use lib\model\entity\Entity;
 
 /**
  * Interface Mapper.
  *
- * @package rafisa\lib\database
+ * @package lib\database
  * @author Daniel Peters
  * @version 1.0
  */

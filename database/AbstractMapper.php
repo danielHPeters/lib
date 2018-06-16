@@ -1,17 +1,17 @@
 <?php
 
-namespace rafisa\lib\database;
+namespace lib\database;
 
-use rafisa\lib\collection\Collection;
-use rafisa\lib\collection\ArrayList;
-use rafisa\lib\model\entity\Entity;
+use lib\collection\Collection;
+use lib\collection\ArrayList;
+use lib\model\entity\Entity;
 use InvalidArgumentException;
 
 
 /**
  * Class AbstractMapper.
  *
- * @package rafisa\lib\database
+ * @package lib\database
  * @author Daniel Peters
  * @version 1.0
  */
@@ -20,12 +20,6 @@ abstract class AbstractMapper implements Mapper {
 	private $table;
 	private $class;
 
-	/**
-	 *
-	 * @param Adapter $adapter
-	 * @param string $table
-	 * @param Entity $class
-	 */
 	public function __construct( Adapter $adapter, string $table, Entity $class ) {
 		$this->adapter = $adapter;
 		$this->table   = $table;
@@ -44,14 +38,8 @@ abstract class AbstractMapper implements Mapper {
 		return $this->class;
 	}
 
-	/**
-	 *
-	 * @param string $table
-	 *
-	 * @throws InvalidArgumentException thrown on empty table string
-	 */
 	public function setTable( string $table ) {
-		if ( empty( $table ) ) {
+		if ( empty( trim( $table ) ) ) {
 			throw new InvalidArgumentException( 'Table string is empty' );
 		} else {
 			$this->table = $table;
@@ -80,10 +68,6 @@ abstract class AbstractMapper implements Mapper {
 		return $data !== null ? $this->createEntity( $data ) : null;
 	}
 
-	/**
-	 *
-	 * @param Entity $entity
-	 */
 	public function insert( Entity $entity ) {
 		if ( ! $entity instanceof $this->class ) {
 			throw new InvalidArgumentException( 'The entity must be an instance of ' . $this->class . '.' );

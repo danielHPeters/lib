@@ -1,14 +1,14 @@
 <?php
 
-namespace rafisa\lib\route;
+namespace lib\route;
 
-use rafisa\lib\collection\ArrayList;
-use rafisa\lib\collection\Collection;
+use lib\collection\ArrayList;
+use lib\collection\Collection;
 
 /**
  * Router class for route handlers.
  *
- * @package rafisa\lib\route
+ * @package lib\route
  * @author  Daniel Peters
  * @version 1.0
  */

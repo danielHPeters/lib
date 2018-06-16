@@ -1,32 +1,32 @@
 <?php
 
-namespace rafisa\lib\html;
+namespace lib\html;
 
-use rafisa\lib\util\Enum;
+use lib\util\Enum;
 
 /**
  * Class Color.
  *
- * @package rafisa\lib\html
+ * @package lib\html
  * @author Daniel Peters
  * @version 1.0
  */
 class Color extends Enum {
 	/**
-	 * Black and white
+	 * Black and white.
 	 */
 	const BLACK = '#000000';
 	const WHITE = '#FFFFFF';
 
 	/**
-	 * RGB
+	 * RGB.
 	 */
 	const RED = '#FF0000';
 	const GREEN = '#00FF00';
 	const BLUE = '#0000FF';
 
 	/**
-	 * Other colors
+	 * Other colors.
 	 */
 	const GOLD = '#FFD700';
 	const NAVY = '#000080';

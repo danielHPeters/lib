@@ -1,13 +1,13 @@
 <?php
 
-namespace rafisa\lib\route;
+namespace lib\route;
 
-use rafisa\lib\collection\ArrayList;
+use lib\collection\ArrayList;
 
 /**
  * Class Response.
  *
- * @package rafisa\lib\route
+ * @package lib\route
  * @author  Daniel Peters
  * @version 1.0
  */

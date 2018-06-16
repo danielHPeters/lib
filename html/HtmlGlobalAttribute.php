@@ -1,14 +1,17 @@
 <?php
 
-namespace rafisa\lib\html;
+namespace lib\html;
+
+use lib\util\Enum;
 
 /**
- * Description of HtmlGlobalAttribute
+ * Class HtmlGlobalAttribute.
  *
- * @author  d.peters
+ * @package lib\html
+ * @author Daniel Peters
  * @version 1.0
  */
-abstract class HtmlGlobalAttribute {
+abstract class HtmlGlobalAttribute extends Enum {
 	const ACCESSKEY = 'accesskey';
 	const CLASS_ = 'class';
 	const CONTENTEDITABLE = 'contenteditable';

@@ -1,14 +1,14 @@
 <?php
 
-namespace rafisa\lib\model\game\place;
+namespace lib\model\game\place;
 
-use rafisa\lib\collection\ArrayList;
-use rafisa\lib\collection\Collection;
+use lib\collection\ArrayList;
+use lib\collection\Collection;
 
 /**
  * Class Room.
  *
- * @package rafisa\lib\model\game\place
+ * @package lib\model\game\place
  * @author Daniel Peters
  * @version 1.0
  */

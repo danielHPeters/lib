@@ -1,13 +1,13 @@
 <?php
 
-namespace rafisa\lib\model\blog;
+namespace lib\model\blog;
 
-use rafisa\lib\model\entity\Entity;
+use lib\model\entity\Entity;
 
 /**
  * Class Post.
  *
- * @package rafisa\lib\model\blog
+ * @package lib\model\blog
  * @author Daniel Peters
  * @version 1.0
  */

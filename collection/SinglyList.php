@@ -1,13 +1,13 @@
 <?php
 
-namespace rafisa\lib\collection;
+namespace lib\collection;
 
 use Exception;
 
 /**
  * Class SinglyList.
  *
- * @package rafisa\lib\collection
+ * @package lib\collection
  * @author Daniel Peters
  * @version 1.0
  */

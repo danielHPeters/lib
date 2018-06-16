@@ -1,13 +1,13 @@
 <?php
 
-namespace rafisa\lib\file;
+namespace lib\file;
 
-use rafisa\lib\util\Enum;
+use lib\util\Enum;
 
 /**
  * Class FileExtension.
  *
- * @package rafisa\lib\file
+ * @package lib\file
  * @author Daniel Peters
  * @version 1.0
  */

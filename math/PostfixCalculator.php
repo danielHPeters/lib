@@ -1,15 +1,15 @@
 <?php
 
-namespace rafisa\lib\math;
+namespace lib\math;
 
 use Exception;
-use rafisa\lib\data\SinglyList;
+use lib\collection\SinglyList;
 
 /**
  * Class PostfixCalculator.
  * Calculate an expression written in reverse Polish (postfix) notation.
  *
- * @package rafisa\lib\math
+ * @package lib\math
  * @author Daniel Peters
  * @version 1.0
  */

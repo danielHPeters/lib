@@ -1,13 +1,13 @@
 <?php
 
-namespace rafisa\lib\html;
+namespace lib\html;
 
-use rafisa\lib\util\Enum;
+use lib\util\Enum;
 
 /**
- * Enum class Tag
+ * Class Tag.
  *
- * @package rafisa\lib\html
+ * @package lib\html
  * @author Daniel Peters
  * @version 1.0
  */
@@ -20,7 +20,7 @@ abstract class Tag extends Enum {
 	const BASE = 'base';
 
 	/**
-	 * Link to external resource
+	 * Link to external resource.
 	 */
 	const LINK = 'link';
 	const BR = 'br';
@@ -32,23 +32,23 @@ abstract class Tag extends Enum {
 	const INPUT = 'input';
 
 	/**
-	 * Key-pair generator field
+	 * Key-pair generator field.
 	 */
 	const KEYGEN = 'keygen';
 
 	/**
-	 * Result for calculation
+	 * Result for calculation.
 	 */
 	const OUTPUT = 'output';
 	const TEXTAREA = 'textarea';
 
 	/**
-	 * Group elements in a form
+	 * Group elements in a form.
 	 */
 	const FIELDSET = 'fieldset';
 
 	/**
-	 * Label for input element
+	 * Label for input element.
 	 */
 	const LABEL = 'label';
 
@@ -61,13 +61,9 @@ abstract class Tag extends Enum {
 	const OPTION = 'option';
 
 	/**
-	 * Group related options
+	 * Group related options.
 	 */
 	const OPTGROUP = 'optgroup';
-
-	/**
-	 * Clickable button
-	 */
 	const BUTTON = 'button';
 	const H1 = 'h1';
 	const H2 = 'h2';
@@ -77,17 +73,17 @@ abstract class Tag extends Enum {
 	const H6 = 'h6';
 
 	/**
-	 * Unordered list
+	 * Unordered list.
 	 */
 	const UL = 'ul';
 
 	/**
-	 * Ordered list
+	 * Ordered list.
 	 */
 	const OL = 'ol';
 
 	/**
-	 * List item
+	 * List item.
 	 */
 	const LI = 'li';
 	const STRONG = 'strong';
@@ -104,24 +100,24 @@ abstract class Tag extends Enum {
 	const FOOTER = 'footer';
 
 	/**
-	 * Main content container for page
+	 * Main content container for page.
 	 */
 	const MAIN = 'main';
 	const NAV = 'nav';
 	const AUDIO = 'audio';
 
 	/**
-	 * Bold Text
+	 * Bold Text.
 	 */
 	const B = 'b';
 
 	/**
-	 * Emphasized Text
+	 * Emphasized Text.
 	 */
 	const EM = 'em';
 
 	/**
-	 * Subscripted text
+	 * Subscript text.
 	 */
 	const SUB = 'sub';
 	const I = 'i';
@@ -134,7 +130,7 @@ abstract class Tag extends Enum {
 	const CODE = 'code';
 
 	/**
-	 * Table caption
+	 * Table caption.
 	 */
 	const CAPTION = 'caption';
 	const COLGROUP = 'colgroup';
@@ -150,7 +146,7 @@ abstract class Tag extends Enum {
 	const DIALOG = 'dialog';
 
 	/**
-	 * Container for external application
+	 * Container for external application.
 	 */
 	const EMBED = 'embed';
 	const FIGURE = 'figure';
@@ -158,27 +154,27 @@ abstract class Tag extends Enum {
 	const IFRAME = 'iframe';
 
 	/**
-	 * Define Keyboard input
+	 * Define Keyboard input.
 	 */
 	const KBD = 'kbd';
 
 	/**
-	 * Menu with commands
+	 * Menu with commands.
 	 */
 	const MENU = 'menu';
 
 	/**
-	 * Command for menu
+	 * Command for menu.
 	 */
 	const MENUITEM = 'menuitem';
 
 	/**
-	 * Measure data within range (gauge)
+	 * Measure data within range (gauge).
 	 */
 	const METER = 'meter';
 
 	/**
-	 * Alternate content for user without client-side scripts enabled
+	 * Alternate content for user without client-side scripts enabled.
 	 */
 	const NOSCRIPT = 'noscript';
 
@@ -188,63 +184,63 @@ abstract class Tag extends Enum {
 	const OBJECT = 'object';
 
 	/**
-	 * Define a parameter for an object
+	 * Define a parameter for an object.
 	 */
 	const PARAM = 'param';
 
 	/**
-	 * Container for multiple image resources. Use for responsive pages
+	 * Container for multiple image resources. Use for responsive pages.
 	 */
 	const PICTURE = 'picture';
 
 	/**
-	 * Pre formatted text
+	 * Pre formatted text.
 	 */
 	const PRE = 'pre';
 	const TIME = 'time';
 
 	/**
-	 * Representate the progress of a task
+	 * Representate the progress of a task.
 	 */
 	const PROGRESS = 'progress';
 
 	/**
-	 * Short quotation
+	 * Short quotation.
 	 */
 	const Q = 'q';
 
 	/**
-	 * Ruby annotation
+	 * Ruby annotation.
 	 */
 	const RUBY = 'ruby';
 
 	/**
-	 * Ruby explanation
+	 * Ruby explanation.
 	 */
 	const RT = 'rt';
 
 	/**
-	 * For browsers not supporting ruby annotations
+	 * For browsers not supporting ruby annotations.
 	 */
 	const RP = 'rp';
 
 	/**
-	 * Text that is not correct anymore
+	 * Text that is not correct anymore.
 	 */
 	const S = 's';
 
 	/**
-	 * Sample output of computer program
+	 * Sample output of computer program.
 	 */
 	const SAMP = 'samp';
 
 	/**
-	 * Define sources for media elements (video and audio)
+	 * Define sources for media elements (video and audio).
 	 */
 	const SOURCE = 'source';
 
 	/**
-	 * Defines tracks for media elements (video and audio)
+	 * Defines tracks for media elements (video and audio).
 	 */
 	const TRACK = 'track';
 	const STYLE = 'style';
@@ -258,18 +254,18 @@ abstract class Tag extends Enum {
 	const TITLE = 'title';
 
 	/**
-	 * Stylistically different text
+	 * Stylistically different text.
 	 */
 	const U = 'u';
 
 	/**
-	 * Defines a variable
+	 * Defines a variable.
 	 */
 	const VARTAG = 'var';
 	const VIDEO = 'video';
 
 	/**
-	 * Possible line-break
+	 * Possible line-break.
 	 */
 	const WBR = 'wbr';
 }

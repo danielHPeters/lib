@@ -1,15 +1,15 @@
 <?php
 
-namespace rafisa\lib\model\accounting;
+namespace lib\model\accounting;
 
 use DateTime;
-use rafisa\lib\model\entity\Customer;
-use rafisa\lib\collection\Collection;
+use lib\model\entity\Customer;
+use lib\collection\Collection;
 
 /**
  * Class Invoice.
  *
- * @package rafisa\lib\model\accounting
+ * @package lib\model\accounting
  * @author Daniel Peters
  * @version 1.0
  */

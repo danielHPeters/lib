@@ -1,11 +1,11 @@
 <?php
 
-namespace rafisa\lib\util;
+namespace lib\util;
 
 /**
  * Class Arr.
  *
- * @package rafisa\lib\util
+ * @package lib\util
  * @author Daniel Peters
  * @version 1.0
  */

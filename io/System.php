@@ -1,11 +1,11 @@
 <?php
 
-namespace rafisa\lib\io;
+namespace lib\io;
 
 /**
  * Class System.
  *
- * @package rafisa\lib\io
+ * @package lib\io
  * @author Daniel Peters
  * @version 1.0
  */

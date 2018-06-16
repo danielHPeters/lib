@@ -1,17 +1,17 @@
 <?php
 
-namespace rafisa\lib\model\chat;
+namespace lib\model\chat;
 
-use rafisa\lib\collection\ArrayList;
-use rafisa\lib\collection\Collection;
-use rafisa\lib\model\entity\User;
-use rafisa\lib\model\entity\Entity;
+use lib\collection\ArrayList;
+use lib\collection\Collection;
+use lib\model\entity\User;
+use lib\model\entity\Entity;
 use Exception;
 
 /**
  * Class Group.
  *
- * @package rafisa\lib\model\chat
+ * @package lib\model\chat
  * @author Daniel Peters
  * @version 1.0
  */

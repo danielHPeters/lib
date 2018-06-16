@@ -1,15 +1,15 @@
 <?php
 
-namespace rafisa\lib\session;
+namespace lib\session;
 
 use DateTime;
-use rafisa\lib\entities\User;
+use lib\model\entity\User;
 use DateInterval;
 
 /**
  * Class Session.
  *
- * @package rafisa\lib\session
+ * @package lib\session
  * @author Daniel Peters
  * @version 1.0
  */
@@ -23,16 +23,6 @@ class Session {
 	private $path;
 	private $https;
 
-	/**
-	 * Session constructor.
-	 *
-	 * @param string $id
-	 * @param User $user
-	 * @param int $limit
-	 * @param string $domain
-	 * @param string $path
-	 * @param bool $https
-	 */
 	public function __construct( string $id, User $user, int $limit, string $domain, string $path, bool $https ) {
 		$this->id        = $id;
 		$this->user      = $user;

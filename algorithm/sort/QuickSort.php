@@ -1,6 +1,6 @@
 <?php
 
-namespace rafisa\lib\algorithm\sort;
+namespace lib\algorithm\sort;
 
 /**
  * Class QuickSort.

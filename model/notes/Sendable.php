@@ -1,11 +1,11 @@
 <?php
 
-namespace rafisa\lib\model\notes;
+namespace lib\model\notes;
 
 /**
  * Interface Sendable.
  *
- * @package rafisa\lib\model\notes
+ * @package lib\model\notes
  * @author Daniel Peters
  * @version 1.0
  */

@@ -1,13 +1,13 @@
 <?php
 
-namespace rafisa\lib\util;
+namespace lib\util;
 
 /**
- * Class Charset
+ * Enum class Charset.
  *
+ * @package lib\util
  * @author Daniel Peters
  * @version 1.0
- * @package rafisa\lib\web
  */
 abstract class Charset extends Enum {
 	const UTF8 = 'UTF-8';

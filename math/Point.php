@@ -1,11 +1,11 @@
 <?php
 
-namespace rafisa\lib\math;
+namespace lib\math;
 
 /**
  * Class Point.
  *
- * @package rafisa\lib\math
+ * @package lib\math
  * @author Daniel Peters
  * @version 1.0
  */

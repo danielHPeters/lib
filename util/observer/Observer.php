@@ -1,11 +1,11 @@
 <?php
 
-namespace rafisa\lib\util\observer;
+namespace lib\util\observer;
 
 /**
  * Interface Observer.
  *
- * @package rafisa\lib\observer
+ * @package lib\util\observer
  * @author Daniel Peters
  * @version 1.0
  */

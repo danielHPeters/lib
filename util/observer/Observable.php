@@ -1,14 +1,14 @@
 <?php
 
-namespace rafisa\lib\util\observer;
+namespace lib\util\observer;
 
-use rafisa\lib\collection\ArrayList;
-use rafisa\lib\collection\Collection;
+use lib\collection\ArrayList;
+use lib\collection\Collection;
 
 /**
  * Class Observable.
  *
- * @package rafisa\lib\observer
+ * @package lib\util\observer
  * @author Daniel Peters
  * @version 1.0
  */

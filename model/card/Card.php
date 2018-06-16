@@ -1,11 +1,11 @@
 <?php
 
-namespace rafisa\lib\model\card;
+namespace lib\model\card;
 
 /**
  * Class Card.
  *
- * @package rafisa\lib\model\card
+ * @package lib\model\card
  * @author Daniel Peters
  * @version 1.0
  */

@@ -1,11 +1,11 @@
 <?php
 
-namespace rafisa\lib\filters;
+namespace lib\filter;
 
 /**
  * Class InputValidator.
  *
- * @package rafisa\lib\filters
+ * @package lib\filter
  * @author Daniel Peters
  * @version 1.0
  */
