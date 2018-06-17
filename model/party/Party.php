@@ -4,6 +4,7 @@ namespace lib\model\party;
 
 use lib\collection\ArrayList;
 use lib\collection\Collection;
+use lib\entity\Entity;
 
 /**
  * Class Party.
@@ -12,10 +13,11 @@ use lib\collection\Collection;
  * @author Daniel Peters
  * @version 1.0
  */
-class Party {
+class Party extends Entity {
 	private $guests;
 
-	public function __construct() {
+	public function __construct( string $id ) {
+		parent::__construct( $id );
 		$this->guests = new ArrayList();
 	}
 

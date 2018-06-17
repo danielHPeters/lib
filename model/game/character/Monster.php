@@ -2,7 +2,7 @@
 
 namespace lib\model\game\character;
 
-use lib\model\entity\Entity;
+use lib\entity\Entity;
 
 /**
  * Class Monster.

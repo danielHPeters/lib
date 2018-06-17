@@ -2,8 +2,8 @@
 
 namespace lib\model\chat;
 
+use lib\entity\Entity;
 use lib\model\entity\User;
-use lib\model\entity\Entity;
 
 /**
  * Class Message.

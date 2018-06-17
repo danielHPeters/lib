@@ -2,6 +2,7 @@
 
 namespace lib\model\game\item;
 
+use lib\entity\Entity;
 use lib\model\game\item\action\ItemAction;
 
 /**
@@ -11,13 +12,14 @@ use lib\model\game\item\action\ItemAction;
  * @author Daniel Peters
  * @version 1.0
  */
-class Item {
+class Item extends Entity {
 	private $name;
 	private $description;
 	private $price;
 	private $action;
 
-	public function __construct( string $name, string $description, float $price, ItemAction $action ) {
+	public function __construct( string $id, string $name, string $description, float $price, ItemAction $action ) {
+		parent::__construct( $id );
 		$this->name        = $name;
 		$this->description = $description;
 		$this->price       = $price;

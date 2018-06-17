@@ -4,6 +4,7 @@ namespace lib\model\game\place;
 
 use lib\collection\ArrayList;
 use lib\collection\Collection;
+use lib\entity\Entity;
 
 /**
  * Class Room.
@@ -12,7 +13,7 @@ use lib\collection\Collection;
  * @author Daniel Peters
  * @version 1.0
  */
-class Room {
+class Room extends Entity {
 	private $name;
 	private $description;
 	private $north;
@@ -22,7 +23,8 @@ class Room {
 	private $items;
 	private $monsters;
 
-	public function __construct( string $name, string $description ) {
+	public function __construct( string $id, string $name, string $description ) {
+		parent::__construct( $id );
 		$this->name        = $name;
 		$this->description = $description;
 		$this->items       = new ArrayList();

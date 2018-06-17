@@ -2,6 +2,8 @@
 
 namespace lib\model\card;
 
+use lib\entity\Entity;
+
 /**
  * Class Card.
  *
@@ -9,11 +11,12 @@ namespace lib\model\card;
  * @author Daniel Peters
  * @version 1.0
  */
-class Card {
+class Card extends Entity {
 	private $color;
 	private $value;
 
-	public function __construct( string $color, string $value ) {
+	public function __construct( string $id, string $color, string $value ) {
+		parent::__construct( $id );
 		$this->color = $color;
 		$this->value = $value;
 	}

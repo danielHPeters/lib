@@ -1,11 +1,11 @@
 <?php
 
-namespace lib\model\entity;
+namespace lib\entity;
 
 /**
  * Class Entity.
  *
- * @package lib\model\entity
+ * @package lib\entity
  * @author Daniel Peters
  * @version 1.0
  */

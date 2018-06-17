@@ -24,7 +24,7 @@ class View {
 	}
 
 	private function load() {
-		$file = $this->templatesPath . '/' . $this->file . '.tpl';
+		$file = $this->templatesPath . '/' . $this->file . '.html';
 
 		if ( file_exists( $file ) ) {
 			$content = file_get_contents( $file );

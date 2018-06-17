@@ -3,6 +3,7 @@
 namespace lib\model\entity;
 
 use DateTime;
+use lib\entity\Entity;
 
 /**
  * Class Person.

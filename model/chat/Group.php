@@ -4,8 +4,8 @@ namespace lib\model\chat;
 
 use lib\collection\ArrayList;
 use lib\collection\Collection;
+use lib\entity\Entity;
 use lib\model\entity\User;
-use lib\model\entity\Entity;
 use Exception;
 
 /**

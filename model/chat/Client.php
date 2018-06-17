@@ -2,7 +2,7 @@
 
 namespace lib\model\chat;
 
-use lib\model\entity\Entity;
+use lib\entity\Entity;
 use lib\model\entity\User;
 use lib\session\Session;
 

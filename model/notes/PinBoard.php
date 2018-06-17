@@ -4,7 +4,7 @@ namespace lib\model\notes;
 
 use lib\collection\ArrayList;
 use lib\collection\Collection;
-use lib\model\entity\Entity;
+use lib\entity\Entity;
 use lib\model\entity\User;
 
 /**

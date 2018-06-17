@@ -2,7 +2,7 @@
 
 namespace lib\model\notes;
 
-use lib\model\entity\Entity;
+use lib\entity\Entity;
 
 /**
  * Class Note.
