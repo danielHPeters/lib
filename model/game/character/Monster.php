@@ -8,7 +8,7 @@ use lib\entity\Entity;
  * Class Monster.
  *
  * @package lib\model\game\character
- * @author Daniel Petes
+ * @author Daniel Peters
  * @version 1.0
  */
 class Monster extends Entity {

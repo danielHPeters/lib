@@ -3,6 +3,7 @@
 namespace lib\route;
 
 use lib\collection\ArrayList;
+use lib\collection\HashMap;
 
 /**
  * Class Request.
@@ -12,27 +13,29 @@ use lib\collection\ArrayList;
  * @version 1.0
  */
 class Request {
+	private $headers;
 	private $uri;
 	private $params;
 
 	public function __construct( string $uri ) {
-		$this->uri    = $uri;
-		$this->params = new ArrayList();
+		$this->headers = new ArrayList();
+		$this->uri     = $uri;
+		$this->params  = new HashMap();
+	}
+
+	public function getHeaders(): ArrayList {
+		return $this->headers;
 	}
 
 	public function getUri(): string {
 		return $this->uri;
 	}
 
-	public function getParams(): ArrayList {
+	public function setUri( string $uri ): void {
+		$this->uri = $uri;
+	}
+
+	public function getParams(): HashMap {
 		return $this->params;
-	}
-
-	public function getParam( string $key ): string {
-		return isset( $this->params[ $key ] ) ? $this->params[ $key ] : '404';
-	}
-
-	public function setParam( string $key, string $value ) {
-		$this->params[ $key ] = $value;
 	}
 }

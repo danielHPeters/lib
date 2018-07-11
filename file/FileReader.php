@@ -25,6 +25,12 @@ class FileReader {
 		fwrite( $this->handle, "$data\n" );
 	}
 
+	public function appendText() {
+	}
+
+	public function read() {
+	}
+
 	public function close() {
 		fclose( $this->handle );
 	}

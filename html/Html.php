@@ -4,7 +4,7 @@ namespace lib\html;
 
 use lib\collection\ArrayList;
 use lib\collection\DomNode;
-use lib\model\entity\Entity;
+use lib\entity\Entity;
 
 /**
  * Class Html.
