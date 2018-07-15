@@ -10,24 +10,24 @@ namespace lib\route;
  * @version 1.0
  */
 abstract class RoutesConfig {
-	private static $registry = [];
+  private static $registry = [];
 
-	/**
-	 *
-	 * @param string $key
-	 * @param mixed $value
-	 */
-	public static function set( $key, $value ) {
-		self::$registry[ $key ] = $value;
-	}
+  /**
+   *
+   * @param string $key
+   * @param mixed $value
+   */
+  public static function set ($key, $value) {
+    self::$registry[$key] = $value;
+  }
 
-	/**
-	 *
-	 * @param string $key
-	 *
-	 * @return mixed
-	 */
-	public static function get( string $key ) {
-		return array_key_exists( $key, self::$registry ) ? self::$registry[ $key ] : null;
-	}
+  /**
+   *
+   * @param string $key
+   *
+   * @return mixed
+   */
+  public static function get (string $key) {
+    return array_key_exists($key, self::$registry) ? self::$registry[$key] : null;
+  }
 }

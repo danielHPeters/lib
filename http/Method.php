@@ -12,13 +12,13 @@ use lib\util\Enum;
  * @version 1.0
  */
 abstract class Method extends Enum {
-	const GET = 'GET';
-	const HEAD = 'HEAD';
-	const POST = 'POST';
-	const PUT = 'PUT';
-	const DELETE = 'DELETE';
-	const CONNECT = 'CONNECT';
-	const OPTIONS = 'OPTIONS';
-	const TRACE = 'TRACE';
-	const PATCH = 'PATCH';
+  const GET = 'GET';
+  const HEAD = 'HEAD';
+  const POST = 'POST';
+  const PUT = 'PUT';
+  const DELETE = 'DELETE';
+  const CONNECT = 'CONNECT';
+  const OPTIONS = 'OPTIONS';
+  const TRACE = 'TRACE';
+  const PATCH = 'PATCH';
 }

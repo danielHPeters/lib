@@ -10,5 +10,5 @@ namespace lib\model\game\item\action;
  * @version 1.0
  */
 interface ItemAction {
-	public function doUse(): void;
+  public function doUse (): void;
 }

@@ -10,5 +10,5 @@ namespace lib\util\observer;
  * @version 1.0
  */
 interface Observer {
-	public function update( Observable $obj, $args = null );
+  public function update (Observable $obj, $args = null);
 }

@@ -12,6 +12,6 @@ use lib\entity\Entity;
  * @version 1.0
  */
 class Monster extends Entity {
-	public function growl(): void {
-	}
+  public function growl (): void {
+  }
 }

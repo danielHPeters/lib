@@ -10,33 +10,33 @@ namespace lib\collection;
  * @version 1.0
  */
 class TreeNode {
-	private $left;
-	private $right;
-	private $value;
+  private $left;
+  private $right;
+  private $value;
 
-	public function __construct( $value, TreeNode $left = null, TreeNode $right = null ) {
-		$this->value = $value;
-		$this->left  = $left;
-		$this->right = $right;
-	}
+  public function __construct ($value, TreeNode $left = null, TreeNode $right = null) {
+    $this->value = $value;
+    $this->left = $left;
+    $this->right = $right;
+  }
 
-	public function getLeft(): TreeNode {
-		return $this->left;
-	}
+  public function getLeft (): TreeNode {
+    return $this->left;
+  }
 
-	public function setLeft( TreeNode $left ): void {
-		$this->left = $left;
-	}
+  public function setLeft (TreeNode $left): void {
+    $this->left = $left;
+  }
 
-	public function getRight(): TreeNode {
-		return $this->right;
-	}
+  public function getRight (): TreeNode {
+    return $this->right;
+  }
 
-	public function setRight( TreeNode $right ): void {
-		$this->right = $right;
-	}
+  public function setRight (TreeNode $right): void {
+    $this->right = $right;
+  }
 
-	public function getValue() {
-		return $this->value;
-	}
+  public function getValue () {
+    return $this->value;
+  }
 }

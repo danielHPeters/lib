@@ -10,9 +10,9 @@ namespace lib\collection;
  * @version 1.0
  */
 interface Queue {
-	public function poll();
+  public function poll ();
 
-	public function peek();
+  public function peek ();
 
-	public function add( $object ): void;
+  public function add ($object): void;
 }

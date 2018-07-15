@@ -10,8 +10,8 @@ namespace lib\util\logger;
  * @version 1.0
  */
 abstract class Logger {
-	private $logLevel;
-	private $logDestination;
+  private $logLevel;
+  private $logDestination;
 
-	abstract function log();
+  abstract function log ();
 }

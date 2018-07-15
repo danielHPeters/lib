@@ -10,7 +10,7 @@ namespace lib\collection;
  * @version 1.0
  */
 interface Map {
-	public function put( $key, $value );
+  public function put ($key, $value);
 
-	public function get( $key );
+  public function get ($key);
 }

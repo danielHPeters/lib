@@ -12,13 +12,23 @@ use lib\collection\ArrayList;
  * @version 1.0
  */
 class Response {
+  /**
+   * @var string
+   */
 	private $version;
+  /**
+   * @var ArrayList
+   */
 	private $headers;
+  /**
+   * @var string
+   */
 	private $body;
 
 	public function __construct( string $version ) {
 		$this->version = $version;
 		$this->headers = new ArrayList();
+		$this->body = '';
 	}
 
 	public function send(): void {

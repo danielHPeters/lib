@@ -12,7 +12,7 @@ use lib\util\Enum;
  * @version 1.0
  */
 class PartyStatus extends Enum {
-	const INVITED = 0;
-	const ACCEPTED = 1;
-	const DECLINED = 2;
+  const INVITED = 0;
+  const ACCEPTED = 1;
+  const DECLINED = 2;
 }

@@ -10,6 +10,6 @@ namespace lib\session;
  * @version 1.0
  */
 class Verifier {
-	public function authenticate( Session $session ) {
-	}
+  public function authenticate (Session $session) {
+  }
 }

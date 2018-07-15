@@ -12,20 +12,20 @@ use lib\entity\Entity;
  * @version 1.0
  */
 class Card extends Entity {
-	private $color;
-	private $value;
+  private $color;
+  private $value;
 
-	public function __construct( string $id, string $color, string $value ) {
-		parent::__construct( $id );
-		$this->color = $color;
-		$this->value = $value;
-	}
+  public function __construct (string $id, string $color, string $value) {
+    parent::__construct($id);
+    $this->color = $color;
+    $this->value = $value;
+  }
 
-	public function getColor(): string {
-		return $this->color;
-	}
+  public function getColor (): string {
+    return $this->color;
+  }
 
-	public function getValue(): string {
-		return $this->value;
-	}
+  public function getValue (): string {
+    return $this->value;
+  }
 }

@@ -14,14 +14,14 @@ use lib\entity\Entity;
  * @version 1.0
  */
 class Party extends Entity {
-	private $guests;
+  private $guests;
 
-	public function __construct( string $id ) {
-		parent::__construct( $id );
-		$this->guests = new ArrayList();
-	}
+  public function __construct (string $id) {
+    parent::__construct($id);
+    $this->guests = new ArrayList();
+  }
 
-	public function getGuests(): Collection {
-		return $this->guests;
-	}
+  public function getGuests (): Collection {
+    return $this->guests;
+  }
 }

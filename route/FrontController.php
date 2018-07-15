@@ -10,16 +10,16 @@ namespace lib\route;
  * @version 1.0
  */
 class FrontController {
-	private $router;
-	private $dispatcher;
+  private $router;
+  private $dispatcher;
 
-	public function __construct( Router $router, Dispatcher $dispatcher ) {
-		$this->router     = $router;
-		$this->dispatcher = $dispatcher;
-	}
+  public function __construct (Router $router, Dispatcher $dispatcher) {
+    $this->router = $router;
+    $this->dispatcher = $dispatcher;
+  }
 
-	public function run( Request $request, Response $response ) {
-		$route = $this->router->route( $request, $response );
-		$this->dispatcher->dispatch( $route, $request, $response );
-	}
+  public function run (Request $request, Response $response) {
+    $route = $this->router->route($request, $response);
+    $this->dispatcher->dispatch($route, $request, $response);
+  }
 }

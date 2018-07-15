@@ -10,9 +10,9 @@ namespace lib\collection;
  * @version 1.0
  */
 interface IList extends Collection {
-	public function set( int $index ): void;
+  public function set (int $index): void;
 
-	public function get( int $index );
+  public function get (int $index);
 
-	public function removeAt( int $index ): void;
+  public function removeAt (int $index): void;
 }

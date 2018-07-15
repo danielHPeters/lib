@@ -10,19 +10,25 @@ namespace lib\route;
  * @version 1.0
  */
 class Route {
-	private $path;
-	private $controllerClass;
+  /**
+   * @var string
+   */
+  private $path;
+  /**
+   * @var string
+   */
+  private $controllerClass;
 
-	public function __construct( string $path, string $controllerClass ) {
-		$this->path            = $path;
-		$this->controllerClass = $controllerClass;
-	}
+  public function __construct (string $uri, string $controllerClass) {
+    $this->path = $uri;
+    $this->controllerClass = $controllerClass;
+  }
 
-	public function match( Request $request ): bool {
-		return $this->path === $request->getUri();
-	}
+  public function match (Request $request): bool {
+    return $this->path === $request->getUri();
+  }
 
-	public function createController(): Controller {
-		return new $this->controllerClass;
-	}
+  public function createController (): Controller {
+    return new $this->controllerClass;
+  }
 }

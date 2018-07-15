@@ -12,7 +12,7 @@ use lib\util\Enum;
  * @version 1.0
  */
 class ServerStatus extends Enum {
-	const RUNNING = 0;
-	const STOPPING = 1;
-	const DEACTIVATED = 2;
+  const RUNNING = 0;
+  const STOPPING = 1;
+  const DEACTIVATED = 2;
 }

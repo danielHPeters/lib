@@ -10,5 +10,5 @@ namespace lib\model\notes;
  * @version 1.0
  */
 interface Sendable {
-	public function send(): void;
+  public function send (): void;
 }

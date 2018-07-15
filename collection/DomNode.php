@@ -10,19 +10,19 @@ namespace lib\collection;
  * @version 1.0
  */
 interface DomNode {
-	public function getTagName(): string;
+  public function getTagName (): string;
 
-	public function getText(): string;
+  public function getText (): string;
 
-	public function getChildren(): ArrayList;
+  public function getChildren (): ArrayList;
 
-	public function getClassList(): ArrayList;
+  public function getClassList (): ArrayList;
 
-	public function getAttributes(): ArrayList;
+  public function getAttributes (): ArrayList;
 
-	public function getHtml(): string;
+  public function getHtml (): string;
 
-	public function setTagName( string $name ): void;
+  public function setTagName (string $name): void;
 
-	public function setText( string $text ): void;
+  public function setText (string $text): void;
 }

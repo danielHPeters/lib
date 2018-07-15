@@ -14,20 +14,20 @@ use lib\entity\Entity;
  * @version 1.0
  */
 class Blog extends Entity {
-	private $posts;
-	private $users;
+  private $posts;
+  private $users;
 
-	public function __construct( string $id ) {
-		parent::__construct( $id );
-		$this->posts = new ArrayList();
-		$this->users = new ArrayList();
-	}
+  public function __construct (string $id) {
+    parent::__construct($id);
+    $this->posts = new ArrayList();
+    $this->users = new ArrayList();
+  }
 
-	public function getPosts(): Collection {
-		return $this->posts;
-	}
+  public function getPosts (): Collection {
+    return $this->posts;
+  }
 
-	public function getUsers(): Collection {
-		return $this->users;
-	}
+  public function getUsers (): Collection {
+    return $this->users;
+  }
 }

@@ -12,30 +12,30 @@ use lib\entity\Entity;
  * @version 1.0
  */
 class Note extends Entity implements Sendable {
-	private $author;
-	private $recipient;
-	private $content;
+  private $author;
+  private $recipient;
+  private $content;
 
-	public function __construct( string $id, string $author, string $recipient, string $content ) {
-		parent::__construct( $id );
-		$this->author    = $author;
-		$this->recipient = $recipient;
-		$this->content   = $content;
-	}
+  public function __construct (string $id, string $author, string $recipient, string $content) {
+    parent::__construct($id);
+    $this->author = $author;
+    $this->recipient = $recipient;
+    $this->content = $content;
+  }
 
-	public function send(): void {
-		// TODO: Implement send() method.
-	}
+  public function send (): void {
+    // TODO: Implement send() method.
+  }
 
-	public function getAuthor(): string {
-		return $this->author;
-	}
+  public function getAuthor (): string {
+    return $this->author;
+  }
 
-	public function getRecipient(): string {
-		return $this->recipient;
-	}
+  public function getRecipient (): string {
+    return $this->recipient;
+  }
 
-	public function getContent(): string {
-		return $this->content;
-	}
+  public function getContent (): string {
+    return $this->content;
+  }
 }

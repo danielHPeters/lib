@@ -13,26 +13,26 @@ use lib\model\entity\User;
  * @version 1.0
  */
 class Message extends Entity {
-	private $author;
-	private $recipient;
-	private $contents;
+  private $author;
+  private $recipient;
+  private $contents;
 
-	public function __construct( string $id, User $author, User $recipient, string $contents ) {
-		parent::__construct( $id );
-		$this->author    = $author;
-		$this->recipient = $recipient;
-		$this->contents  = $contents;
-	}
+  public function __construct (string $id, User $author, User $recipient, string $contents) {
+    parent::__construct($id);
+    $this->author = $author;
+    $this->recipient = $recipient;
+    $this->contents = $contents;
+  }
 
-	public function getAuthor(): User {
-		return $this->author;
-	}
+  public function getAuthor (): User {
+    return $this->author;
+  }
 
-	public function getRecipient(): User {
-		return $this->recipient;
-	}
+  public function getRecipient (): User {
+    return $this->recipient;
+  }
 
-	public function getContents(): string {
-		return $this->contents;
-	}
+  public function getContents (): string {
+    return $this->contents;
+  }
 }
