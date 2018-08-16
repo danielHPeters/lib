@@ -18,7 +18,7 @@ interface DomNode {
 
   public function getClassList (): ArrayList;
 
-  public function getAttributes (): ArrayList;
+  public function getAttributes (): HashMap;
 
   public function getHtml (): string;
 
