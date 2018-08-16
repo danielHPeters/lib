@@ -15,6 +15,10 @@ use lib\collection\Map;
  */
 class Request {
   /**
+   * @var string The request method
+   */
+  private $method;
+  /**
    * @var ArrayList
    */
   private $headers;
@@ -25,27 +29,38 @@ class Request {
   /**
    * @var Map
    */
-  private $params;
+  private $body;
 
-  public function __construct (string $uri) {
+  /**
+   * Request constructor.
+   *
+   * @param string $method Request method
+   * @param string $uri Request uri
+   */
+  public function __construct(string $method, string $uri) {
+    $this->method  = $method;
     $this->headers = new ArrayList();
-    $this->uri = $uri;
-    $this->params = new HashMap();
+    $this->uri     = $uri;
+    $this->body    = new HashMap();
   }
 
-  public function getHeaders (): ArrayList {
+  public function getMethod(): string {
+    return $this->method;
+  }
+
+  public function getHeaders(): ArrayList {
     return $this->headers;
   }
 
-  public function getUri (): string {
+  public function getUri(): string {
     return $this->uri;
   }
 
-  public function setUri (string $uri): void {
+  public function setUri(string $uri): void {
     $this->uri = $uri;
   }
 
-  public function getParams (): Map {
-    return $this->params;
+  public function getBody(): Map {
+    return $this->body;
   }
 }
