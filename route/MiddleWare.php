@@ -12,5 +12,5 @@ use Closure;
  * @version 1.0
  */
 interface MiddleWare {
-  public function handle (Request $req, Response $res, Closure $next);
+  public function handle (Request $req, Response $res, Closure $next = null);
 }

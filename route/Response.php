@@ -49,7 +49,7 @@ class Response {
   /**
    * Transform body data to json and send response.
    */
-  public function json() {
+  public function json(): string {
     header('HTTP/' . $this->version . ' Content-Type: application/json; charset=utf-8', true, $this->status);
     echo json_encode($this->body);
   }

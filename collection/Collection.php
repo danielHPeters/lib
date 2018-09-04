@@ -2,6 +2,8 @@
 
 namespace lib\collection;
 
+use Closure;
+
 /**
  * Interface Collection.
  *
@@ -38,6 +40,10 @@ interface Collection {
   public function remove (int $key): void;
 
   public function removeRange (int $fromKey, int $toKey): void;
+
+  public function filter(Closure $predicate): array;
+
+  public function map(Closure $callback): array;
 
   public function size (): int;
 

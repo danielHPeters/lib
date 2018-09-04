@@ -2,6 +2,7 @@
 
 namespace lib\collection;
 
+use Closure;
 use Exception;
 
 /**
@@ -205,5 +206,13 @@ class SinglyList implements Queue, IList {
       $currentNode->setNext($node);
     }
     $this->listSize++;
+  }
+
+  public function filter(Closure $predicate): array {
+    // TODO: Implement filter() method.
+  }
+
+  public function map(Closure $callback): array {
+    // TODO: Implement map() method.
   }
 }

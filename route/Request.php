@@ -39,8 +39,8 @@ class Request {
    */
   public function __construct(string $method, string $uri) {
     $this->method  = $method;
-    $this->headers = new ArrayList();
     $this->uri     = $uri;
+    $this->headers = new ArrayList();
     $this->body    = new HashMap();
   }
 

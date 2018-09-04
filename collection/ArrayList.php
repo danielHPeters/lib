@@ -2,6 +2,7 @@
 
 namespace lib\collection;
 
+use Closure;
 use Exception;
 use ArrayAccess;
 use Iterator;
@@ -183,5 +184,13 @@ class ArrayList implements Collection, ArrayAccess, Iterator {
       $current = $this->current();
       $callback($current);
     }
+  }
+
+  public function filter(Closure $predicate): array {
+    return array_values(array_filter($this->arr, $predicate));
+  }
+
+  public function map(Closure $callback): array {
+    return array_map($callback, $this->arr);
   }
 }

@@ -2,6 +2,8 @@
 
 namespace lib\route;
 
+use Closure;
+
 /**
  * Class Route.
  *
@@ -15,20 +17,20 @@ class Route {
    */
   private $path;
   /**
-   * @var string
+   * @var Closure
    */
-  private $controllerClass;
+  private $action;
 
-  public function __construct (string $uri, string $controllerClass) {
-    $this->path = $uri;
-    $this->controllerClass = $controllerClass;
+  public function __construct (string $uri, Closure $middleWare) {
+    $this->path   = $uri;
+    $this->action = $middleWare;
   }
 
-  public function match (Request $request): bool {
+  public function matches (Request $request): bool {
     return $this->path === $request->getUri();
   }
 
-  public function createController (): Controller {
-    return new $this->controllerClass;
+  public function getAction(): Closure {
+    return $this->action;
   }
 }

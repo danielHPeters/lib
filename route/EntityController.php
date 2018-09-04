@@ -1,12 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: daniel
- * Date: 15.08.18
- * Time: 13:18
- */
 
 namespace lib\route;
+
+use Closure;
 
 /**
  * Class EntityController.
@@ -16,22 +12,22 @@ namespace lib\route;
  * @version 1.0
  */
 abstract class EntityController {
-  abstract public function create(): void;
+  abstract public function create(): Closure;
 
-  abstract public function getAll(): void;
+  abstract public function getAll(): Closure;
 
-  abstract public function getById(string $id): void;
+  abstract public function getById(string $id): Closure;
 
-  abstract public function update(string $id): void;
+  abstract public function update(string $id): Closure;
 
-  abstract public function delete(string $id): void;
+  abstract public function delete(string $id): Closure;
 
   /**
    * Transform data to json and send response.
    *
    * @param $response mixed Response data
    */
-  public function json($response) {
+  public function json($response): void {
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode($response);
   }
