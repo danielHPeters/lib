@@ -3,12 +3,20 @@
 namespace lib\util;
 
 use Exception;
+use function assert;
+use function bin2hex;
+use function chr;
+use function ord;
+use function random_bytes;
+use function str_split;
+use function strlen;
+use function vsprintf;
 
 /**
  * Class Uuid.
  *
  * @package lib\util
- * @author Daniel Peters
+ * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
 abstract class Uuid {

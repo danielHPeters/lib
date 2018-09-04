@@ -2,11 +2,14 @@
 
 namespace lib\filter;
 
+use function preg_match;
+use function trim;
+
 /**
  * Class InputValidator.
  *
  * @package lib\filter
- * @author Daniel Peters
+ * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
 abstract class Validator {
@@ -16,6 +19,7 @@ abstract class Validator {
    * Test email addresses for validity according to VALID_EMAIL regex.
    *
    * @param string $email Email address to test
+   *
    * @return bool
    */
   public static function checkEmail (string $email): bool {
@@ -27,13 +31,14 @@ abstract class Validator {
    * If the key does not exist, then the string value assigned to the key will be added to the returned errors array.
    *
    * @param array $keys
+   *
    * @return array Array of errors. key = post variable and value = error message.
    */
   public static function checkPostVars (array $keys): array {
     $errors = [];
 
     foreach ($keys as $key => $value) {
-      if (!isset($_POST[$key]) || empty(trim($_POST[$key]))) {
+      if ( ! isset($_POST[ $key ]) || empty(trim($_POST[ $key ]))) {
         $errors[] = $value;
       }
     }

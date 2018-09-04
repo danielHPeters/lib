@@ -2,20 +2,36 @@
 
 namespace lib\collection;
 
+use ArrayAccess;
 use Closure;
 use Exception;
-use ArrayAccess;
 use Iterator;
+use function array_filter;
+use function array_map;
+use function array_merge;
+use function array_reverse;
+use function array_search;
+use function array_values;
+use function count;
+use function in_array;
+use function rsort;
+use function sort;
 
 /**
  * Class ArrayList.
  *
  * @package lib\collection
- * @author Daniel Peters
+ * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
 class ArrayList implements Collection, ArrayAccess, Iterator {
+  /**
+   * @var array
+   */
   private $arr;
+  /**
+   * @var int
+   */
   private $index;
 
   public function __construct () {
@@ -23,52 +39,37 @@ class ArrayList implements Collection, ArrayAccess, Iterator {
     $this->index = 0;
   }
 
-  /**
-   * Add an Object to this Collection.
-   *
-   * @param mixed $obj New element
-   */
   public function add ($obj): void {
     $this->arr[] = $obj;
   }
 
   public function get (int $key) {
-    return $this->offsetExists($key) ? $this->arr[$key] : null;
+    return $this->offsetExists($key) ? $this->arr[ $key ] : null;
   }
 
   public function isEmpty (): bool {
     return empty($this->arr);
   }
 
-  /**
-   * Check if the collection contains key.
-   *
-   * @param int $key Selected key
-   *
-   * @return bool Check if item exists
-   */
   public function has (int $key): bool {
     return $this->offsetExists($key);
   }
 
-  /**
-   * Empty the collection.
-   */
   public function clear (): void {
     $this->arr = [];
   }
 
   public function offsetExists ($offset): bool {
-    return isset($this->arr[$offset]);
+    return isset($this->arr[ $offset ]);
   }
 
   public function offsetGet ($offset) {
-    return $this->offsetExists($offset) ? $this->arr[$offset] : null;
+    return $this->offsetExists($offset) ? $this->arr[ $offset ] : null;
   }
 
   public function offsetSet ($offset, $value): void {
     if ($offset) {
-      $this->arr[$offset] = $value;
+      $this->arr[ $offset ] = $value;
     } else {
       $this->arr[] = $value;
     }
@@ -76,11 +77,12 @@ class ArrayList implements Collection, ArrayAccess, Iterator {
 
   /**
    * @param mixed $offset
+   *
    * @throws Exception
    */
   public function offsetUnset ($offset): void {
-    if (isset($this->arr[$offset])) {
-      unset($this->arr[$offset]);
+    if (isset($this->arr[ $offset ])) {
+      unset($this->arr[ $offset ]);
       $this->arr = array_values($this->arr);
     } else {
       throw new Exception('Invalid offset');
@@ -117,11 +119,12 @@ class ArrayList implements Collection, ArrayAccess, Iterator {
 
   /**
    * @param int $key
+   *
    * @throws Exception
    */
   public function remove (int $key): void {
-    if (isset($this->arr[$key])) {
-      unset($this->arr[$key]);
+    if (isset($this->arr[ $key ])) {
+      unset($this->arr[ $key ]);
       $this->arr = array_values($this->arr);
     } else {
       throw new Exception('Invalid Index');
@@ -149,7 +152,7 @@ class ArrayList implements Collection, ArrayAccess, Iterator {
   }
 
   public function current () {
-    return $this->arr[$this->index];
+    return $this->arr[ $this->index ];
   }
 
   public function next (): void {
@@ -165,7 +168,7 @@ class ArrayList implements Collection, ArrayAccess, Iterator {
   }
 
   public function valid (): bool {
-    return isset($this->arr[$this->index]);
+    return isset($this->arr[ $this->index ]);
   }
 
   public function reverse (): void {
@@ -175,22 +178,22 @@ class ArrayList implements Collection, ArrayAccess, Iterator {
 
   /**
    * Iterate through the list while executing callback function.
-   * Behaves like foreach() in java.
+   * Behaves like foreach.
    *
-   * @param callable $callback
+   * @param Closure $callback
    */
-  public function each (callable $callback): void {
+  public function each (Closure $callback): void {
     for ($this->rewind(); $this->valid(); $this->next()) {
       $current = $this->current();
       $callback($current);
     }
   }
 
-  public function filter(Closure $predicate): array {
+  public function filter (Closure $predicate): array {
     return array_values(array_filter($this->arr, $predicate));
   }
 
-  public function map(Closure $callback): array {
+  public function map (Closure $callback): array {
     return array_map($callback, $this->arr);
   }
 }

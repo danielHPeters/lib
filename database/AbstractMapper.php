@@ -2,21 +2,31 @@
 
 namespace lib\database;
 
-use lib\collection\Collection;
-use lib\collection\ArrayList;
-use lib\entity\Entity;
 use InvalidArgumentException;
+use lib\collection\ArrayList;
+use lib\collection\Collection;
+use lib\entity\Entity;
+use function trim;
 
 /**
  * Class AbstractMapper.
  *
  * @package lib\database
- * @author Daniel Peters
+ * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
 abstract class AbstractMapper implements Mapper {
+  /**
+   * @var Adapter
+   */
   private $adapter;
+  /**
+   * @var string
+   */
   private $table;
+  /**
+   * @var Entity
+   */
   private $class;
 
   public function __construct (Adapter $adapter, string $table, Entity $class) {
@@ -68,7 +78,7 @@ abstract class AbstractMapper implements Mapper {
   }
 
   public function insert (Entity $entity) {
-    if (!$entity instanceof $this->class) {
+    if ( ! $entity instanceof $this->class) {
       throw new InvalidArgumentException('The entity must be an instance of ' . $this->class . '.');
     }
 
@@ -76,7 +86,7 @@ abstract class AbstractMapper implements Mapper {
   }
 
   public function update (Entity $entity) {
-    if (!$entity instanceof $this->class) {
+    if ( ! $entity instanceof $this->class) {
       throw new InvalidArgumentException('The entity must be an instance of ' . $this->class . '.');
     }
     $id = $entity->getId();
@@ -87,7 +97,7 @@ abstract class AbstractMapper implements Mapper {
   }
 
   public function delete (Entity $entity) {
-    if (!$entity instanceof $this->class) {
+    if ( ! $entity instanceof $this->class) {
       throw new InvalidArgumentException('The entity must be an instance of ' . $this->class . '.');
     }
     $id = $entity->getId();

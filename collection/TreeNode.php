@@ -6,12 +6,21 @@ namespace lib\collection;
  * Class TreeNode.
  *
  * @package lib\collection
- * @author Daniel Peters
+ * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
 class TreeNode {
+  /**
+   * @var TreeNode
+   */
   private $left;
+  /**
+   * @var TreeNode
+   */
   private $right;
+  /**
+   * @var
+   */
   private $value;
 
   public function __construct ($value, TreeNode $left = null, TreeNode $right = null) {

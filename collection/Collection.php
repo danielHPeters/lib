@@ -8,7 +8,7 @@ use Closure;
  * Interface Collection.
  *
  * @package lib\collection
- * @author Daniel Peters
+ * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
 interface Collection {
@@ -20,13 +20,6 @@ interface Collection {
 
   public function isEmpty (): bool;
 
-  /**
-   * Check if collection has an element at a given index.
-   *
-   * @param int $key The selected index
-   *
-   * @return bool True if the collection contains an element at the given index
-   */
   public function has (int $key): bool;
 
   public function contains ($obj): bool;
@@ -41,9 +34,9 @@ interface Collection {
 
   public function removeRange (int $fromKey, int $toKey): void;
 
-  public function filter(Closure $predicate): array;
+  public function filter (Closure $predicate): array;
 
-  public function map(Closure $callback): array;
+  public function map (Closure $callback): array;
 
   public function size (): int;
 

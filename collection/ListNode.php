@@ -6,12 +6,21 @@ namespace lib\collection;
  * Class ListNode.
  *
  * @package lib\collection
- * @author Daniel Peters
+ * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
 class ListNode {
+  /**
+   * @var
+   */
   private $value;
+  /**
+   * @var ListNode
+   */
   private $next;
+  /**
+   * @var ListNode
+   */
   private $previous;
 
   public function __construct ($value) {
@@ -32,7 +41,7 @@ class ListNode {
     $this->value = $value;
   }
 
-  public function getPrevious () {
+  public function getPrevious (): ListNode {
     return $this->previous;
   }
 

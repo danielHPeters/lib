@@ -2,6 +2,8 @@
 
 namespace lib\util;
 
+use function in_array;
+
 /**
  * Wrapper class for array functions.
  *

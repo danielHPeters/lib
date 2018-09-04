@@ -9,18 +9,12 @@ use PDO;
  *
  *
  * @package lib\database
- * @author Daniel Peters
+ * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
 class Connection extends PDO {
-  /**
-   *
-   * @param string $driver
-   * @param Configuration $config
-   * @param array $options
-   */
   public function __construct (string $driver, Configuration $config, array $options = null) {
-    $dsn = $driver . ':host=' . $config->getHost() . ';dbname=' . $config->getDb() . ';charset=utf8';
+    $dsn = $driver . ':host=' . $config->getHost() . ';dbname=' . $config->getDb() . ';charset=' . $config->getCharset();
     parent::__construct($dsn, $config->getUser(), $config->getPassword(), $options);
   }
 }

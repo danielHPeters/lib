@@ -2,11 +2,17 @@
 
 namespace lib\util;
 
+use lib\html\Tag;
+use function flush;
+use function print_r;
+use function var_dump;
+use const PHP_EOL;
+
 /**
  * Class System.
  *
  * @package lib\util
- * @author Daniel Peters
+ * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
 abstract class System {
@@ -33,7 +39,7 @@ abstract class System {
    * @param string $string
    */
   final public static function println (string $string) {
-    $_SERVER['SERVER_PROTOCOL'] ? print "$string<br>" : print "$string\n";
+    $_SERVER['SERVER_PROTOCOL'] ? print $string . '<' . Tag::BR . '>' : print $string . PHP_EOL;
   }
 
   final public static function flush (): void {

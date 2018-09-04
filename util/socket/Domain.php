@@ -3,12 +3,15 @@
 namespace lib\util\socket;
 
 use lib\util\Enum;
+use const AF_INET;
+use const AF_INET6;
+use const AF_UNIX;
 
 /**
  * Enum class Domain.
  *
  * @package lib\util\socket
- * @author Daniel Peters
+ * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
 abstract class Domain extends Enum {

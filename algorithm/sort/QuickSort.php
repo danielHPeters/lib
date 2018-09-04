@@ -2,22 +2,18 @@
 
 namespace lib\algorithm\sort;
 
+use function array_merge;
+use function count;
+
 /**
  * Class QuickSort.
  *
- * @package rafisa\lib\algorithm\sort
- * @author Daniel Peters
+ * @package lib\algorithm\sort
+ * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
 abstract class QuickSort {
-  /**
-   * Simple quick sort function.
-   *
-   * @param array $arr
-   *
-   * @return array
-   */
-  public static function simpleQuickSort (array $arr): array {
+  public static function sort (array $arr): array {
     if (count($arr) <= 1) {
       $sorted = $arr;
     } else {
@@ -26,7 +22,7 @@ abstract class QuickSort {
       $right = [];
 
       for ($i = 1; $i < count($arr); $i++) {
-        $current = $arr[$i];
+        $current = $arr[ $i ];
 
         if ($current < $pivot) {
           $left[] = $current;
@@ -35,28 +31,28 @@ abstract class QuickSort {
         }
       }
 
-      $sorted = array_merge(self::simpleQuickSort($left), [$pivot], self::simpleQuickSort($right));
+      $sorted = array_merge(self::sort($left), [$pivot], self::sort($right));
     }
 
     return $sorted;
   }
 
   private static function partition (array &$arr, int $leftIndex, int $rightIndex): int {
-    $pivot = $arr[($leftIndex + $rightIndex) / 2];
+    $pivot = $arr[ ($leftIndex + $rightIndex) / 2 ];
 
     while ($leftIndex <= $rightIndex) {
-      while ($arr[$leftIndex] < $pivot) {
+      while ($arr[ $leftIndex ] < $pivot) {
         $leftIndex++;
       }
 
-      while ($arr[$rightIndex] > $pivot) {
+      while ($arr[ $rightIndex ] > $pivot) {
         $rightIndex--;
       }
 
       if ($leftIndex <= $rightIndex) {
-        $tmp = $arr[$leftIndex];
-        $arr[$leftIndex] = $arr[$rightIndex];
-        $arr[$rightIndex] = $tmp;
+        $tmp = $arr[ $leftIndex ];
+        $arr[ $leftIndex ] = $arr[ $rightIndex ];
+        $arr[ $rightIndex ] = $tmp;
         $leftIndex++;
         $rightIndex--;
       }
@@ -65,14 +61,14 @@ abstract class QuickSort {
     return $leftIndex;
   }
 
-  public static function inPlaceQuickSort (array &$arr, int $leftIndex, int $rightIndex): void {
+  public static function sortInPlace (array &$arr, int $leftIndex, int $rightIndex): void {
     $index = self::partition($arr, $leftIndex, $rightIndex);
 
     if ($leftIndex < $index - 1) {
-      self::inPlaceQuickSort($arr, $leftIndex, $index - 1);
+      self::sortInPlace($arr, $leftIndex, $index - 1);
     }
     if ($index < $rightIndex) {
-      self::inPlaceQuickSort($arr, $index, $rightIndex);
+      self::sortInPlace($arr, $index, $rightIndex);
     }
   }
 }

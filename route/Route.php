@@ -8,7 +8,7 @@ use Closure;
  * Class Route.
  *
  * @package lib\route
- * @author  Daniel Peters
+ * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
 class Route {
@@ -22,7 +22,7 @@ class Route {
   private $action;
 
   public function __construct (string $uri, Closure $middleWare) {
-    $this->path   = $uri;
+    $this->path = $uri;
     $this->action = $middleWare;
   }
 
@@ -30,7 +30,7 @@ class Route {
     return $this->path === $request->getUri();
   }
 
-  public function getAction(): Closure {
+  public function getAction (): Closure {
     return $this->action;
   }
 }

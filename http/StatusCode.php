@@ -8,7 +8,7 @@ use lib\util\Enum;
  * Class StatusCode.
  *
  * @package lib\http
- * @author Daniel Peters
+ * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
 abstract class StatusCode extends Enum {

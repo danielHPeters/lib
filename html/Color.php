@@ -6,7 +6,7 @@ namespace lib\html;
  * Class Color.
  *
  * @package lib\html
- * @author Daniel Peters
+ * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
 class Color {
@@ -34,6 +34,9 @@ class Color {
   const VIOLET = '#EE82EE';
   const YELLOW = '#FFFF00';
 
+  /**
+   * @var string
+   */
   private $value;
 
   public function __construct (string $value) {

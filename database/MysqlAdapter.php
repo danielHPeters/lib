@@ -3,19 +3,40 @@
 namespace lib\database;
 
 use InvalidArgumentException;
-use RuntimeException;
 use mysqli_result;
+use RuntimeException;
+use function array_keys;
+use function implode;
+use function mysqli_affected_rows;
+use function mysqli_close;
+use function mysqli_connect;
+use function mysqli_connect_error;
+use function mysqli_error;
+use function mysqli_fetch_assoc;
+use function mysqli_free_result;
+use function mysqli_insert_id;
+use function mysqli_num_rows;
+use function mysqli_query;
 
 /**
  * Class MysqlAdapter.
  *
  * @package lib\database
- * @author Daniel Peters
+ * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
 class MysqlAdapter implements Adapter {
+  /**
+   * @var Configuration
+   */
   private $config;
+  /**
+   * @var
+   */
   private $link;
+  /**
+   * @var mysqli_result
+   */
   private $result;
 
   public function __construct (Configuration $config) {
@@ -36,7 +57,7 @@ class MysqlAdapter implements Adapter {
       );
     }
 
-    if (!$this->link) {
+    if ( ! $this->link) {
       throw new RuntimeException('Failed to connect to database. ' . mysqli_connect_error());
     }
   }
@@ -50,11 +71,6 @@ class MysqlAdapter implements Adapter {
     }
   }
 
-  /**
-   * @param string $query
-   *
-   * @return bool|mixed|mysqli_result
-   */
   public function query (string $query) {
     if (empty($query)) {
       throw new InvalidArgumentException('The query string is empty!');
@@ -62,7 +78,7 @@ class MysqlAdapter implements Adapter {
 
     $this->result = mysqli_query($this->link, $query);
 
-    if (!$this->result) {
+    if ( ! $this->result) {
       throw new RuntimeException('Error executing query ' . $query . mysqli_error($this->link));
     }
 
@@ -155,16 +171,10 @@ class MysqlAdapter implements Adapter {
     return $this->getAffectedRows();
   }
 
-  /**
-   * @return bool
-   */
-  public function fetch () {
+  public function fetch (): array {
     return $this->result !== null ? mysqli_fetch_assoc($this->result) : null;
   }
 
-  /**
-   * @return int|null|string
-   */
   public function getInsertId () {
     return $this->link !== null ? mysqli_insert_id($this->link) : null;
   }

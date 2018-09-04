@@ -3,6 +3,9 @@
 namespace lib\view;
 
 use Exception;
+use function file_exists;
+use function file_get_contents;
+use function str_replace;
 
 /**
  * View template class. Load a template file with curly braced placeholders.
@@ -10,13 +13,25 @@ use Exception;
  * after executing the <code>load()</code> method.
  *
  * @package lib\view
- * @author Daniel Peters
+ * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
 class View {
+  /**
+   * @var string
+   */
   private $templatesPath;
+  /**
+   * @var string
+   */
   private $file;
+  /**
+   * @var array
+   */
   private $vars;
+  /**
+   * @var string
+   */
   private $html;
 
   public function __construct (string $pathToTemplates, string $file) {
@@ -30,7 +45,7 @@ class View {
    *
    * @throws Exception When template not found
    */
-  private function load () {
+  private function load (): void {
     $file = $this->templatesPath . '/' . $this->file . '.html';
 
     if (file_exists($file)) {
@@ -48,7 +63,7 @@ class View {
   }
 
   public function setVar (string $key, string $value) {
-    $this->vars[$key] = $value;
+    $this->vars[ $key ] = $value;
   }
 
   /**

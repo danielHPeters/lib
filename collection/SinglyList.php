@@ -9,7 +9,7 @@ use Exception;
  * Class SinglyList.
  *
  * @package lib\collection
- * @author Daniel Peters
+ * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
 class SinglyList implements Queue, IList {
@@ -181,17 +181,12 @@ class SinglyList implements Queue, IList {
   }
 
   /**
-   * @return mixed
+   * @throws Exception
    */
   public function peek () {
-    // TODO: Implement peek() method.
+    throw new Exception('TODO: Implement peek() method.');
   }
 
-  /**
-   * @param $object
-   *
-   * @return mixed
-   */
   public function add ($object): void {
     $node = new ListNode($object);
 
@@ -208,11 +203,23 @@ class SinglyList implements Queue, IList {
     $this->listSize++;
   }
 
-  public function filter(Closure $predicate): array {
-    // TODO: Implement filter() method.
+  /**
+   * @param Closure $predicate
+   *
+   * @return array
+   * @throws Exception
+   */
+  public function filter (Closure $predicate): array {
+    throw new Exception('TODO: Implement filter() method.');
   }
 
-  public function map(Closure $callback): array {
-    // TODO: Implement map() method.
+  /**
+   * @param Closure $callback
+   *
+   * @return array
+   * @throws Exception
+   */
+  public function map (Closure $callback): array {
+    throw new Exception('TODO: Implement map() method.');
   }
 }

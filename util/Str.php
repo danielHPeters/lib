@@ -2,11 +2,14 @@
 
 namespace lib\util;
 
+use function sprintf;
+use function substr;
+
 /**
  * Wrapper for various string manipulation / output functions.
  *
  * @package lib\util
- * @author Daniel Peters
+ * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
 abstract class Str {
@@ -16,6 +19,7 @@ abstract class Str {
 
   /**
    * Print
+   *
    * @param string $str Formatted string
    * @param mixed $args Arguments array
    */

@@ -4,15 +4,15 @@ namespace lib\database;
 
 /**
  * QueryBuilder class.
- * 
+ *
  * @package lib\database
  * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
 class QueryBuilder {
-  public static function createSchemaDiffQUery($db1, $db2, $table) {
-    return 
-    "SELECT column_name FROM (
+  public static function createSchemaDiffQuery ($db1, $db2, $table) {
+    return
+      "SELECT column_name FROM (
       SELECT
         column_name,
         COUNT(1) rowcount

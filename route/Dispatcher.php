@@ -6,11 +6,11 @@ namespace lib\route;
  * Description of Dispatcher.
  *
  * @package lib\route
- * @author  Daniel Peters
+ * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
 class Dispatcher {
-  public function dispatch(Route $route) {
-    call_user_func($route->getAction());
+  public function dispatch (Route $route) {
+    $route->getAction()();
   }
 }

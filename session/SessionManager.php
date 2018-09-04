@@ -2,11 +2,17 @@
 
 namespace lib\session;
 
+use function session_name;
+use function session_set_cookie_params;
+use function session_start;
+use function session_write_close;
+use function time;
+
 /**
  * Class SessionManager.
  *
  * @package lib\session
- * @author Daniel Peters
+ * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
 class SessionManager {
@@ -27,7 +33,7 @@ class SessionManager {
     session_set_cookie_params($limit, $path, $domain, $https, true);
     session_start();
 
-    if (!self::hijackAttempted()) {
+    if ( ! self::hijackAttempted()) {
       $_SESSION = [];
       $_SESSION['ipAddress'] = $_SERVER['REMOTE_ADDR'];
       $_SESSION['userAgent'] = $_SERVER['HTTP_USER_AGENT'];
@@ -38,7 +44,7 @@ class SessionManager {
   public static function hijackAttempted () {
     $hijackedAttempted = true;
 
-    if (!isset($_SESSION['ipAddress']) || !isset($_SESSION['userAgent'])) {
+    if ( ! isset($_SESSION['ipAddress']) || ! isset($_SESSION['userAgent'])) {
       $hijackedAttempted = false;
     }
 
@@ -54,7 +60,7 @@ class SessionManager {
   }
 
   public static function regenerateSession () {
-    if (!isset($_SESSION['OBSOLETE']) || $_SESSION['OBSOLETE'] === false) {
+    if ( ! isset($_SESSION['OBSOLETE']) || $_SESSION['OBSOLETE'] === false) {
       $_SESSION['OBSOLETE'] = true;
       $_SESSION['EXPIRES'] = time() + 10;
 

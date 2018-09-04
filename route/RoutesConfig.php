@@ -2,11 +2,13 @@
 
 namespace lib\route;
 
+use function array_key_exists;
+
 /**
  * Class RoutesConfig.
  *
  * @package lib\route
- * @author Daniel Peters
+ * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
 abstract class RoutesConfig {
@@ -18,7 +20,7 @@ abstract class RoutesConfig {
    * @param mixed $value
    */
   public static function set ($key, $value) {
-    self::$registry[$key] = $value;
+    self::$registry[ $key ] = $value;
   }
 
   /**
@@ -28,6 +30,6 @@ abstract class RoutesConfig {
    * @return mixed
    */
   public static function get (string $key) {
-    return array_key_exists($key, self::$registry) ? self::$registry[$key] : null;
+    return array_key_exists($key, self::$registry) ? self::$registry[ $key ] : null;
   }
 }

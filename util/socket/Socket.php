@@ -3,17 +3,29 @@
 namespace rafisa\lib\util\socket;
 
 use Exception;
+use function socket_bind;
+use function socket_close;
+use function socket_connect;
+use function socket_create;
+use function socket_last_error;
+use function socket_listen;
+use function socket_send;
+use function socket_strerror;
+use function strlen;
 
 /**
  * Wrapper class for php socket.
  * The socket extension needs to be configured and enabled in php.ini.
  *
  * @package rafisa\lib\util\socket
- * @author Daniel Peters
+ * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
 class Socket {
-  private $descriptor;
+  /**
+   * @var resource
+   */
+  private $resource;
 
   /**
    * Constructor.
@@ -25,9 +37,9 @@ class Socket {
    * @throws Exception When failed to create socket
    */
   public function __construct (int $domain, int $type, int $protocol = 0) {
-    $this->descriptor = socket_create($domain, $type, $protocol);
+    $this->resource = socket_create($domain, $type, $protocol);
 
-    if (!$this->descriptor) {
+    if ( ! $this->resource) {
       $this->handleError('Failed to create the socket');
     }
   }
@@ -58,9 +70,9 @@ class Socket {
    * @throws Exception
    */
   public function connectToRemote (string $address, int $port = 80) {
-    $connected = socket_connect($this->descriptor, $address, $port);
+    $connected = socket_connect($this->resource, $address, $port);
 
-    if (!$connected) {
+    if ( ! $connected) {
       $this->handleError('Could not connect to ' . $address);
     }
   }
@@ -72,15 +84,15 @@ class Socket {
    * @throws Exception
    */
   public function bind (string $address = '127.0.0.1', int $port = 5000) {
-    $bound = socket_bind($this->descriptor, $address, $port);
+    $bound = socket_bind($this->resource, $address, $port);
 
-    if (!$bound) {
+    if ( ! $bound) {
       $this->handleError('Failed to bind socket');
     }
   }
 
   public function listen (int $backlog = 10) {
-    socket_listen($this->descriptor, $backlog);
+    socket_listen($this->resource, $backlog);
   }
 
   /**
@@ -90,9 +102,9 @@ class Socket {
    * @throws Exception
    */
   public function send ($data, int $flags = 0) {
-    $sent = socket_send($this->descriptor, $data, strlen($data), $flags);
+    $sent = socket_send($this->resource, $data, strlen($data), $flags);
 
-    if (!$sent) {
+    if ( ! $sent) {
       $this->handleError('Failed to send data');
     }
   }
@@ -101,6 +113,6 @@ class Socket {
    * Close the socket.
    */
   public function close () {
-    socket_close($this->descriptor);
+    socket_close($this->resource);
   }
 }

@@ -2,11 +2,19 @@
 
 namespace lib\route;
 
+use Closure;
+use function array_push;
+use function array_shift;
+use function call_user_func_array;
+use function parse_url;
+use function preg_match;
+use function trim;
+
 /**
  * Class RouteSimple
  *
  * @package lib\route
- * @author  Daniel Peters
+ * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
 class RouteSimple {
@@ -19,24 +27,14 @@ class RouteSimple {
     self::$path = isset($parsedUrl['path']) ? trim($parsedUrl['path'], '/') : '';
   }
 
-  /**
-   * @param string $expression
-   * @param callable $function
-   */
-  public static function add (string $expression, callable $function) {
+  public static function add (string $expression, Closure $function) {
     array_push(self::$routes, ['expression' => $expression, 'function' => $function]);
   }
 
-  /**
-   * @param callable $function
-   */
-  public static function add404 (callable $function) {
+  public static function add404 (Closure $function) {
     array_push(self::$routes404, $function);
   }
 
-  /**
-   *
-   */
   public static function run () {
     $routeFound = false;
 
@@ -62,7 +60,7 @@ class RouteSimple {
       }
     }
 
-    if (!$routeFound) {
+    if ( ! $routeFound) {
       foreach (self::$routes404 as $route404) {
         call_user_func_array($route404, [self::$path]);
       }

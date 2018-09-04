@@ -2,11 +2,13 @@
 
 namespace lib\util\socket;
 
+use function getprotobyname;
+
 /**
  * Class SocketProtocols.
  *
  * @package lib\util\socket
- * @author Daniel Peters
+ * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
 abstract class Protocol {

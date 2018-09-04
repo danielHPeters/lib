@@ -4,12 +4,16 @@ namespace lib\util;
 
 use ReflectionClass;
 use ReflectionException;
+use function array_key_exists;
+use function array_values;
+use function get_called_class;
+use function in_array;
 
 /**
  * Class Enum.
  *
  * @package lib\util
- * @author Daniel Peters
+ * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
 abstract class Enum {
@@ -26,16 +30,17 @@ abstract class Enum {
 
     $calledClass = get_called_class();
 
-    if (!array_key_exists($calledClass, self::$constantsCache)) {
+    if ( ! array_key_exists($calledClass, self::$constantsCache)) {
       $reflect = new ReflectionClass($calledClass);
-      self::$constantsCache[$calledClass] = $reflect->getConstants();
+      self::$constantsCache[ $calledClass ] = $reflect->getConstants();
     }
 
-    return self::$constantsCache[$calledClass];
+    return self::$constantsCache[ $calledClass ];
   }
 
   /**
    * @param $key
+   *
    * @return bool
    * @throws ReflectionException
    */
@@ -48,6 +53,7 @@ abstract class Enum {
   /**
    * @param $value
    * @param bool $strict
+   *
    * @return bool
    * @throws ReflectionException
    */

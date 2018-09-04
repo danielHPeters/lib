@@ -8,7 +8,7 @@ use lib\util\Enum;
  * Enum class MIMEType.
  *
  * @package lib\file
- * @author Daniel Peters
+ * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
 class MIMEType extends Enum {

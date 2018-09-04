@@ -4,12 +4,15 @@ namespace lib\collection;
 
 use ArrayAccess;
 use Exception;
+use function array_search;
+use function array_unshift;
+use function array_values;
 
 /**
  * Class Stack.
  *
  * @package lib\collection
- * @author Daniel Peters
+ * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
 class Stack implements ArrayAccess {
@@ -18,11 +21,6 @@ class Stack implements ArrayAccess {
    */
   private $arr;
 
-  /**
-   * Adds an object to the top of this stack.
-   *
-   * @param mixed $obj Object to be added
-   */
   public function push ($obj): void {
     array_unshift($this->arr, $obj);
   }
@@ -44,11 +42,6 @@ class Stack implements ArrayAccess {
     return $top;
   }
 
-  /**
-   * Returns the topmost item without removing it.
-   *
-   * @return mixed The topmost item
-   */
   public function peek () {
     return $this->arr[0];
   }

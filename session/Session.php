@@ -2,15 +2,16 @@
 
 namespace lib\session;
 
+use DateInterval;
 use DateTime;
 use lib\model\entity\User;
-use DateInterval;
+use function session_regenerate_id;
 
 /**
  * Class Session.
  *
  * @package lib\session
- * @author Daniel Peters
+ * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
 class Session {

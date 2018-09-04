@@ -6,7 +6,7 @@ namespace lib\database;
  * Interface Adapter which defines the CRUD and connection methods.
  *
  * @package lib\database
- * @author Daniel Peters
+ * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
 interface Adapter {
@@ -16,7 +16,7 @@ interface Adapter {
 
   public function query (string $query);
 
-  public function fetch ();
+  public function fetch (): array ;
 
   /**
    * Generate and execute a select statement.
@@ -51,6 +51,7 @@ interface Adapter {
    * @param string $table
    * @param array $data associative array with key as col and value as content
    * @param string $conditions
+   *
    * @return int Number of affected rows
    */
   public function update (string $table, array $data, string $conditions): int;
