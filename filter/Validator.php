@@ -13,8 +13,8 @@ use function trim;
  * @version 1.0
  */
 abstract class Validator {
-  const VALID_EMAIL = "^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$";
-  const VALID_FILENAME = "^([a-z\d.-]+)\.([a-z\d]+)$";
+  const VALID_EMAIL = "/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/";
+  const VALID_FILENAME = "/^([a-z\d.-]+)\.([a-z\d]+)$/";
 
   /**
    * Test email addresses for validity according to VALID_EMAIL regex.
@@ -23,11 +23,11 @@ abstract class Validator {
    *
    * @return bool
    */
-  public static function validateEmail (string $email): bool {
+  public static function validEmail (string $email): bool {
     return preg_match(self::VALID_EMAIL, $email);
   }
 
-  public static function validateFilename (string $fileName): bool {
+  public static function validFileName (string $fileName): bool {
     return preg_match(self::VALID_FILENAME, $fileName);
   }
 
@@ -44,7 +44,7 @@ abstract class Validator {
 
     foreach ($keys as $key => $value) {
       if ( ! isset($_POST[ $key ]) || empty(trim($_POST[ $key ]))) {
-        $errors[] = $value;
+        $errors[$key] = $value;
       }
     }
 

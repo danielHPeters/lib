@@ -10,6 +10,7 @@ use function parse_url;
 use function parse_str;
 use function file_get_contents;
 use const PHP_URL_PATH;
+use const INPUT_POST;
 
 /**
  * Class Request.
@@ -50,9 +51,13 @@ class Request {
     $this->params = $_GET;
 
     if ($this->method === Method::POST) {
-      $this->body = $_POST;
+      $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+      $this->body = $post ? $post : [];
     } else if ($this->method === Method::PUT) {
-      parse_str(file_get_contents('php://input'), $this->body);
+      $put = [];
+      parse_str(file_get_contents('php://input'), $put);
+      $put = filter_var_array($put, FILTER_SANITIZE_STRING);
+      $this->body = $put ? $put : [];
     }
   }
 

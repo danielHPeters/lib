@@ -7,6 +7,7 @@ use lib\collection\IList;
 use function header;
 use function headers_sent;
 use function json_encode;
+use function http_response_code;
 
 /**
  * Class Response.
@@ -26,7 +27,7 @@ class Response {
   private $headers;
 
   /**
-   * @var int Http status code
+   * @var string Http status code
    */
   private $status;
   /**
@@ -41,21 +42,32 @@ class Response {
     $this->body = '';
   }
 
-  public function send (): void {
+  public function send ($data): void {
+    $_SERVER['SERVER_PROTOCOL'] = 'HTTP/' . $this->version;
+    http_response_code($this->status);
+
     if ( ! headers_sent()) {
-      $this->headers->each(function ($header) {
-        header('HTTP/' . $this->version . ' ' . $header, true, $this->status);
-      });
-      echo $this->body;
+      if (!$this->headers->isEmpty()) {
+        $this->headers->each(function ($header) {
+          header($header, true);
+        });
+      } else {
+        header('Content-Type: text/html; charset=utf-8', true);
+      }
+      echo $data;
     }
   }
 
   /**
    * Transform body data to json and send response.
+   *
+   * @param array $data
    */
-  public function json (): void {
-    header('HTTP/' . $this->version . ' Content-Type: application/json; charset=utf-8', true, $this->status);
-    echo json_encode($this->body);
+  public function json (array $data): void {
+    $_SERVER['SERVER_PROTOCOL'] = 'HTTP/' . $this->version;
+    http_response_code($this->status);
+    header('Content-Type: application/json; charset=utf-8', true);
+    echo json_encode($data);
   }
 
   public function redirect (string $location): void {

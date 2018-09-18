@@ -24,7 +24,7 @@ use function sort;
  * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
-class ArrayList implements Collection, ArrayAccess, Iterator {
+class ArrayList implements ArrayAccess, Iterator, IList {
   /**
    * @var array
    */
@@ -195,5 +195,13 @@ class ArrayList implements Collection, ArrayAccess, Iterator {
 
   public function map (Closure $callback): array {
     return array_map($callback, $this->arr);
+  }
+
+  public function set (int $index): void {
+    // TODO: Implement set() method.
+  }
+
+  public function removeAt (int $index): void {
+    // TODO: Implement removeAt() method.
   }
 }
