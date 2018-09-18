@@ -3,9 +3,13 @@
 namespace lib\route;
 
 use lib\collection\ArrayList;
-use lib\collection\HashMap;
 use lib\collection\IList;
-use lib\collection\Map;
+use lib\http\Method;
+use function trim;
+use function parse_url;
+use function parse_str;
+use function file_get_contents;
+use const PHP_URL_PATH;
 
 /**
  * Class Request.
@@ -20,29 +24,36 @@ class Request {
    */
   private $method;
   /**
-   * @var IList
-   */
-  private $headers;
-  /**
    * @var string
    */
   private $uri;
+
   /**
-   * @var Map
+   * @var IList
+   */
+  private $headers;
+
+  /**
+   * @var array
+   */
+  private $params;
+
+  /**
+   * @var array
    */
   private $body;
 
-  /**
-   * Request constructor.
-   *
-   * @param string $method Request method
-   * @param string $uri Request uri
-   */
-  public function __construct (string $method, string $uri) {
-    $this->method = $method;
-    $this->uri = $uri;
+  public function __construct () {
+    $this->method = $_SERVER['REQUEST_METHOD'];
+    $this->uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
     $this->headers = new ArrayList();
-    $this->body = new HashMap();
+    $this->params = $_GET;
+
+    if ($this->method === Method::POST) {
+      $this->body = $_POST;
+    } else if ($this->method === Method::PUT) {
+      parse_str(file_get_contents('php://input'), $this->body);
+    }
   }
 
   public function getMethod (): string {
@@ -61,7 +72,11 @@ class Request {
     $this->uri = $uri;
   }
 
-  public function getBody (): Map {
+  public function getParams (): array {
+    return $this->params;
+  }
+
+  public function getBody (): array {
     return $this->body;
   }
 }

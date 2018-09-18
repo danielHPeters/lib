@@ -10,7 +10,7 @@ namespace lib\route;
  * @version 1.0
  */
 class Dispatcher {
-  public function dispatch (Route $route) {
-    $route->getAction()();
+  public function dispatch (Route $route, Request $request, Response $response) {
+    $route->getAction()($request, $response);
   }
 }

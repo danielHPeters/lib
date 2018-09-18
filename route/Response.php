@@ -34,7 +34,7 @@ class Response {
    */
   private $body;
 
-  public function __construct (string $version = '1.0', int $status = 200) {
+  public function __construct (string $version = '1.1', int $status = 200) {
     $this->version = $version;
     $this->headers = new ArrayList();
     $this->status = $status;
