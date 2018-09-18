@@ -5,7 +5,7 @@ namespace lib\filter;
 use function preg_match;
 use function trim;
 
-/**
+/**s
  * Class InputValidator.
  *
  * @package lib\filter
@@ -14,6 +14,7 @@ use function trim;
  */
 abstract class Validator {
   const VALID_EMAIL = "^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$";
+  const VALID_FILENAME = "^([a-z\d.-]+)\.([a-z\d]+)$";
 
   /**
    * Test email addresses for validity according to VALID_EMAIL regex.
@@ -22,8 +23,12 @@ abstract class Validator {
    *
    * @return bool
    */
-  public static function checkEmail (string $email): bool {
+  public static function validateEmail (string $email): bool {
     return preg_match(self::VALID_EMAIL, $email);
+  }
+
+  public static function validateFilename (string $fileName): bool {
+    return preg_match(self::VALID_FILENAME, $fileName);
   }
 
   /**
