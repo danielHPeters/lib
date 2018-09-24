@@ -10,8 +10,23 @@ namespace lib\util\logger;
  * @version 1.0
  */
 abstract class Logger {
-  private $logLevel;
-  private $logDestination;
+  /**
+   * @var string
+   */
+  protected $logLevel;
+  /**
+   * @var string
+   */
+  protected $logDestination;
 
-  abstract function log ();
+  protected function __construct (string $logLevel, string $logDestination) {
+    $this->logLevel = $logLevel;
+    $this->logDestination = $logDestination;
+  }
+
+  abstract function log (string $message);
+
+  public static function getLogger (string $loggerClass, string $level, string $destination): Logger {
+    return new $loggerClass($level, $destination);
+  }
 }

@@ -1,0 +1,20 @@
+{
+  "authors": [
+    {
+      "name": "Daniel Peters",
+      "email": "daniel.peters.ch@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "\\lib": "/"
+    }
+  },
+  "require": {
+    "ext-json": "*",
+    "ext-socket": "*",
+    "ext-pdo": "*"
+  }
+}
