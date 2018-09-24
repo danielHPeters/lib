@@ -3,6 +3,7 @@
 namespace lib\util\logger;
 
 use DateTimeImmutable;
+use Exception;
 use lib\file\File;
 
 class ApplicationLogger extends Logger {
@@ -17,7 +18,7 @@ class ApplicationLogger extends Logger {
    * @param string $logLevel
    * @param string $logDestination
    *
-   * @throws \Exception
+   * @throws Exception
    */
   function __construct (string $logLevel, string $logDestination) {
     parent::__construct($logLevel, $logDestination);
@@ -27,7 +28,7 @@ class ApplicationLogger extends Logger {
   /**
    * @param string $message
    *
-   * @throws \Exception
+   * @throws Exception
    */
   public function log (string $message): void {
     $now = new DateTimeImmutable();
