@@ -2,11 +2,16 @@
 
 namespace rafisa\lib\generator;
 
+use function imagecopy;
+use function imagecreatefromjpeg;
+use function imagecreatetruecolor;
+use function imagejpeg;
+
 /**
  * Class ImageGenerator.
  *
  * @package rafisa\lib\helper
- * @author Daniel Peters
+ * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
 abstract class ImageHelper {

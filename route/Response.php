@@ -4,10 +4,11 @@ namespace lib\route;
 
 use lib\collection\ArrayList;
 use lib\collection\IList;
+use lib\file\MIMEType;
+use lib\util\Charset;
 use function header;
-use function headers_sent;
-use function json_encode;
 use function http_response_code;
+use function json_encode;
 
 /**
  * Class Response.
@@ -31,43 +32,36 @@ class Response {
    */
   private $status;
   /**
-   * @var string
+   * @var string Response charset
    */
-  private $body;
+  private $charset;
 
-  public function __construct (string $version = '1.1', int $status = 200) {
+  public function __construct (string $version = '1.1', int $status = 200, string $charset = Charset::UTF_8) {
     $this->version = $version;
     $this->headers = new ArrayList();
     $this->status = $status;
-    $this->body = '';
+    $this->charset = $charset;
   }
 
-  public function send ($data): void {
+  public function send ($data, $contentType = MIMEType::HTML): void {
     $_SERVER['SERVER_PROTOCOL'] = 'HTTP/' . $this->version;
     http_response_code($this->status);
 
-    if ( ! headers_sent()) {
-      if (!$this->headers->isEmpty()) {
-        $this->headers->each(function ($header) {
-          header($header, true);
-        });
-      } else {
-        header('Content-Type: text/html; charset=utf-8', true);
-      }
-      echo $data;
+    if ( ! $this->headers->isEmpty()) {
+      $this->headers->each(function (string $header) { header($header, true); });
+    } else {
+      header("Content-Type: $contentType; charset=$this->charset", true);
     }
+    echo $data;
   }
 
   /**
    * Transform body data to json and send response.
    *
-   * @param array $data
+   * @param mixed $data
    */
-  public function json (array $data): void {
-    $_SERVER['SERVER_PROTOCOL'] = 'HTTP/' . $this->version;
-    http_response_code($this->status);
-    header('Content-Type: application/json; charset=utf-8', true);
-    echo json_encode($data);
+  public function json ($data): void {
+    $this->send(json_encode($data), MIMEType::JSON);
   }
 
   public function redirect (string $location): void {
@@ -90,17 +84,5 @@ class Response {
    */
   public function setStatus (int $status): void {
     $this->status = $status;
-  }
-
-  public function getBody (): string {
-    return $this->body;
-  }
-
-  public function setBody (string $body): void {
-    $this->body = $body;
-  }
-
-  public function appendBody (string $data) {
-    $this->body .= $data;
   }
 }

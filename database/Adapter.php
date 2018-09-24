@@ -16,7 +16,7 @@ interface Adapter {
 
   public function query (string $query);
 
-  public function fetch (): array ;
+  public function fetch (): array;
 
   /**
    * Generate and execute a select statement.

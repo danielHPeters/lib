@@ -2,6 +2,7 @@
 
 namespace lib\model\notes;
 
+use DateTimeImmutable;
 use lib\entity\Entity;
 
 /**
@@ -16,8 +17,16 @@ class Note extends Entity implements Sendable {
   private $recipient;
   private $content;
 
-  public function __construct (string $id, string $author, string $recipient, string $content) {
-    parent::__construct($id);
+  public function __construct (
+    string $id,
+    string $author,
+    string $recipient,
+    string $content,
+    DateTimeImmutable $createdAt,
+    DateTimeImmutable $updatedAt,
+    DateTimeImmutable $deletedAt
+  ) {
+    parent::__construct($id, $createdAt, $updatedAt, $deletedAt);
     $this->author = $author;
     $this->recipient = $recipient;
     $this->content = $content;

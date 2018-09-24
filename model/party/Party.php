@@ -2,6 +2,7 @@
 
 namespace lib\model\party;
 
+use DateTimeImmutable;
 use lib\collection\ArrayList;
 use lib\collection\Collection;
 use lib\entity\Entity;
@@ -16,8 +17,13 @@ use lib\entity\Entity;
 class Party extends Entity {
   private $guests;
 
-  public function __construct (string $id) {
-    parent::__construct($id);
+  public function __construct (
+    string $id,
+    DateTimeImmutable $createdAt,
+    DateTimeImmutable $updatedAt,
+    DateTimeImmutable $deletedAt
+  ) {
+    parent::__construct($id, $createdAt, $updatedAt, $deletedAt);
     $this->guests = new ArrayList();
   }
 

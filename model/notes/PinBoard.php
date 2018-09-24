@@ -2,6 +2,7 @@
 
 namespace lib\model\notes;
 
+use DateTimeImmutable;
 use lib\collection\ArrayList;
 use lib\collection\Collection;
 use lib\entity\Entity;
@@ -18,9 +19,16 @@ class PinBoard extends Entity {
   private $notes;
   private $owner;
 
-  public function __construct (string $id, User $owner) {
-    parent::__construct($id);
+  public function __construct (
+    string $id,
+    User $owner,
+    DateTimeImmutable $createdAt,
+    DateTimeImmutable $updatedAt,
+    DateTimeImmutable $deletedAt
+  ) {
+    parent::__construct($id, $createdAt, $updatedAt, $deletedAt);
     $this->notes = new ArrayList();
+    $this->owner = $owner;
   }
 
   public function getNotes (): Collection {

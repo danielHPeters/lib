@@ -13,12 +13,12 @@ use lib\util\Enum;
  */
 class MIMEType extends Enum {
   const TEXT = 'text/plain';
-  const TEXT_APPLICATION = 'application/plain';
+  const CSV = 'text/csv';
+  const DOC = 'application/msword';
+  const DOCX = 'application/vnd.openxmlformats-officedocument.wordprocessingm';
   const JPEG = 'image/jpeg';
   const ECMASCRIPT = 'application/ecmascript';
   const JAVASCRIPT = 'application/javascript';
-  const ECMASCRIPT_TEXT = 'text/ecmascript';
-  const JAVASCRIPT_TEXT = 'text/javascript';
   const MPEG_AUDIO = 'audio/mpeg';
   const MPEG_VIDEO = 'video/mpeg';
   const MIDI = 'audio/midi';
@@ -33,14 +33,27 @@ class MIMEType extends Enum {
   const PNG = 'image/png';
   const POSTSCRIPT = 'application/postscript';
   const RICHTEXT = 'text/richtext';
+  const AAC = 'audio/aac';
   const TIFF = 'image/tiff';
+  const GIF = 'image/gif';
   const WAV = 'audio/wav';
+  const AVI = 'video/msvideo';
   const EXCEL = 'application/excel';
   const X_EXCEL = 'application/x-excel';
   const ZIP = 'application/zip';
   const X_ZIP = 'multipart/x-zip';
-  const XML = 'text/xml';
   const BASE64 = 'application/base64';
   const HTML = 'text/html';
   const JSON = 'application/json';
+  const ODT = 'application/vnd.oasis.opendocument.text';
+  const OGA = 'audio/ogg';
+  const OGV = 'video/ogg';
+  const CSS = 'text/css';
+  const JAR = 'application/java-archive';
+  const SH = 'application/x-sh';
+  const TAR = 'application/x-tar';
+  const XML = 'application/xml';
+  const SEVEN_ZIP = 'application/x-7z-compressed';
+  const SVG = 'image/svg+xml';
+  const SWF = 'application/x-shockwave-flash';
 }

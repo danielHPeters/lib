@@ -3,15 +3,14 @@
 namespace lib\util\logger;
 
 /**
- * Class Logger.
+ * Class LogLevel.
  *
  * @package lib\util\logger
  * @author Daniel Peters <daniel.peters.ch@gmail.com>
  * @version 1.0
  */
-abstract class Logger {
-  private $logLevel;
-  private $logDestination;
-
-  abstract function log ();
+class LogLevel {
+  const INFO = 'info';
+  const WARNING = 'warning';
+  const ERROR = 'error';
 }

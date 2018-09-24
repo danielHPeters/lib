@@ -5,8 +5,7 @@ namespace lib\database;
 use PDO;
 
 /**
- * Class Connection
- *
+ * Class Connection.
  *
  * @package lib\database
  * @author Daniel Peters <daniel.peters.ch@gmail.com>

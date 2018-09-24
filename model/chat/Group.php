@@ -2,11 +2,12 @@
 
 namespace lib\model\chat;
 
+use DateTimeImmutable;
+use Exception;
 use lib\collection\ArrayList;
 use lib\collection\Collection;
 use lib\entity\Entity;
 use lib\model\entity\User;
-use Exception;
 
 /**
  * Class Group.
@@ -20,8 +21,13 @@ class Group extends Entity {
   private $admins;
   private $chat;
 
-  public function __construct (string $id) {
-    parent::__construct($id);
+  public function __construct (
+    string $id,
+    DateTimeImmutable $createdAt,
+    DateTimeImmutable $updatedAt,
+    DateTimeImmutable $deletedAt
+  ) {
+    parent::__construct($id, $createdAt, $updatedAt, $deletedAt);
     $this->members = new ArrayList();
     $this->admins = new ArrayList();
     $this->chat = new ArrayList();
@@ -29,6 +35,7 @@ class Group extends Entity {
 
   /**
    * @param User $user
+   *
    * @throws Exception
    */
   public function kickUser (User $user): void {

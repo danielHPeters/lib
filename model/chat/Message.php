@@ -2,6 +2,7 @@
 
 namespace lib\model\chat;
 
+use DateTimeImmutable;
 use lib\entity\Entity;
 use lib\model\entity\User;
 
@@ -17,8 +18,16 @@ class Message extends Entity {
   private $recipient;
   private $contents;
 
-  public function __construct (string $id, User $author, User $recipient, string $contents) {
-    parent::__construct($id);
+  public function __construct (
+    string $id,
+    User $author,
+    User $recipient,
+    string $contents,
+    DateTimeImmutable $createdAt,
+    DateTimeImmutable $updatedAt,
+    DateTimeImmutable $deletedAt
+  ) {
+    parent::__construct($id, $createdAt, $updatedAt, $deletedAt);
     $this->author = $author;
     $this->recipient = $recipient;
     $this->contents = $contents;

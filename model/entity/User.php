@@ -3,6 +3,7 @@
 namespace lib\model\entity;
 
 use DateTime;
+use DateTimeImmutable;
 
 /**
  * Class User.
@@ -24,9 +25,12 @@ class User extends Person {
     DateTime $birthDate,
     string $email,
     string $username,
-    string $password
+    string $password,
+    DateTimeImmutable $createdAt,
+    DateTimeImmutable $updatedAt,
+    DateTimeImmutable $deletedAt
   ) {
-    parent::__construct($id, $lastName, $firstName, $title, $birthDate, $email);
+    parent::__construct($id, $lastName, $firstName, $title, $birthDate, $email, $createdAt, $updatedAt, $deletedAt);
     $this->password = $password;
     $this->username = $username;
   }

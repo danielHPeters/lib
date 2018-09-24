@@ -2,6 +2,7 @@
 
 namespace lib\model\chat;
 
+use DateTimeImmutable;
 use lib\entity\Entity;
 use lib\model\entity\User;
 use lib\session\Session;
@@ -18,8 +19,16 @@ class Client extends Entity {
   private $session;
   private $message;
 
-  public function __construct ($id, User $user, Session $session, Message $message) {
-    parent::__construct($id);
+  public function __construct (
+    string $id,
+    User $user,
+    Session $session,
+    Message $message,
+    DateTimeImmutable $createdAt,
+    DateTimeImmutable $updatedAt,
+    DateTimeImmutable $deletedAt
+  ) {
+    parent::__construct($id, $createdAt, $updatedAt, $deletedAt);
     $this->user = $user;
     $this->session = $session;
     $this->message = $message;

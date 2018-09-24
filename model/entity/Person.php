@@ -3,6 +3,7 @@
 namespace lib\model\entity;
 
 use DateTime;
+use DateTimeImmutable;
 use lib\entity\Entity;
 
 /**
@@ -19,8 +20,18 @@ class Person extends Entity {
   private $birthDate;
   private $email;
 
-  public function __construct (string $id, string $lastName, string $firstName, string $title, string $birthDate, string $email) {
-    parent::__construct($id);
+  public function __construct (
+    string $id,
+    string $lastName,
+    string $firstName,
+    string $title,
+    string $birthDate,
+    string $email,
+    DateTimeImmutable $createdAt,
+    DateTimeImmutable $updatedAt,
+    DateTimeImmutable $deletedAt
+  ) {
+    parent::__construct($id, $createdAt, $updatedAt, $deletedAt);
     $this->lastName = $lastName;
     $this->firstName = $firstName;
     $this->title = $title;

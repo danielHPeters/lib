@@ -10,5 +10,5 @@ namespace lib\util;
  * @version 1.0
  */
 abstract class Charset extends Enum {
-  const UTF8 = 'UTF-8';
+  const UTF_8 = 'utf-8';
 }

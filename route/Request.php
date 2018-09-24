@@ -5,12 +5,11 @@ namespace lib\route;
 use lib\collection\ArrayList;
 use lib\collection\IList;
 use lib\http\Method;
-use function trim;
-use function parse_url;
-use function parse_str;
 use function file_get_contents;
+use function parse_str;
+use function parse_url;
+use function trim;
 use const PHP_URL_PATH;
-use const INPUT_POST;
 
 /**
  * Class Request.
@@ -51,13 +50,11 @@ class Request {
     $this->params = $_GET;
 
     if ($this->method === Method::POST) {
-      $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-      $this->body = $post ? $post : [];
+      $this->body = $_POST;
     } else if ($this->method === Method::PUT) {
-      $put = [];
-      parse_str(file_get_contents('php://input'), $put);
-      $put = filter_var_array($put, FILTER_SANITIZE_STRING);
-      $this->body = $put ? $put : [];
+      parse_str(file_get_contents('php://input'), $this->body);
+    } else {
+      $this->body = [];
     }
   }
 

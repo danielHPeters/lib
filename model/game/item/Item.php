@@ -2,6 +2,7 @@
 
 namespace lib\model\game\item;
 
+use DateTimeImmutable;
 use lib\entity\Entity;
 use lib\model\game\item\action\ItemAction;
 
@@ -18,8 +19,17 @@ class Item extends Entity {
   private $price;
   private $action;
 
-  public function __construct (string $id, string $name, string $description, float $price, ItemAction $action) {
-    parent::__construct($id);
+  public function __construct (
+    string $id,
+    string $name,
+    string $description,
+    float $price,
+    ItemAction $action,
+    DateTimeImmutable $createdAt,
+    DateTimeImmutable $updatedAt,
+    DateTimeImmutable $deletedAt
+  ) {
+    parent::__construct($id, $createdAt, $updatedAt, $deletedAt);
     $this->name = $name;
     $this->description = $description;
     $this->price = $price;

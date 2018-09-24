@@ -110,11 +110,11 @@ class ArrayList implements ArrayAccess, Iterator, IList {
   }
 
   public function isInteger ($obj): bool {
-
+    // TODO: Implement removeAt() method.
   }
 
   public function lastIndexOf ($obj): int {
-
+    // TODO: Implement removeAt() method.
   }
 
   /**
@@ -132,7 +132,7 @@ class ArrayList implements ArrayAccess, Iterator, IList {
   }
 
   public function removeRange (int $fromKey, int $toKey): void {
-
+    // TODO: Implement removeAt() method.
   }
 
   public function size (): int {

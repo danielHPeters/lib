@@ -12,7 +12,13 @@ use lib\collection\ArrayList;
  * @version 1.0
  */
 class Server {
+  /**
+   * @var ServerStatus
+   */
   private $status;
+  /**
+   * @var ArrayList
+   */
   private $clients;
 
   public function __construct (ServerStatus $status) {

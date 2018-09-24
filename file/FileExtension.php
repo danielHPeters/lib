@@ -13,6 +13,7 @@ use lib\util\Enum;
  */
 abstract class FileExtension extends Enum {
   const PHP = 'php';
+  const TS = 'ts';
   const JAVA = 'java';
   const JAR = 'jar';
   const FXML = 'fxml';
@@ -21,10 +22,10 @@ abstract class FileExtension extends Enum {
   const XML = 'xml';
   const HTML = 'html';
   const CSS = 'css';
-  const C_SOURCE = 'c';
-  const C_HEADER = 'h';
-  const CPP_SOURCE = 'cpp';
-  const CPP_HEADER = 'hpp';
+  const C = 'c';
+  const H = 'h';
+  const CPP = 'cpp';
+  const HPP = 'hpp';
   const PUG = 'pug';
   const EJS = 'ejs';
   const ODT = 'odt';
@@ -40,4 +41,5 @@ abstract class FileExtension extends Enum {
   const PDF = 'pdf';
   const SEVEN_ZIP = '7zip';
   const RAR = 'rar';
+  const TAR = 'tar';
 }

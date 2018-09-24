@@ -2,6 +2,7 @@
 
 namespace lib\model\game\place;
 
+use DateTimeImmutable;
 use lib\collection\ArrayList;
 use lib\collection\Collection;
 use lib\entity\Entity;
@@ -23,8 +24,15 @@ class Room extends Entity {
   private $items;
   private $monsters;
 
-  public function __construct (string $id, string $name, string $description) {
-    parent::__construct($id);
+  public function __construct (
+    string $id,
+    string $name,
+    string $description,
+    DateTimeImmutable $createdAt,
+    DateTimeImmutable $updatedAt,
+    DateTimeImmutable $deletedAt
+  ) {
+    parent::__construct($id, $createdAt, $updatedAt, $deletedAt);
     $this->name = $name;
     $this->description = $description;
     $this->items = new ArrayList();

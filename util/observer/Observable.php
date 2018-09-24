@@ -2,9 +2,9 @@
 
 namespace lib\util\observer;
 
+use Exception;
 use lib\collection\ArrayList;
 use lib\collection\Collection;
-use Exception;
 
 /**
  * Class Observable.
@@ -30,6 +30,7 @@ abstract class Observable {
 
   /**
    * @param Observer $obs
+   *
    * @throws Exception
    */
   public function detach (Observer $obs): void {
@@ -38,8 +39,6 @@ abstract class Observable {
   }
 
   public function notify (): void {
-    $this->observers->each(function (Observer $obs) {
-      $obs->update($this);
-    });
+    $this->observers->each(function (Observer $obs) { $obs->update($this); });
   }
 }
