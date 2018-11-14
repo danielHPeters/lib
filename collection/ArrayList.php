@@ -21,10 +21,10 @@ use function sort;
  * Class ArrayList.
  *
  * @package lib\collection
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
-class ArrayList implements ArrayAccess, Iterator, IList {
+class ArrayList implements ArrayAccess, Iterator, ListInterface {
   /**
    * @var array
    */

@@ -3,8 +3,9 @@
 namespace lib\route;
 
 use lib\collection\ArrayList;
-use lib\collection\IList;
+use lib\collection\ListInterface;
 use lib\file\MIMEType;
+use lib\http\StatusCode;
 use lib\util\Charset;
 use function header;
 use function http_response_code;
@@ -14,16 +15,17 @@ use function json_encode;
  * Class Response.
  *
  * @package lib\route
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peter
  * @version 1.0
  */
 class Response {
+  const DEFAULT_HTTP_VERSION = '1.1';
   /**
    * @var string Http version
    */
   private $version;
   /**
-   * @var IList
+   * @var ListInterface
    */
   private $headers;
 
@@ -36,7 +38,11 @@ class Response {
    */
   private $charset;
 
-  public function __construct (string $version = '1.1', int $status = 200, string $charset = Charset::UTF_8) {
+  public function __construct (
+    string $version = self::DEFAULT_HTTP_VERSION,
+    int $status = StatusCode::OK,
+    string $charset = Charset::UTF_8
+  ) {
     $this->version = $version;
     $this->headers = new ArrayList();
     $this->status = $status;
@@ -68,7 +74,7 @@ class Response {
     header('Location: ' . $location);
   }
 
-  public function getHeaders (): ILIst {
+  public function getHeaders (): ListInterface {
     return $this->headers;
   }
 

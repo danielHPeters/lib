@@ -9,10 +9,10 @@ use Exception;
  * Class SinglyList.
  *
  * @package lib\collection
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
-class SinglyList implements Queue, IList {
+class SinglyList implements Queue, ListInterface {
   /**
    * @var ListNode
    */

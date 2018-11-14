@@ -3,7 +3,7 @@
 namespace lib\route;
 
 use lib\collection\ArrayList;
-use lib\collection\IList;
+use lib\collection\ListInterface;
 use lib\http\Method;
 use function file_get_contents;
 use function parse_str;
@@ -29,7 +29,7 @@ class Request {
   private $uri;
 
   /**
-   * @var IList
+   * @var ListInterface
    */
   private $headers;
 
@@ -62,7 +62,7 @@ class Request {
     return $this->method;
   }
 
-  public function getHeaders (): IList {
+  public function getHeaders (): ListInterface {
     return $this->headers;
   }
 

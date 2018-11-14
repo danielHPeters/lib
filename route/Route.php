@@ -8,7 +8,7 @@ use Closure;
  * Class Route.
  *
  * @package lib\route
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 class Route {
