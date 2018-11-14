@@ -6,6 +6,7 @@ use Closure;
 use lib\collection\ArrayList;
 use lib\collection\HashMap;
 use lib\http\Method;
+use lib\http\StatusCode;
 
 /**
  * Router class for route handlers.
@@ -29,7 +30,7 @@ class Router {
     $this->routes->put(Method::PATCH, new ArrayList());
     $this->routes->put(Method::DELETE, new ArrayList());
     $this->routes->put(Method::OPTIONS, new ArrayList());
-    $this->routes->put(self::ERROR, new ArrayList());
+    $this->routes->put(self::ERROR, new HashMap());
   }
 
   public function getRoutes (): HashMap {
@@ -60,12 +61,12 @@ class Router {
     $this->routes->get(Method::OPTIONS)->add(new Route($uri, $middleWare));
   }
 
-  public function setErrorHandler (Closure $action): void {
-    $this->routes->get(self::ERROR)->add(new Route('', $action));
+  public function setErrorHandler (int $errorKey, Closure $action): void {
+    $this->routes->get(self::ERROR)->put($errorKey, new Route('', $action));
   }
 
-  public function getErrorHandler (): Route {
-    return $this->routes->get(self::ERROR)->get(0);
+  public function getErrorHandler (int $errorKey): Route {
+    return $this->routes->get(self::ERROR)->get($errorKey);
   }
 
   /**
@@ -79,6 +80,6 @@ class Router {
       return $route->matches($request);
     });
 
-    return count($routes) > 0 ? $routes[0] : $this->getErrorHandler();
+    return count($routes) > 0 ? $routes[0] : $this->getErrorHandler(StatusCode::NOT_FOUND);
   }
 }
