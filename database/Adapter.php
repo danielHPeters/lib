@@ -10,13 +10,24 @@ namespace lib\database;
  * @version 1.0
  */
 interface Adapter {
-  public function connect (): void;
+  /**
+   * @throws DatabaseException
+   */
+  public function connect (): Adapter;
 
   public function close (): void;
 
-  public function query (string $query);
+  public function query (string $query): Adapter;
 
-  public function fetch (): array;
+  public function fetch();
+
+  public function fetchArray (): array;
+
+  public function prepare (string $query): Adapter;
+
+  public function bindParam (string $placeholder, string $data): Adapter;
+
+  public function execute(): Adapter;
 
   /**
    * Generate and execute a select statement.

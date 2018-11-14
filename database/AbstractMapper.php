@@ -63,7 +63,7 @@ abstract class AbstractMapper implements Mapper {
     $collection = new ArrayList();
     $this->adapter->select($this->table, $conditions);
 
-    while ($data = $this->adapter->fetch()) {
+    while ($data = $this->adapter->fetchArray()) {
       $collection->add($data);
     }
 
@@ -72,7 +72,7 @@ abstract class AbstractMapper implements Mapper {
 
   public function findById (int $id): Entity {
     $this->adapter->select($this->table, 'id = ' . $id);
-    $data = $this->adapter->fetch();
+    $data = $this->adapter->fetchArray();
 
     return $data !== null ? $this->createEntity($data) : null;
   }

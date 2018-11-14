@@ -39,14 +39,14 @@ class MysqlAdapter implements Adapter {
    */
   private $result;
 
-  public function __construct (Configuration $config) {
+  public function __construct (string $driver, Configuration $config, $options) {
     $this->config = $config;
   }
 
   /**
    * Connect to the database.
    */
-  public function connect (): void {
+  public function connect (): Adapter {
     // Only one connection
     if ($this->link === null) {
       $this->link = mysqli_connect(
@@ -60,6 +60,8 @@ class MysqlAdapter implements Adapter {
     if ( ! $this->link) {
       throw new RuntimeException('Failed to connect to database. ' . mysqli_connect_error());
     }
+
+    return $this;
   }
 
   /**
@@ -71,7 +73,7 @@ class MysqlAdapter implements Adapter {
     }
   }
 
-  public function query (string $query) {
+  public function query (string $query): Adapter {
     if (empty($query)) {
       throw new InvalidArgumentException('The query string is empty!');
     }
@@ -82,7 +84,7 @@ class MysqlAdapter implements Adapter {
       throw new RuntimeException('Error executing query ' . $query . mysqli_error($this->link));
     }
 
-    return $this->result;
+    return $this;
   }
 
   /**
@@ -171,7 +173,7 @@ class MysqlAdapter implements Adapter {
     return $this->getAffectedRows();
   }
 
-  public function fetch (): array {
+  public function fetchArray (): array {
     return $this->result !== null ? mysqli_fetch_assoc($this->result) : null;
   }
 
@@ -206,5 +208,21 @@ class MysqlAdapter implements Adapter {
    */
   public function __destruct () {
     $this->close();
+  }
+
+  public function fetch () {
+    // TODO: Implement fetch() method.
+  }
+
+  public function prepare (string $query): Adapter {
+    // TODO: Implement prepare() method.
+  }
+
+  public function bindParam (string $placeholder, string $data): Adapter {
+    // TODO: Implement bindParam() method.
+  }
+
+  public function execute (): Adapter {
+    // TODO: Implement execute() method.
   }
 }
