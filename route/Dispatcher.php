@@ -2,6 +2,10 @@
 
 namespace lib\route;
 
+use Exception;
+use ReflectionMethod;
+use function explode;
+
 /**
  * Description of Dispatcher.
  *
@@ -11,6 +15,16 @@ namespace lib\route;
  */
 class Dispatcher {
   public function dispatch (Route $route, Request $request, Response $response) {
-    $route->getAction()($request, $response);
+    try {
+      $parts = explode('#', $route->getAction(), 2);
+      $controllerClass = $parts[0];
+      $method = $parts[1];
+      $controller = new $controllerClass();
+
+      $reflectionMethod = new ReflectionMethod($controllerClass, $method);
+      $reflectionMethod->invoke($controller, $request, $response);
+    } catch (Exception $e) {
+      error_log($e);
+    }
   }
 }

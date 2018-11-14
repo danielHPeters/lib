@@ -2,7 +2,6 @@
 
 namespace lib\route;
 
-use Closure;
 use lib\collection\Map;
 
 /**
@@ -15,19 +14,19 @@ use lib\collection\Map;
 interface Router {
   public function getRoutes (): Map;
 
-  public function get (string $uri, Closure $middleWare): void;
+  public function get (string $uri, string $action): void;
 
-  public function post (string $uri, Closure $middleWare): void;
+  public function post (string $uri, string $action): void;
 
-  public function put (string $uri, Closure $middleWare): void;
+  public function put (string $uri, string $action): void;
 
-  public function patch (string $uri, Closure $middleWare): void;
+  public function patch (string $uri, string $action): void;
 
-  public function delete (string $uri, Closure $middleWare): void;
+  public function delete (string $uri, string $action): void;
 
-  public function options (string $uri, Closure $middleWare): void;
+  public function options (string $uri, string $action): void;
 
-  public function setErrorHandler (int $errorKey, Closure $action): void;
+  public function setErrorHandler (int $errorKey, string $action): void;
 
   public function route (Request $request): Route;
 }

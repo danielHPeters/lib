@@ -2,10 +2,6 @@
 
 namespace lib\route;
 
-use Closure;
-use function header;
-use function json_encode;
-
 /**
  * Class EntityController.
  *
@@ -14,23 +10,13 @@ use function json_encode;
  * @version 1.0
  */
 abstract class EntityController {
-  abstract public function create (): Closure;
+  abstract public function create (Request $request, Response $response): void ;
 
-  abstract public function getAll (): Closure;
+  abstract public function getAll (Request $request, Response $response): void ;
 
-  abstract public function getById (string $id): Closure;
+  abstract public function getById (Request $request, Response $response): void ;
 
-  abstract public function update (string $id): Closure;
+  abstract public function update (Request $request, Response $response): void ;
 
-  abstract public function delete (string $id): Closure;
-
-  /**
-   * Transform data to json and send response.
-   *
-   * @param $response mixed Response data
-   */
-  public function json ($response): void {
-    header('Content-Type: application/json; charset=utf-8');
-    echo json_encode($response);
-  }
+  abstract public function delete (Request $request, Response $response): void ;
 }

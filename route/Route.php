@@ -2,8 +2,6 @@
 
 namespace lib\route;
 
-use Closure;
-
 /**
  * Class Route.
  *
@@ -17,11 +15,11 @@ class Route {
    */
   private $path;
   /**
-   * @var Closure
+   * @var string
    */
   private $action;
 
-  public function __construct (string $uri, Closure $middleWare) {
+  public function __construct (string $uri, string $middleWare) {
     $this->path = $uri;
     $this->action = $middleWare;
   }
@@ -30,7 +28,7 @@ class Route {
     return $this->path === $request->getUri();
   }
 
-  public function getAction (): Closure {
+  public function getAction (): string {
     return $this->action;
   }
 }

@@ -38,31 +38,31 @@ class RouterStandard implements Router {
     return $this->routes;
   }
 
-  public function get (string $uri, Closure $middleWare): void {
-    $this->routes->get(Method::GET)->add(new Route($uri, $middleWare));
+  public function get (string $uri, string $action): void {
+    $this->routes->get(Method::GET)->add(new Route($uri, $action));
   }
 
-  public function post (string $uri, Closure $middleWare): void {
-    $this->routes->get(Method::POST)->add(new Route($uri, $middleWare));
+  public function post (string $uri, string $action): void {
+    $this->routes->get(Method::POST)->add(new Route($uri, $action));
   }
 
-  public function put (string $uri, Closure $middleWare): void {
-    $this->routes->get(Method::PUT)->add(new Route($uri, $middleWare));
+  public function put (string $uri, string $action): void {
+    $this->routes->get(Method::PUT)->add(new Route($uri, $action));
   }
 
-  public function patch (string $uri, Closure $middleWare): void {
-    $this->routes->get(Method::PATCH)->add(new Route($uri, $middleWare));
+  public function patch (string $uri, string $action): void {
+    $this->routes->get(Method::PATCH)->add(new Route($uri, $action));
   }
 
-  public function delete (string $uri, Closure $middleWare): void {
-    $this->routes->get(Method::DELETE)->add(new Route($uri, $middleWare));
+  public function delete (string $uri, string $action): void {
+    $this->routes->get(Method::DELETE)->add(new Route($uri, $action));
   }
 
-  public function options (string $uri, Closure $middleWare): void {
-    $this->routes->get(Method::OPTIONS)->add(new Route($uri, $middleWare));
+  public function options (string $uri, string $action): void {
+    $this->routes->get(Method::OPTIONS)->add(new Route($uri, $action));
   }
 
-  public function setErrorHandler (int $errorKey, Closure $action): void {
+  public function setErrorHandler (int $errorKey, string $action): void {
     $this->routes->get(self::ERROR)->put($errorKey, new Route('', $action));
   }
 

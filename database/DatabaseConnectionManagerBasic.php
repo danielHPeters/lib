@@ -3,6 +3,7 @@
 namespace lib\database;
 
 use InvalidArgumentException;
+use lib\collection\Map;
 
 /**
  * Class Connection.
@@ -20,9 +21,16 @@ class DatabaseConnectionManagerBasic implements DatabaseConnectionManager {
    * @var Configuration
    */
   private $config;
+  /**
+   * @var array
+   */
   private $options;
+  /**
+   * @var Map
+   */
+  private $cache;
 
-  public function __construct (string $driver, Configuration $config, array $options = null) {
+  public function __construct (string $driver, Configuration $config, array $options = []) {
     $this->driver = $driver;
     $this->config = $config;
     $this->options = $options;
@@ -38,7 +46,7 @@ class DatabaseConnectionManagerBasic implements DatabaseConnectionManager {
     $adapter = new $adapterClass($this->driver, $this->config, $this->options);
 
     if ( ! ($adapter instanceof Adapter)) {
-      throw new InvalidArgumentException('Parameter class reference must be of type string!');
+      throw new InvalidArgumentException('Parameter class must be of type Adapter!');
     }
 
     return $adapter;
