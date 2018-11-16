@@ -19,8 +19,8 @@ class FrontController {
   }
 
   public function run (): void {
-    $request = new Request();
-    $response = new Response();
+    $request = new RequestStandard();
+    $response = new ResponseBasic();
     $this->dispatcher->dispatch($this->router->route($request), $request, $response);
   }
 }

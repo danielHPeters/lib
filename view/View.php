@@ -62,6 +62,12 @@ class View {
     }
   }
 
+  public function setVars(array $map) {
+    foreach ($map as $key => $value) {
+      $this->setVar($key, $value);
+    }
+  }
+
   public function setVar (string $key, string $value) {
     $this->vars[ $key ] = $value;
   }

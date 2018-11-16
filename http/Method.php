@@ -5,7 +5,8 @@ namespace lib\http;
 use lib\util\Enum;
 
 /**
- * Class Method.
+ * Enum class containing all http request methods for reference.
+ * See https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html for more info about usage of individual http methods.
  *
  * @package lib\http
  * @author Daniel Peters <daniel.peters.ch@gmail.com>

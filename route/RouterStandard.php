@@ -2,7 +2,6 @@
 
 namespace lib\route;
 
-use Closure;
 use lib\collection\ArrayList;
 use lib\collection\HashMap;
 use lib\collection\Map;
@@ -34,9 +33,13 @@ class RouterStandard implements Router {
     $this->routes->put(self::ERROR, new HashMap());
   }
 
+  /**
+   * @inheritdoc
+   */
   public function getRoutes (): Map {
     return $this->routes;
   }
+
 
   public function get (string $uri, string $action): void {
     $this->routes->get(Method::GET)->add(new Route($uri, $action));

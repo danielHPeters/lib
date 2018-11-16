@@ -2,93 +2,42 @@
 
 namespace lib\route;
 
-use lib\collection\ArrayList;
 use lib\collection\ListInterface;
 use lib\file\MIMEType;
-use lib\http\StatusCode;
-use lib\util\Charset;
-use function header;
-use function http_response_code;
-use function json_encode;
 
-/**
- * Class Response.
- *
- * @package lib\route
- * @author Daniel Peter
- * @version 1.0
- */
-class Response {
-  const DEFAULT_HTTP_VERSION = '1.1';
+interface Response {
   /**
-   * @var string Http version
+   * Send response data.
+   *
+   * @param $data
+   * @param string $contentType
    */
-  private $version;
-  /**
-   * @var ListInterface
-   */
-  private $headers;
-
-  /**
-   * @var string Http status code
-   */
-  private $status;
-  /**
-   * @var string Response charset
-   */
-  private $charset;
-
-  public function __construct (
-    string $version = self::DEFAULT_HTTP_VERSION,
-    int $status = StatusCode::OK,
-    string $charset = Charset::UTF_8
-  ) {
-    $this->version = $version;
-    $this->headers = new ArrayList();
-    $this->status = $status;
-    $this->charset = $charset;
-  }
-
-  public function send ($data, $contentType = MIMEType::HTML): void {
-    $_SERVER['SERVER_PROTOCOL'] = 'HTTP/' . $this->version;
-    http_response_code($this->status);
-
-    if ( ! $this->headers->isEmpty()) {
-      $this->headers->each(function (string $header) { header($header, true); });
-    } else {
-      header("Content-Type: $contentType; charset=$this->charset", true);
-    }
-    echo $data;
-  }
+  public function send ($data, $contentType = MIMEType::HTML): void;
 
   /**
    * Transform body data to json and send response.
    *
    * @param mixed $data
    */
-  public function json ($data): void {
-    $this->send(json_encode($data), MIMEType::JSON);
-  }
+  public function json ($data): void;
 
-  public function redirect (string $location): void {
-    header('Location: ' . $location);
-  }
+  /**
+   * @param string $location
+   */
+  public function redirect (string $location): void;
 
-  public function getHeaders (): ListInterface {
-    return $this->headers;
-  }
+  /**
+   * @return ListInterface
+   */
+  public function getHeaders (): ListInterface;
 
   /**
    * @return int
    */
-  public function getStatus (): int {
-    return $this->status;
-  }
+  public function getStatus (): int;
 
   /**
    * @param int $status
    */
-  public function setStatus (int $status): void {
-    $this->status = $status;
-  }
+  public function setStatus (int $status): void;
 }
