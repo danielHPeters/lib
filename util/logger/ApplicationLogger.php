@@ -4,11 +4,11 @@ namespace lib\util\logger;
 
 use DateTimeImmutable;
 use Exception;
-use lib\file\File;
+use lib\file\Path;
 
 class ApplicationLogger extends Logger {
   /**
-   * @var File
+   * @var Path
    */
   private $file;
 
@@ -22,7 +22,7 @@ class ApplicationLogger extends Logger {
    */
   function __construct (string $logLevel, string $logDestination) {
     parent::__construct($logLevel, $logDestination);
-    $this->file = File::fromUri($logDestination);
+    $this->file = Path::createFileFromUri($logDestination);
   }
 
   /**
@@ -33,6 +33,8 @@ class ApplicationLogger extends Logger {
   public function log (string $message): void {
     $now = new DateTimeImmutable();
     $dateString = $now->format(DATE_RSS);
+    $this->file->open('a');
     $this->file->append("[$dateString][$this->logLevel] " . $message);
+    $this->file->close();
   }
 }

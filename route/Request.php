@@ -20,5 +20,7 @@ interface Request {
 
   public function getQueryParams (): array;
 
-  public function getBody (): array;
+  public function getBody (): RequestBody;
+
+  public function getFiles (): array;
 }

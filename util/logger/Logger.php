@@ -2,6 +2,8 @@
 
 namespace lib\util\logger;
 
+use function realpath;
+
 /**
  * Class Logger.
  *
@@ -10,6 +12,10 @@ namespace lib\util\logger;
  * @version 1.0
  */
 abstract class Logger {
+  /**
+   * @var array
+   */
+  private static $instances = [];
   /**
    * @var string
    */
@@ -27,6 +33,9 @@ abstract class Logger {
   abstract function log (string $message);
 
   public static function getLogger (string $loggerClass, string $level, string $destination): Logger {
-    return new $loggerClass($level, $destination);
+      if ( ! isset(self::$instances[ $loggerClass ])) {
+        self::$instances[ $loggerClass ] = new $loggerClass($level, $destination);
+      }
+    return self::$instances[$loggerClass];
   }
 }

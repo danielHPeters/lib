@@ -39,9 +39,14 @@ class RequestStandard implements Request {
   private $queryParams;
 
   /**
-   * @var array
+   * @var RequestBody
    */
   private $body;
+
+  /**
+   * @var array
+   */
+  private $files;
 
   public function __construct () {
     $this->method = $_SERVER['REQUEST_METHOD'];
@@ -51,11 +56,15 @@ class RequestStandard implements Request {
 
     // Make sure only POST and PUT requests have a body.
     if ($this->method === Method::POST) {
-      $this->body = $_POST;
+      $this->body = new RequestBodyStandard($_POST);
+      $this->files = $_FILES;
     } else if ($this->method === Method::PUT) {
-      parse_str(file_get_contents('php://input'), $this->body);
+      $putVariables = [];
+      parse_str(file_get_contents('php://input'), $putVariables);
+      $this->body = new RequestBodyStandard($putVariables);
+      $this->files = $_FILES;
     } else {
-      $this->body = [];
+      $this->body = null;
     }
   }
 
@@ -75,7 +84,11 @@ class RequestStandard implements Request {
     return $this->queryParams;
   }
 
-  public function getBody (): array {
+  public function getBody (): RequestBody {
     return $this->body;
+  }
+
+  public function getFiles (): array {
+    // TODO: Implement getFiles() method.
   }
 }

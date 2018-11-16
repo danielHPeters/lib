@@ -203,6 +203,10 @@ class SinglyList implements Queue, ListInterface {
     $this->listSize++;
   }
 
+  public function each (Closure $callback): void {
+    throw new Exception('TODO: Implement each() method.');
+  }
+
   /**
    * @param Closure $predicate
    *

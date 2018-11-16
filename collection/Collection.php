@@ -34,6 +34,8 @@ interface Collection {
 
   public function removeRange (int $fromKey, int $toKey): void;
 
+  public function each (Closure $callback): void;
+
   public function filter (Closure $predicate): array;
 
   public function map (Closure $callback): array;

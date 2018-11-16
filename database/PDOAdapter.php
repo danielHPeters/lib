@@ -73,13 +73,27 @@ class PDOAdapter implements Adapter {
     try {
       $this->statement = $this->connection->query($query);
     } catch (PDOException $e) {
-      throw new DatabaseException('Failed to execute query: ' . $query, 0, $e);
+      throw new DatabaseException('Failed to execute query: ' . $query);
     }
 
     return $this;
   }
 
+  /**
+   * @throws DatabaseException
+   */
+  private function throwErrorOnFalseStatement () {
+    if ( ! $this->statement) {
+      throw new DatabaseException();
+    }
+  }
+
+  /**
+   * @return mixed
+   * @throws DatabaseException
+   */
   public function fetch () {
+    $this->throwErrorOnFalseStatement();
     return $this->statement->fetch(PDO::FETCH_OBJ);
   }
 
@@ -90,9 +104,10 @@ class PDOAdapter implements Adapter {
   public function fetchArray (): array {
     $data = null;
     try {
+      $this->throwErrorOnFalseStatement();
       $data = $this->statement->fetchAll(PDO::FETCH_OBJ);
     } catch (PDOException $e) {
-      throw new DatabaseException('Failed to fetch data.', 0, $e);
+      throw new DatabaseException('Failed to fetch data.');
     }
 
     return $data;
@@ -106,6 +121,7 @@ class PDOAdapter implements Adapter {
    */
   public function prepare (string $query): Adapter {
     try {
+      $this->throwErrorOnFalseStatement();
       $this->statement = $this->connection->prepare($query);
     } catch (PDOException $e) {
       throw new DatabaseException('Failed to prepare query: ' . $query, 0, $e);
@@ -123,6 +139,7 @@ class PDOAdapter implements Adapter {
    */
   public function bindParam (string $placeholder, string $data): Adapter {
     try {
+      $this->throwErrorOnFalseStatement();
       $this->statement->bindParam($placeholder, $data);
     } catch (PDOException $e) {
       throw new DatabaseException('Failed to execute prepared statement.', 0, $e);
@@ -137,6 +154,7 @@ class PDOAdapter implements Adapter {
    */
   public function execute (): Adapter {
     try {
+      $this->throwErrorOnFalseStatement();
       $this->statement->execute();
     } catch (PDOException $e) {
       throw new DatabaseException('Failed to execute prepared statement.', 0, $e);
