@@ -76,7 +76,7 @@ class View {
    * @return string
    * @throws Exception When template file not found.
    */
-  public function getHtml (): string {
+  public function render (): string {
     $this->load();
 
     return $this->html;
