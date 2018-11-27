@@ -80,11 +80,13 @@ class PDOAdapter implements Adapter {
   }
 
   /**
+   * @param string $message
+   *
    * @throws DatabaseException
    */
-  private function throwErrorOnFalseStatement () {
+  private function throwErrorOnFalseStatement ($message) {
     if ( ! $this->statement) {
-      throw new DatabaseException();
+      throw new DatabaseException($message);
     }
   }
 
@@ -93,7 +95,8 @@ class PDOAdapter implements Adapter {
    * @throws DatabaseException
    */
   public function fetch () {
-    $this->throwErrorOnFalseStatement();
+    $this->throwErrorOnFalseStatement('Invalid statement when trying to fetch a row.');
+
     return $this->statement->fetch(PDO::FETCH_OBJ);
   }
 
@@ -104,7 +107,7 @@ class PDOAdapter implements Adapter {
   public function fetchArray (): array {
     $data = null;
     try {
-      $this->throwErrorOnFalseStatement();
+      $this->throwErrorOnFalseStatement('Invalid statement when trying to fetch all rows as array.');
       $data = $this->statement->fetchAll(PDO::FETCH_OBJ);
     } catch (PDOException $e) {
       throw new DatabaseException('Failed to fetch data.');
@@ -121,10 +124,9 @@ class PDOAdapter implements Adapter {
    */
   public function prepare (string $query): Adapter {
     try {
-      $this->throwErrorOnFalseStatement();
       $this->statement = $this->connection->prepare($query);
     } catch (PDOException $e) {
-      throw new DatabaseException('Failed to prepare query: ' . $query, 0, $e);
+      throw new DatabaseException('Failed to prepare query: ' . $query . ' ' . $e);
     }
 
     return $this;
@@ -139,10 +141,10 @@ class PDOAdapter implements Adapter {
    */
   public function bindParam (string $placeholder, string $data): Adapter {
     try {
-      $this->throwErrorOnFalseStatement();
+      $this->throwErrorOnFalseStatement('Trying to bind parameters on an invalid statement.');
       $this->statement->bindParam($placeholder, $data);
     } catch (PDOException $e) {
-      throw new DatabaseException('Failed to execute prepared statement.', 0, $e);
+      throw new DatabaseException('Failed to bind params to statement.' . $e);
     }
 
     return $this;
@@ -154,10 +156,10 @@ class PDOAdapter implements Adapter {
    */
   public function execute (): Adapter {
     try {
-      $this->throwErrorOnFalseStatement();
+      $this->throwErrorOnFalseStatement('Failed to execute sta');
       $this->statement->execute();
     } catch (PDOException $e) {
-      throw new DatabaseException('Failed to execute prepared statement.', 0, $e);
+      throw new DatabaseException('Failed to execute prepared statement. ' . $e);
     }
 
     return $this;

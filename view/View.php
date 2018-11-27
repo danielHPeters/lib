@@ -6,6 +6,7 @@ use Exception;
 use function file_exists;
 use function file_get_contents;
 use function str_replace;
+use function htmlspecialchars;
 
 /**
  * View template class. Load a template file with curly braced placeholders.
@@ -43,9 +44,11 @@ class View {
   /**
    * Load the template. Replace any curly braced placeholders with the corresponding variable.
    *
+   * @param bool $escape
+   *
    * @throws Exception When template not found
    */
-  private function load (): void {
+  private function load (bool $escape): void {
     $file = $this->templatesPath . '/' . $this->file . '.html';
 
     if (file_exists($file)) {
@@ -53,7 +56,7 @@ class View {
 
       foreach ($this->vars as $key => $value) {
         $toReplace = '{' . $key . '}';
-        $content = str_replace($toReplace, $value, $content);
+        $content = str_replace($toReplace, $escape ? htmlspecialchars($value) : $value, $content);
       }
 
       $this->html = $content;
@@ -62,22 +65,24 @@ class View {
     }
   }
 
-  public function setVars(array $map) {
+  public function setVars (array $map): void {
     foreach ($map as $key => $value) {
       $this->setVar($key, $value);
     }
   }
 
-  public function setVar (string $key, string $value) {
+  public function setVar (string $key, string $value): void {
     $this->vars[ $key ] = $value;
   }
 
   /**
+   * @param bool $escape Tell rendering engine if it should escape data.
+   *
    * @return string
    * @throws Exception When template file not found.
    */
-  public function render (): string {
-    $this->load();
+  public function render (bool $escape = true): string {
+    $this->load($escape);
 
     return $this->html;
   }

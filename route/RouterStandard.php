@@ -7,6 +7,7 @@ use lib\collection\HashMap;
 use lib\collection\Map;
 use lib\http\Method;
 use lib\http\StatusCode;
+use function count;
 
 /**
  * RouterStandard class for route handlers.
@@ -42,34 +43,34 @@ class RouterStandard implements Router {
 
 
   public function get (string $uri, string $action): void {
-    $this->routes->get(Method::GET)->add(new Route($uri, $action));
+    $this->routes->get(Method::GET)->add(new RouteStandard($uri, $action));
   }
 
   public function post (string $uri, string $action): void {
-    $this->routes->get(Method::POST)->add(new Route($uri, $action));
+    $this->routes->get(Method::POST)->add(new RouteStandard($uri, $action));
   }
 
   public function put (string $uri, string $action): void {
-    $this->routes->get(Method::PUT)->add(new Route($uri, $action));
+    $this->routes->get(Method::PUT)->add(new RouteStandard($uri, $action));
   }
 
   public function patch (string $uri, string $action): void {
-    $this->routes->get(Method::PATCH)->add(new Route($uri, $action));
+    $this->routes->get(Method::PATCH)->add(new RouteStandard($uri, $action));
   }
 
   public function delete (string $uri, string $action): void {
-    $this->routes->get(Method::DELETE)->add(new Route($uri, $action));
+    $this->routes->get(Method::DELETE)->add(new RouteStandard($uri, $action));
   }
 
   public function options (string $uri, string $action): void {
-    $this->routes->get(Method::OPTIONS)->add(new Route($uri, $action));
+    $this->routes->get(Method::OPTIONS)->add(new RouteStandard($uri, $action));
   }
 
   public function setErrorHandler (int $errorKey, string $action): void {
-    $this->routes->get(self::ERROR)->put($errorKey, new Route('', $action));
+    $this->routes->get(self::ERROR)->put($errorKey, new RouteStandard('', $action));
   }
 
-  private function getErrorHandler (int $errorKey): Route {
+  public function getErrorHandler (int $errorKey): Route {
     return $this->routes->get(self::ERROR)->get($errorKey);
   }
 

@@ -14,7 +14,7 @@ use function trim;
  * Class RouteSimple
  *
  * @package lib\route
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 class RouteSimple {

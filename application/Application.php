@@ -2,6 +2,8 @@
 
 namespace lib\application;
 
+use lib\util\logger\LogLevel;
+
 /**
  * Basic web application interface.
  *
@@ -11,4 +13,6 @@ namespace lib\application;
  */
 interface Application {
   public static function boot (): void;
+
+  public static function log (string $message, LogLevel $level): void;
 }

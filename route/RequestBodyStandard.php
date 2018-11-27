@@ -4,14 +4,21 @@ namespace lib\route;
 
 use lib\filter\ValidationException;
 
+/**
+ * Class RequestBodyStandard.
+ *
+ * @package lib\route
+ * @author Daniel Peters
+ * @version 1.0
+ */
 class RequestBodyStandard implements RequestBody {
   /**
    * @var array
    */
   private $variables;
 
-  public function __construct ($values) {
-
+  public function __construct ($variables) {
+    $this->variables = $variables;
   }
 
   public function filter (array $variables): void {

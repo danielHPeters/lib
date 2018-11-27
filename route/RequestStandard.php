@@ -15,7 +15,7 @@ use const PHP_URL_PATH;
  * Class Request.
  *
  * @package lib\route
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 class RequestStandard implements Request {
@@ -89,6 +89,6 @@ class RequestStandard implements Request {
   }
 
   public function getFiles (): array {
-    // TODO: Implement getFiles() method.
+    return $this->files;
   }
 }

@@ -89,5 +89,7 @@ interface Router {
    */
   public function setErrorHandler (int $errorKey, string $action): void;
 
+  public function getErrorHandler (int $errorKey): Route;
+
   public function route (Request $request): Route;
 }

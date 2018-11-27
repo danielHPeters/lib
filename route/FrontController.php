@@ -10,7 +10,13 @@ namespace lib\route;
  * @version 1.0
  */
 class FrontController {
+  /**
+   * @var Router
+   */
   private $router;
+  /**
+   * @var Dispatcher
+   */
   private $dispatcher;
 
   public function __construct (Router $router) {
@@ -20,7 +26,7 @@ class FrontController {
 
   public function run (): void {
     $request = new RequestStandard();
-    $response = new ResponseBasic();
+    $response = new ResponseStandard();
     $this->dispatcher->dispatch($this->router->route($request), $request, $response);
   }
 }

@@ -5,6 +5,13 @@ namespace lib\route;
 use lib\collection\ListInterface;
 use lib\file\MIMEType;
 
+/**
+ * Interface Response.
+ *
+ * @package lib\route
+ * @author Daniel Peters
+ * @version 1.0
+ */
 interface Response {
   /**
    * Send response data.
@@ -13,6 +20,8 @@ interface Response {
    * @param string $contentType
    */
   public function send ($data, $contentType = MIMEType::HTML): void;
+
+  public function render (string $view, $data): void;
 
   /**
    * Transform body data to json and send response.

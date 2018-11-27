@@ -15,10 +15,10 @@ use function json_encode;
  * Class Response.
  *
  * @package lib\route
- * @author Daniel Peter
+ * @author Daniel Peters
  * @version 1.0
  */
-class ResponseBasic implements Response {
+class ResponseStandard implements Response {
   const DEFAULT_HTTP_VERSION = '1.1';
   /**
    * @var string Http version
@@ -63,6 +63,10 @@ class ResponseBasic implements Response {
       header("Content-Type: $contentType; charset=$this->charset", true);
     }
     echo $data;
+  }
+
+  public function render (string $view, $data): void {
+    // TODO: Implement render() method.
   }
 
   /**
