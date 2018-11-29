@@ -21,7 +21,7 @@ interface Response {
    */
   public function send ($data, $contentType = MIMEType::HTML): void;
 
-  public function render (string $view, $data): void;
+  public function render (string $view, array $data): void;
 
   /**
    * Transform body data to json and send response.

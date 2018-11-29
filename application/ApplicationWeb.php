@@ -14,8 +14,20 @@ use lib\util\logger\ApplicationLogger;
 use lib\util\logger\Logger;
 use lib\util\logger\LogLevel;
 use function get_called_class;
+use lib\view\RenderingEngine;
+use lib\view\RenderingEngineHTML;
+use function session_start;
+use function session_regenerate_id;
+use function session_write_close;
 
-class ApplicationWeb implements Application {
+/**
+ * Class ApplicationWeb.
+ *
+ * @package lib\application
+ * @author Daniel Peters
+ * @version 1.0
+ */
+abstract class ApplicationWeb implements Application {
   /**
    * @var ApplicationWeb
    */
@@ -49,6 +61,16 @@ class ApplicationWeb implements Application {
    */
   protected $loggerClass;
 
+  /**
+   * @var string
+   */
+  protected $viewsPath;
+
+  /**
+   * @var RenderingEngine
+   */
+  protected $renderingEngine;
+
   protected function __construct () {
   }
 
@@ -65,16 +87,15 @@ class ApplicationWeb implements Application {
 
   private function init (): void {
     $this->loggerClass = ApplicationLogger::class;
+    $this->renderingEngine = new RenderingEngineHTML($this->viewsPath);
     $this->router = new RouterStandard();
-    $this->frontController = new FrontController($this->router);
+    $this->frontController = new FrontController($this->router, $this->renderingEngine);
     $this->databaseManager = new DatabaseConnectionManagerBasic($this->config);
     $this->configureRoutes($this->router);
     $this->frontController->run();
   }
 
-  protected function configureRoutes (Router $router): void {
-
-  }
+  abstract protected function configureRoutes (Router $router): void;
 
   public static function log (string $message, $level = LogLevel::ERROR): void {
     Logger::getLogger(static::$instance->loggerClass, $level, static::$instance->logDestination)

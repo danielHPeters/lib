@@ -6,7 +6,7 @@ namespace lib\database;
  * Interface Adapter which defines the CRUD and connection methods.
  *
  * @package lib\database
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 interface Adapter {

@@ -2,6 +2,8 @@
 
 namespace lib\route;
 
+use lib\view\RenderingEngine;
+
 /**
  * Class FrontController.
  *
@@ -19,14 +21,20 @@ class FrontController {
    */
   private $dispatcher;
 
-  public function __construct (Router $router) {
+  /**
+   * @var RenderingEngine
+   */
+  private $renderingEngine;
+
+  public function __construct (Router $router, RenderingEngine $renderingEngine) {
     $this->router = $router;
+    $this->renderingEngine = $renderingEngine;
     $this->dispatcher = new Dispatcher();
   }
 
   public function run (): void {
     $request = new RequestStandard();
-    $response = new ResponseStandard();
+    $response = new ResponseStandard($this->renderingEngine);
     $this->dispatcher->dispatch($this->router->route($request), $request, $response);
   }
 }

@@ -7,6 +7,7 @@ use lib\collection\ListInterface;
 use lib\file\MIMEType;
 use lib\http\StatusCode;
 use lib\util\Charset;
+use lib\view\RenderingEngine;
 use function header;
 use function http_response_code;
 use function json_encode;
@@ -20,6 +21,10 @@ use function json_encode;
  */
 class ResponseStandard implements Response {
   const DEFAULT_HTTP_VERSION = '1.1';
+  /**
+   * @var RenderingEngine
+   */
+  private $renderingEngine;
   /**
    * @var string Http version
    */
@@ -39,10 +44,12 @@ class ResponseStandard implements Response {
   private $charset;
 
   public function __construct (
+    RenderingEngine $renderingEngine,
     string $version = self::DEFAULT_HTTP_VERSION,
     int $status = StatusCode::OK,
     string $charset = Charset::UTF_8
   ) {
+    $this->renderingEngine = $renderingEngine;
     $this->version = $version;
     $this->headers = new ArrayList();
     $this->status = $status;
@@ -65,8 +72,8 @@ class ResponseStandard implements Response {
     echo $data;
   }
 
-  public function render (string $view, $data): void {
-    // TODO: Implement render() method.
+  public function render (string $view, array $data = []): void {
+    $this->send($this->renderingEngine->render($view, $data));
   }
 
   /**

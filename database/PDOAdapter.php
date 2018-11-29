@@ -7,6 +7,13 @@ use PDOException;
 use PDOStatement;
 use InvalidArgumentException;
 
+/**
+ * Class PDOAdapter.
+ *
+ * @package lib\database
+ * @author Daniel Peters
+ * @version 1.0
+ */
 class PDOAdapter implements Adapter {
   /**
    * @var Configuration

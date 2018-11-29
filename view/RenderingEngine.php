@@ -4,8 +4,10 @@ namespace lib\view;
 
 interface RenderingEngine {
   /**
-   * @param string $viewPath Path to the view file
-   * @param array$data Data array with values to replace placeholder variables with.
+   * @param string $viewName Path to the view file
+   * @param array $data Data array with values to replace placeholder variables with.
+   *
+   * @return string
    */
-  public function render (string $viewPath, array $data): void;
+  public function render (string $viewName, array $data): string ;
 }
