@@ -7,6 +7,8 @@ use function file_exists;
 use function file_get_contents;
 use function str_replace;
 use function htmlspecialchars;
+use function strstr;
+use function preg_match;
 
 /**
  * View template class. Load a template file with curly braced placeholders.
@@ -22,6 +24,11 @@ class View {
    * @var string
    */
   private $templatesPath;
+
+  /**
+   * @var View
+   */
+  private $parent;
   /**
    * @var string
    */
@@ -44,24 +51,40 @@ class View {
   /**
    * Load the template. Replace any curly braced placeholders with the corresponding variable.
    *
-   * @param bool $escape
-   *
    * @throws Exception When template not found
    */
-  private function load (bool $escape): void {
+  private function load (): void {
     $file = $this->templatesPath . '/' . $this->file . '.html';
 
     if (file_exists($file)) {
       $content = file_get_contents($file);
-
-      foreach ($this->vars as $key => $value) {
-        $toReplace = '{' . $key . '}';
-        $content = str_replace($toReplace, $escape ? htmlspecialchars($value) : $value, $content);
-      }
-
       $this->html = $content;
     } else {
       throw new Exception('Template not found.');
+    }
+  }
+
+  private function prepareView (bool $escape): void {
+    $extendPattern = "/^\@extend\:\:\w+$/m";
+    $firstLine = strstr($this->html, "\n", true);
+
+    if (preg_match($extendPattern, $firstLine)) {
+      $this->html = str_replace($firstLine . "\n", '', $this->html);
+      $parentFile = str_replace('@extend::', '', $firstLine);
+      $this->parent = new View($this->templatesPath, $parentFile);
+    }
+
+    if ($this->parent) {
+      $this->parent->setVars($this->vars);
+      $this->parent->load();
+      $this->parent->html = str_replace('@child', $this->html, $this->parent->html);
+      $this->parent->prepareView($escape);
+      $this->html = $this->parent->html;
+    } else {
+      foreach ($this->vars as $key => $value) {
+        $toReplace = '{' . $key . '}';
+        $this->html = str_replace($toReplace, $escape ? htmlspecialchars($value) : $value, $this->html);
+      }
     }
   }
 
@@ -82,7 +105,8 @@ class View {
    * @throws Exception When template file not found.
    */
   public function render (bool $escape = true): string {
-    $this->load($escape);
+    $this->load();
+    $this->prepareView($escape);
 
     return $this->html;
   }

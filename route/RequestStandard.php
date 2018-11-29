@@ -12,7 +12,7 @@ use function trim;
 use const PHP_URL_PATH;
 
 /**
- * Class Request.
+ * Class RequestStandard. Basic implementation of the {@link Request} interface.
  *
  * @package lib\route
  * @author Daniel Peters
@@ -24,7 +24,7 @@ class RequestStandard implements Request {
    */
   private $method;
   /**
-   * @var string
+   * @var string The request uri
    */
   private $uri;
 
@@ -34,7 +34,7 @@ class RequestStandard implements Request {
   private $headers;
 
   /**
-   * @var array
+   * @var array The request query parameter array
    */
   private $queryParams;
 
@@ -44,7 +44,7 @@ class RequestStandard implements Request {
   private $body;
 
   /**
-   * @var array
+   * @var array The files array
    */
   private $files;
 

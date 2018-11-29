@@ -6,10 +6,14 @@ namespace lib\database;
  * Class Configuration.
  *
  * @package lib\database
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 class Configuration {
+  /**
+   * @var string
+   */
+  private $driver;
   /**
    * @var string
    */
@@ -36,13 +40,18 @@ class Configuration {
    */
   private $charset;
 
-  public function __construct (string $host, string $db, string $user, string $password, int $port, string $charset) {
+  public function __construct (string $driver, string $host, string $db, string $user, string $password, int $port, string $charset) {
+    $this->driver = $driver;
     $this->host = $host;
     $this->db = $db;
     $this->user = $user;
     $this->password = $password;
     $this->port = $port;
     $this->charset = $charset;
+  }
+
+  public function getDriver (): string {
+    return $this->driver;
   }
 
   public function getHost (): string {

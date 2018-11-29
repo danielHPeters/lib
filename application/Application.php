@@ -2,6 +2,7 @@
 
 namespace lib\application;
 
+use lib\database\Adapter;
 use lib\util\logger\LogLevel;
 
 /**
@@ -15,4 +16,6 @@ interface Application {
   public static function boot (): void;
 
   public static function log (string $message, LogLevel $level): void;
+
+  public static function getAdapter (string $adapterClass): Adapter;
 }

@@ -39,7 +39,7 @@ class MysqlAdapter implements Adapter {
    */
   private $result;
 
-  public function __construct (string $driver, Configuration $config, $options) {
+  public function __construct (Configuration $config, $options) {
     $this->config = $config;
   }
 

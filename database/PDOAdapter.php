@@ -9,10 +9,6 @@ use InvalidArgumentException;
 
 class PDOAdapter implements Adapter {
   /**
-   * @var string
-   */
-  private $driver;
-  /**
    * @var Configuration
    */
   private $config;
@@ -30,8 +26,7 @@ class PDOAdapter implements Adapter {
    */
   private $statement;
 
-  public function __construct (string $driver, Configuration $config, $options) {
-    $this->driver = $driver;
+  public function __construct (Configuration $config, $options) {
     $this->config = $config;
     $this->options = $options;
   }
@@ -42,7 +37,7 @@ class PDOAdapter implements Adapter {
   public function connect (): Adapter {
     try {
       if ($this->connection === null) {
-        $dsn = $this->driver
+        $dsn = $this->config->getDriver()
           . ':host=' . $this->config->getHost()
           . ';dbname=' . $this->config->getDb()
           . ';charset=' . $this->config->getCharset();

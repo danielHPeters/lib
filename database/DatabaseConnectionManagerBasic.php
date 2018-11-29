@@ -14,10 +14,6 @@ use lib\collection\Map;
  */
 class DatabaseConnectionManagerBasic implements DatabaseConnectionManager {
   /**
-   * @var string
-   */
-  private $driver;
-  /**
    * @var Configuration
    */
   private $config;
@@ -30,8 +26,7 @@ class DatabaseConnectionManagerBasic implements DatabaseConnectionManager {
    */
   private $cache;
 
-  public function __construct (string $driver, Configuration $config, array $options = []) {
-    $this->driver = $driver;
+  public function __construct (Configuration $config, array $options = []) {
     $this->config = $config;
     $this->options = $options;
   }
@@ -43,7 +38,7 @@ class DatabaseConnectionManagerBasic implements DatabaseConnectionManager {
    * @throws InvalidArgumentException
    */
   public function getAdapter (string $adapterClass): Adapter {
-    $adapter = new $adapterClass($this->driver, $this->config, $this->options);
+    $adapter = new $adapterClass($this->config, $this->options);
 
     if ( ! ($adapter instanceof Adapter)) {
       throw new InvalidArgumentException('Parameter class must be of type Adapter!');
