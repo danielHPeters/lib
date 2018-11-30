@@ -74,7 +74,6 @@ abstract class ApplicationWeb implements Application {
   }
 
   public static function boot (): void {
-    ini_set ( 'display_errors', 'On' );
     session_start();
     session_regenerate_id();
 

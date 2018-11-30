@@ -52,6 +52,7 @@ class ResponseStandard implements Response {
     $this->renderingEngine = $renderingEngine;
     $this->version = $version;
     $this->headers = new ArrayList();
+    $this->headers->add('Access-Control-Allow-Origin: *');
     $this->status = $status;
     $this->charset = $charset;
   }
@@ -63,12 +64,8 @@ class ResponseStandard implements Response {
   public function send ($data, $contentType = MIMEType::HTML): void {
     $_SERVER['SERVER_PROTOCOL'] = 'HTTP/' . $this->version;
     http_response_code($this->status);
-
-    if ( ! $this->headers->isEmpty()) {
-      $this->headers->each(function (string $header) { header($header, true); });
-    } else {
-      header("Content-Type: $contentType; charset=$this->charset", true);
-    }
+    $this->headers->each(function (string $header) { header($header); });
+    header("Content-Type: $contentType; charset=$this->charset");
     echo $data;
   }
 
