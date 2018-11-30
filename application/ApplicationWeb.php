@@ -13,12 +13,11 @@ use lib\route\RouterStandard;
 use lib\util\logger\ApplicationLogger;
 use lib\util\logger\Logger;
 use lib\util\logger\LogLevel;
-use function get_called_class;
 use lib\view\RenderingEngine;
 use lib\view\RenderingEngineHTML;
+use function get_called_class;
 use function session_start;
 use function session_regenerate_id;
-use function session_write_close;
 
 /**
  * Class ApplicationWeb.
@@ -75,14 +74,15 @@ abstract class ApplicationWeb implements Application {
   }
 
   public static function boot (): void {
+    ini_set ( 'display_errors', 'On' );
+    session_start();
+    session_regenerate_id();
+
     if (static::$instance === null) {
       $class = get_called_class();
       static::$instance = new $class();
     }
-    session_start();
-    session_regenerate_id(true);
     static::$instance->init();
-    session_write_close();
   }
 
   private function init (): void {
