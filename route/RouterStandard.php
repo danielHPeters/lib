@@ -13,7 +13,7 @@ use function count;
  * RouterStandard class for route handlers.
  *
  * @package lib\route
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 class RouterStandard implements Router {

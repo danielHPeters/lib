@@ -20,7 +20,9 @@ use function json_encode;
  * @version 1.0
  */
 class ResponseStandard implements Response {
+  const HTTP_HEADER = 'HTTP/';
   const DEFAULT_HTTP_VERSION = '1.1';
+  const DEFAULT_ACCESS_CONTROL_HEADER = 'Access-Control-Allow-Origin: *';
   /**
    * @var RenderingEngine
    */
@@ -52,7 +54,7 @@ class ResponseStandard implements Response {
     $this->renderingEngine = $renderingEngine;
     $this->version = $version;
     $this->headers = new ArrayList();
-    $this->headers->add('Access-Control-Allow-Origin: *');
+    $this->headers->add(self::DEFAULT_ACCESS_CONTROL_HEADER);
     $this->status = $status;
     $this->charset = $charset;
   }
@@ -62,10 +64,10 @@ class ResponseStandard implements Response {
    * @param string $contentType Content type of data. Defaults to 'text/html'
    */
   public function send ($data, $contentType = MIMEType::HTML): void {
-    $_SERVER['SERVER_PROTOCOL'] = 'HTTP/' . $this->version;
+    $_SERVER['SERVER_PROTOCOL'] = self::HTTP_HEADER . $this->version;
     http_response_code($this->status);
     $this->headers->each(function (string $header) { header($header); });
-    header("Content-Type: $contentType; charset=$this->charset");
+    header($this->getContentTypeHeader($contentType));
     echo $data;
   }
 
@@ -102,5 +104,9 @@ class ResponseStandard implements Response {
    */
   public function setStatus (int $status): void {
     $this->status = $status;
+  }
+
+  private function getContentTypeHeader ($contentType): string {
+    return "Content-Type: $contentType; charset=$this->charset";
   }
 }

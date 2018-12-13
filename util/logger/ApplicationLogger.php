@@ -7,6 +7,7 @@ use Exception;
 use lib\file\Path;
 
 class ApplicationLogger extends Logger {
+  const LOG_DATE_FORMAT = 'D, d M Y H:i:s O';
   /**
    * @var Path
    */
@@ -20,7 +21,7 @@ class ApplicationLogger extends Logger {
    *
    * @throws Exception
    */
-  function __construct (string $logLevel, string $logDestination) {
+  public function __construct (string $logLevel, string $logDestination) {
     parent::__construct($logLevel, $logDestination);
     $this->file = Path::createFileFromUri($logDestination);
   }
@@ -32,8 +33,8 @@ class ApplicationLogger extends Logger {
    */
   public function log (string $message): void {
     $now = new DateTimeImmutable();
-    $dateString = $now->format(DATE_RSS);
-    $this->file->open('a');
+    $dateString = $now->format(self::LOG_DATE_FORMAT);
+    $this->file->open(Path::MODE_APPEND);
     $this->file->append("[$dateString][$this->logLevel] " . $message);
     $this->file->close();
   }

@@ -20,15 +20,32 @@ use function is_resource;
 use function array_diff;
 
 /**
- * Class File.
+ * Class Path. Wrapper class for files and directories.
  *
  * @package lib\file
  * @author Daniel Peters
  * @version 1.0
  */
 class Path {
+  /**
+   * End of line marker used by both linux and most modern macs.
+   * Most text editors can read it nowadays anyway, so use this as your default.
+   */
   const EOL = "\n";
+  /**
+   * Default end of line marker used by windows.
+   * Avoid if you can, because it requires two chars and uses mores space.
+   */
   const WIN_EOL = "\r\n";
+  /**
+   * Some older macs use the carriage return character as end of line marker.
+   * Only use if necessary.
+   */
+  const MAC_OLD = "\r";
+
+  const MODE_APPEND = 'a';
+
+  const MODE_WRITE = 'w';
 
   /**
    * @var resource
@@ -65,6 +82,7 @@ class Path {
   }
 
   /**
+   * Calculate the folder size.
    * Based on https://gist.github.com/eusonlito/5099936.
    *
    * @param string $dir The directory to get the size from.
@@ -81,7 +99,10 @@ class Path {
   }
 
   /**
-   * @param string $uri
+   * Pass an URI string which then gets converted into a Path object.
+   * Creates the directory if it does not exist.
+   *
+   * @param string $uri The URI
    *
    * @return Path
    * @throws Exception
@@ -100,14 +121,17 @@ class Path {
   }
 
   /**
-   * @param string $uri
+   * Pass an URI string which then gets converted into a Path object.
+   * Creates the file if it does not exist.
+   *
+   * @param string $uri The URI
    *
    * @return Path
    * @throws Exception
    */
   public static function createFileFromUri (string $uri): Path {
     if ( ! is_file($uri)) {
-      $filePointer = fopen($uri, 'w');
+      $filePointer = fopen($uri, self::MODE_WRITE);
       fclose($filePointer);
     }
 

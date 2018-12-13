@@ -70,7 +70,7 @@ abstract class ApplicationWeb implements Application {
    */
   protected $renderingEngine;
 
-  protected function __construct () {
+  private function __construct () {
   }
 
   public static function boot (): void {
@@ -81,6 +81,7 @@ abstract class ApplicationWeb implements Application {
       $class = get_called_class();
       static::$instance = new $class();
     }
+    static::$instance->configureSettings();
     static::$instance->init();
   }
 
@@ -93,6 +94,8 @@ abstract class ApplicationWeb implements Application {
     $this->configureRoutes($this->router);
     $this->frontController->run();
   }
+
+  abstract protected function configureSettings(): void;
 
   abstract protected function configureRoutes (Router $router): void;
 
