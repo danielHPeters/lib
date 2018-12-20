@@ -5,12 +5,13 @@ namespace lib\route;
 use Exception;
 use ReflectionMethod;
 use function explode;
+use function error_log;
 
 /**
  * Description of Dispatcher.
  *
  * @package lib\route
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 class Dispatcher {
