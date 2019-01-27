@@ -18,7 +18,7 @@ use function strlen;
  * The socket extension needs to be configured and enabled in php.ini.
  *
  * @package rafisa\lib\util\socket
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 class Socket {
