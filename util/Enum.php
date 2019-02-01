@@ -13,7 +13,7 @@ use function in_array;
  * Class Enum.
  *
  * @package lib\util
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 abstract class Enum {
@@ -30,12 +30,12 @@ abstract class Enum {
 
     $calledClass = get_called_class();
 
-    if ( ! array_key_exists($calledClass, self::$constantsCache)) {
+    if (!array_key_exists($calledClass, self::$constantsCache)) {
       $reflect = new ReflectionClass($calledClass);
-      self::$constantsCache[ $calledClass ] = $reflect->getConstants();
+      self::$constantsCache[$calledClass] = $reflect->getConstants();
     }
 
-    return self::$constantsCache[ $calledClass ];
+    return self::$constantsCache[$calledClass];
   }
 
   /**

@@ -9,7 +9,7 @@ use function count;
  * Class Matrix.
  *
  * @package lib\math
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 class Matrix {
@@ -39,15 +39,17 @@ class Matrix {
    *
    * @throws Exception When matrix array is not correctly formed (eg. some rows are longer than others)
    */
-  public function set (array $arr) {
+  public function set (array $arr): void {
     $columns = count($arr);
     $rowLength = count($arr[0]);
     $valid = true;
+
     for ($i = 1; $i < $columns; $i++) {
-      if (count($arr[ $i ]) !== $rowLength) {
+      if (count($arr[$i]) !== $rowLength) {
         $valid = false;
       }
     }
+
     if ($valid) {
       $this->rows = $columns;
       $this->columns = count($arr[0]);

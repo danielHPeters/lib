@@ -44,7 +44,7 @@ class ArrayList implements ArrayAccess, Iterator, ListInterface {
   }
 
   public function get (int $key) {
-    return $this->offsetExists($key) ? $this->arr[ $key ] : null;
+    return $this->offsetExists($key) ? $this->arr[$key] : null;
   }
 
   public function isEmpty (): bool {
@@ -60,16 +60,16 @@ class ArrayList implements ArrayAccess, Iterator, ListInterface {
   }
 
   public function offsetExists ($offset): bool {
-    return isset($this->arr[ $offset ]);
+    return isset($this->arr[$offset]);
   }
 
   public function offsetGet ($offset) {
-    return $this->offsetExists($offset) ? $this->arr[ $offset ] : null;
+    return $this->offsetExists($offset) ? $this->arr[$offset] : null;
   }
 
   public function offsetSet ($offset, $value): void {
     if ($offset) {
-      $this->arr[ $offset ] = $value;
+      $this->arr[$offset] = $value;
     } else {
       $this->arr[] = $value;
     }
@@ -81,8 +81,8 @@ class ArrayList implements ArrayAccess, Iterator, ListInterface {
    * @throws Exception
    */
   public function offsetUnset ($offset): void {
-    if (isset($this->arr[ $offset ])) {
-      unset($this->arr[ $offset ]);
+    if (isset($this->arr[$offset])) {
+      unset($this->arr[$offset]);
       $this->arr = array_values($this->arr);
     } else {
       throw new Exception('Invalid offset');
@@ -123,8 +123,8 @@ class ArrayList implements ArrayAccess, Iterator, ListInterface {
    * @throws Exception
    */
   public function remove (int $key): void {
-    if (isset($this->arr[ $key ])) {
-      unset($this->arr[ $key ]);
+    if (isset($this->arr[$key])) {
+      unset($this->arr[$key]);
       $this->arr = array_values($this->arr);
     } else {
       throw new Exception('Invalid Index');
@@ -152,7 +152,7 @@ class ArrayList implements ArrayAccess, Iterator, ListInterface {
   }
 
   public function current () {
-    return $this->arr[ $this->index ];
+    return $this->arr[$this->index];
   }
 
   public function next (): void {
@@ -168,7 +168,7 @@ class ArrayList implements ArrayAccess, Iterator, ListInterface {
   }
 
   public function valid (): bool {
-    return isset($this->arr[ $this->index ]);
+    return isset($this->arr[$this->index]);
   }
 
   public function reverse (): void {

@@ -4,6 +4,13 @@ namespace lib\view;
 
 use Exception;
 
+/**
+ * Class RenderingEngineHTML.
+ *
+ * @package lib\view
+ * @author Daniel Peters
+ * @version 1.0
+ */
 class RenderingEngineHTML implements RenderingEngine {
   /**
    * @var string

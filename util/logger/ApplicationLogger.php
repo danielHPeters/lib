@@ -6,6 +6,13 @@ use DateTimeImmutable;
 use Exception;
 use lib\file\Path;
 
+/**
+ * Class ApplicationLogger.
+ *
+ * @package lib\util\logger
+ * @author Daniel Peters
+ * @version 1.0
+ */
 class ApplicationLogger extends Logger {
   const LOG_DATE_FORMAT = 'D, d M Y H:i:s O';
   /**

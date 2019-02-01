@@ -12,48 +12,51 @@ use lib\util\Enum;
  * @version 1.0
  */
 class HtmlAttribute extends Enum {
+  const NAME = 'name';
+  const FOR = 'for';
+
   const ACCEPT = [
-    'name' => 'accept',
-    'for' => [
+    self::NAME => 'accept',
+    self::FOR => [
       Tag::INPUT
     ]
   ];
   const ACCEPT_CHARSET = [
-    'name' => 'accept-charset',
-    'for' => [
+    self::NAME => 'accept-charset',
+    self::FOR => [
       Tag::FORM
     ]
   ];
   const ACTION = [
-    'name' => 'action',
-    'for' => [
+    self::NAME => 'action',
+    self::FOR => [
       Tag::FORM
     ]
   ];
   const ALT = [
-    'name' => 'alt',
-    'for' => [
+    self::NAME => 'alt',
+    self::FOR => [
       Tag::AREA,
       Tag::IMG,
       Tag::INPUT
     ]
   ];
   const ASYNC = [
-    'name' => 'async',
-    'for' => [
+    self::NAME => 'async',
+    self::FOR => [
       Tag::SCRIPT
     ]
   ];
   const AUTOCOMPLETE = [
-    'name' => 'autocomplete',
-    'for' => [
+    self::NAME => 'autocomplete',
+    self::FOR => [
       Tag::FORM,
       Tag::INPUT
     ]
   ];
   const AUTOFOCUS = [
-    'name' => 'autofocus',
-    'for' => [
+    self::NAME => 'autofocus',
+    self::FOR => [
       Tag::BUTTON,
       Tag::INPUT,
       Tag::KEYGEN,
@@ -62,34 +65,34 @@ class HtmlAttribute extends Enum {
     ]
   ];
   const AUTOPLAY = [
-    'name' => 'autoplay',
-    'for' => [
+    self::NAME => 'autoplay',
+    self::FOR => [
       Tag::AUDIO,
       Tag::VIDEO
     ]
   ];
   const CHALLENGE = [
-    'name' => 'challenge',
-    'for' => [
+    self::NAME => 'challenge',
+    self::FOR => [
       Tag::KEYGEN
     ]
   ];
   const CHARSET = [
-    'name' => 'charset',
-    'for' => [
+    self::NAME => 'charset',
+    self::FOR => [
       Tag::META,
       Tag::SCRIPT
     ]
   ];
   const CHECKED = [
-    'name' => 'checked',
-    'for' => [
+    self::NAME => 'checked',
+    self::FOR => [
       Tag::INPUT
     ]
   ];
   const CITE = [
-    'name' => 'cite',
-    'for' => [
+    self::NAME => 'cite',
+    self::FOR => [
       Tag::BLOCKQUOTE,
       Tag::DEL,
       Tag::INS,
@@ -97,72 +100,72 @@ class HtmlAttribute extends Enum {
     ]
   ];
   const COLS = [
-    'name' => 'cols',
-    'for' => [
+    self::NAME => 'cols',
+    self::FOR => [
       Tag::TEXTAREA
     ]
   ];
   const COLSPAN = [
-    'name' => 'colspan',
-    'for' => [
+    self::NAME => 'colspan',
+    self::FOR => [
       Tag::TD,
       Tag::TH
     ]
   ];
   const CONTENT = [
-    'name' => 'content',
-    'for' => [
+    self::NAME => 'content',
+    self::FOR => [
       Tag::META
     ]
   ];
   const CONTROLS = [
-    'name' => 'controls',
-    'for' => [
+    self::NAME => 'controls',
+    self::FOR => [
       Tag::AUDIO,
       Tag::VIDEO
     ]
   ];
   const COORDS = [
-    'name' => 'coords',
-    'for' => [Tag::AREA
+    self::NAME => 'coords',
+    self::FOR => [Tag::AREA
     ]
   ];
   const DATA = [
-    'name' => 'data',
-    'for' => [
+    self::NAME => 'data',
+    self::FOR => [
       Tag::OBJECT
     ]
   ];
   const DATETIME = [
-    'name' => 'datetime',
-    'for' => [
+    self::NAME => 'datetime',
+    self::FOR => [
       Tag::DEL,
       Tag::INS,
       Tag::TIME
     ]
   ];
   const DEFAULT_ = [
-    'name' => 'default',
-    'for' => [
+    self::NAME => 'default',
+    self::FOR => [
       Tag::TRACK
     ]
   ];
   const DEFER = [
-    'name' => 'defer',
-    'for' => [
+    self::NAME => 'defer',
+    self::FOR => [
       Tag::SCRIPT
     ]
   ];
   const DIRNAME = [
-    'name' => 'dirname',
-    'for' => [
+    self::NAME => 'dirname',
+    self::FOR => [
       Tag::INPUT,
       Tag::TEXTAREA
     ]
   ];
   const DISABLED = [
-    'name' => 'disabled',
-    'for' => [
+    self::NAME => 'disabled',
+    self::FOR => [
       Tag::BUTTON,
       Tag::FIELDSET,
       Tag::INPUT,
@@ -174,28 +177,28 @@ class HtmlAttribute extends Enum {
     ]
   ];
   const DOWNLOAD = [
-    'name' => 'download',
-    'for' => [
+    self::NAME => 'download',
+    self::FOR => [
       Tag::A,
       Tag::AREA
     ]
   ];
   const ENCTYPE = [
-    'name' => 'enctype',
-    'for' => [
+    self::NAME => 'enctype',
+    self::FOR => [
       Tag::FORM
     ]
   ];
   const FOR_ = [
-    'name' => 'for',
-    'for' => [
+    self::NAME => 'for',
+    self::FOR => [
       Tag::LABEL,
       Tag::OUTPUT
     ]
   ];
   const FORM = [
-    'name' => 'form',
-    'for' => [
+    self::NAME => 'form',
+    self::FOR => [
       Tag::BUTTON,
       Tag::FIELDSET,
       Tag::INPUT,
@@ -209,9 +212,10 @@ class HtmlAttribute extends Enum {
     ]
   ];
   const FORMACTION = [
-    'name' => 'formaction',
-    'for' => [
-      Tag::BUTTON, Tag::INPUT
+    self::NAME => 'formaction',
+    self::FOR => [
+      Tag::BUTTON,
+      Tag::INPUT
     ]
   ];
 }

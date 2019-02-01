@@ -8,7 +8,7 @@ use function preg_match;
  * Class InputValidator.
  *
  * @package lib\filter
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 abstract class ValidatorHelper {

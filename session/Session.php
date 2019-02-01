@@ -3,7 +3,7 @@
 namespace lib\session;
 
 use DateInterval;
-use DateTime;
+use DateTimeImmutable;
 use lib\model\entity\User;
 use function session_regenerate_id;
 
@@ -11,23 +11,47 @@ use function session_regenerate_id;
  * Class Session.
  *
  * @package lib\session
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 class Session {
+  /**
+   * @var string
+   */
   private $id;
+  /**
+   * @var User
+   */
   private $user;
+  /**
+   * @var DateTimeImmutable
+   */
   private $loginTime;
+  /**
+   * @var bool
+   */
   private $active;
+  /**
+   * @var int
+   */
   private $limit;
+  /**
+   * @var string
+   */
   private $domain;
+  /**
+   * @var string
+   */
   private $path;
+  /**
+   * @var bool
+   */
   private $https;
 
   public function __construct (string $id, User $user, int $limit, string $domain, string $path, bool $https) {
     $this->id = $id;
     $this->user = $user;
-    $this->loginTime = new DateTime();
+    $this->loginTime = new DateTimeImmutable();
     $this->active = true;
     $this->limit = $limit;
     $this->domain = $domain;
@@ -39,12 +63,12 @@ class Session {
     return $this->user;
   }
 
-  public function getLoginTime (): DateTime {
+  public function getLoginTime (): DateTimeImmutable {
     return $this->loginTime;
   }
 
   public function getElapsedTime (): DateInterval {
-    return $this->loginTime->diff(new DateTime());
+    return $this->loginTime->diff(new DateTimeImmutable());
   }
 
   public function isActive (): bool {

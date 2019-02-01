@@ -14,7 +14,7 @@ use function preg_match;
  * Calculate an expression written in reverse Polish (postfix) notation.
  *
  * @package lib\math
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 class PostFixCalculator {
@@ -33,7 +33,7 @@ class PostFixCalculator {
       $operation = new SinglyList();
 
       foreach ($tokens as $token) {
-        if ( ! is_null($token)) {
+        if (!is_null($token)) {
           $operand2 = $operation->poll();
           $operand = $operation->poll();
 

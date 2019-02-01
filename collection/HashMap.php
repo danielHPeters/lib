@@ -10,7 +10,7 @@ use function sort;
  * Class HashMap.
  *
  * @package lib\collection
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 class HashMap implements Map {
@@ -24,7 +24,7 @@ class HashMap implements Map {
   }
 
   public function get ($key) {
-    return isset($this->arr[ $key ]) ? $this->arr[ $key ] : null;
+    return isset($this->arr[$key]) ? $this->arr[$key] : null;
   }
 
   public function has (): bool {
@@ -38,7 +38,7 @@ class HashMap implements Map {
   }
 
   public function put ($key, $value) {
-    $this->arr[ $key ] = $value;
+    $this->arr[$key] = $value;
   }
 
   public function size (): int {

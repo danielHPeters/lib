@@ -6,7 +6,7 @@ namespace lib\collection;
  * Interface Map.
  *
  * @package lib\collection
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 interface Map {

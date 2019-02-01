@@ -45,8 +45,8 @@ class RequestBodyStandard implements RequestBody {
     $missing = [];
 
     foreach ($requiredKeys as $key => $value) {
-      if ( ! isset($this->variables[ $key ]) || empty(trim($this->variables[ $key ]))) {
-        $missing[ $key ] = $value;
+      if (!isset($this->variables[$key]) || empty(trim($this->variables[$key]))) {
+        $missing[$key] = $value;
       }
     }
 
@@ -54,6 +54,6 @@ class RequestBodyStandard implements RequestBody {
   }
 
   public function get (string $key) {
-    return $this->variables[ $key ] ?? null;
+    return $this->variables[$key] ?? null;
   }
 }

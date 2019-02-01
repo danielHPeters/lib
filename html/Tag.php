@@ -8,7 +8,7 @@ use lib\util\Enum;
  * Class Tag.
  *
  * @package lib\html
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 abstract class Tag extends Enum {

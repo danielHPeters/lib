@@ -9,7 +9,7 @@ use JsonSerializable;
  * Class Entity.
  *
  * @package lib\entity
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 abstract class Entity implements JsonSerializable {

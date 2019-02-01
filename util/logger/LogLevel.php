@@ -6,7 +6,7 @@ namespace lib\util\logger;
  * Class LogLevel.
  *
  * @package lib\util\logger
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 class LogLevel {

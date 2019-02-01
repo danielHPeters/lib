@@ -6,7 +6,7 @@ namespace lib\math;
  * Class Point.
  *
  * @package lib\math
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 class Point {
@@ -24,17 +24,17 @@ class Point {
     $this->y = $y;
   }
 
-  public function add (float $x, float $y) {
+  public function add (float $x, float $y): void {
     $this->x += $x;
     $this->y += $y;
   }
 
-  public function addPoint (Point $other) {
+  public function addPoint (Point $other): void {
     $this->x += $other->getX();
     $this->y += $other->getY();
   }
 
-  public function set (float $x, float $y) {
+  public function set (float $x, float $y): void {
     $this->x = $x;
     $this->y = $y;
   }

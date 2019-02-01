@@ -6,7 +6,7 @@ namespace lib\util\locale;
  * Class Parser.
  *
  * @package lib\util\locale
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 class Parser {

@@ -8,7 +8,7 @@ use lib\util\Enum;
  * Enum class MIMEType.
  *
  * @package lib\file
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 class MIMEType extends Enum {
@@ -32,7 +32,7 @@ class MIMEType extends Enum {
   const PICT = 'image/pict';
   const PNG = 'image/png';
   const POSTSCRIPT = 'application/postscript';
-  const RICHTEXT = 'text/richtext';
+  const RICH_TEXT = 'text/richtext';
   const AAC = 'audio/aac';
   const TIFF = 'image/tiff';
   const GIF = 'image/gif';

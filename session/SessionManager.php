@@ -12,7 +12,7 @@ use function time;
  * Class SessionManager.
  *
  * @package lib\session
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 class SessionManager {
@@ -33,7 +33,7 @@ class SessionManager {
     session_set_cookie_params($limit, $path, $domain, $https, true);
     session_start();
 
-    if ( ! self::hijackAttempted()) {
+    if (!self::hijackAttempted()) {
       $_SESSION = [];
       $_SESSION['ipAddress'] = $_SERVER['REMOTE_ADDR'];
       $_SESSION['userAgent'] = $_SERVER['HTTP_USER_AGENT'];
@@ -44,7 +44,7 @@ class SessionManager {
   public static function hijackAttempted () {
     $hijackedAttempted = true;
 
-    if ( ! isset($_SESSION['ipAddress']) || ! isset($_SESSION['userAgent'])) {
+    if (!isset($_SESSION['ipAddress']) || !isset($_SESSION['userAgent'])) {
       $hijackedAttempted = false;
     }
 
@@ -60,7 +60,7 @@ class SessionManager {
   }
 
   public static function regenerateSession () {
-    if ( ! isset($_SESSION['OBSOLETE']) || $_SESSION['OBSOLETE'] === false) {
+    if (!isset($_SESSION['OBSOLETE']) || $_SESSION['OBSOLETE'] === false) {
       $_SESSION['OBSOLETE'] = true;
       $_SESSION['EXPIRES'] = time() + 10;
 

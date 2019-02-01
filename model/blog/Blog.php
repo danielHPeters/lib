@@ -11,18 +11,25 @@ use lib\entity\Entity;
  * Class Blog.
  *
  * @package lib\model\blog
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 class Blog extends Entity {
+  /**
+   * @var ArrayList
+   */
   private $posts;
+  /**
+   * @var ArrayList
+   */
   private $users;
 
   public function __construct (
     string $id,
     DateTimeImmutable $createdAt,
     DateTimeImmutable $updatedAt,
-    DateTimeImmutable $deletedAt) {
+    DateTimeImmutable $deletedAt
+  ) {
     parent::__construct($id, $createdAt, $updatedAt, $deletedAt);
     $this->posts = new ArrayList();
     $this->users = new ArrayList();

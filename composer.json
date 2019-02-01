@@ -9,12 +9,14 @@
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "\\lib": "/"
+      "lib\\": "/"
     }
   },
   "require": {
     "ext-json": "*",
-    "ext-socket": "*",
-    "ext-pdo": "*"
+    "ext-sockets": "*",
+    "ext-mysqli": "*",
+    "ext-pdo": "*",
+    "ext-gd": "*"
   }
 }

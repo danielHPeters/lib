@@ -2,6 +2,13 @@
 
 namespace lib\view;
 
+/**
+ * Interface RenderingEngine.
+ *
+ * @package lib\view
+ * @author Daniel Peters
+ * @version 1.0
+ */
 interface RenderingEngine {
   /**
    * @param string $viewName Path to the view file
@@ -9,5 +16,5 @@ interface RenderingEngine {
    *
    * @return string
    */
-  public function render (string $viewName, array $data): string ;
+  public function render (string $viewName, array $data): string;
 }

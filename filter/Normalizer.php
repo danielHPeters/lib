@@ -9,10 +9,10 @@ use function preg_replace;
 use const PATHINFO_FILENAME;
 
 /**
- * Class Normalizer
- * @package lib\filter
+ * Class Normalizer.
  *
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @package lib\filter
+ * @author Daniel Peters
  * @version 1.0
  */
 abstract class Normalizer {

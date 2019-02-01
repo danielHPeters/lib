@@ -16,5 +16,5 @@ class Operator extends Enum {
   const SUBTRACT = '-';
   const MULTIPLY = '*';
   const DIVIDE = '/';
-  const POWER = '^'
+  const POWER = '^';
 }

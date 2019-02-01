@@ -15,7 +15,7 @@ use function error_log;
  * @version 1.0
  */
 class Dispatcher {
-  public function dispatch (Route $route, Request $request, Response $response) {
+  public function dispatch (Route $route, Request $request, Response $response): void {
     try {
       $parts = explode('#', $route->getAction(), 2);
       $controllerClass = $parts[0];

@@ -15,8 +15,17 @@ use lib\session\Session;
  * @version 1.0
  */
 class Client extends Entity {
+  /**
+   * @var User
+   */
   private $user;
+  /**
+   * @var Session
+   */
   private $session;
+  /**
+   * @var Message
+   */
   private $message;
 
   public function __construct (

@@ -13,11 +13,6 @@ use lib\filter\Validator;
  * @version 1.0
  */
 interface RequestBody extends Filter, Validator {
-  /**
-   * @param array $keys
-   *
-   * @return
-   */
   public function require (array $keys): array;
 
   public function get (string $key);

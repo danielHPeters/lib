@@ -10,7 +10,7 @@ use function imagejpeg;
 /**
  * Class ImageHelper.
  *
- * @package rafisa\lib\helper
+ * @package lib\util\helper
  * @author Daniel Peters
  * @version 1.0
  */

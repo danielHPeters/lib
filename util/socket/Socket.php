@@ -39,7 +39,7 @@ class Socket {
   public function __construct (int $domain, int $type, int $protocol = 0) {
     $this->resource = socket_create($domain, $type, $protocol);
 
-    if ( ! $this->resource) {
+    if (!$this->resource) {
       $this->handleError('Failed to create the socket');
     }
   }
@@ -72,7 +72,7 @@ class Socket {
   public function connectToRemote (string $address, int $port = 80) {
     $connected = socket_connect($this->resource, $address, $port);
 
-    if ( ! $connected) {
+    if (!$connected) {
       $this->handleError('Could not connect to ' . $address);
     }
   }
@@ -86,7 +86,7 @@ class Socket {
   public function bind (string $address = '127.0.0.1', int $port = 5000) {
     $bound = socket_bind($this->resource, $address, $port);
 
-    if ( ! $bound) {
+    if (!$bound) {
       $this->handleError('Failed to bind socket');
     }
   }
@@ -104,7 +104,7 @@ class Socket {
   public function send ($data, int $flags = 0) {
     $sent = socket_send($this->resource, $data, strlen($data), $flags);
 
-    if ( ! $sent) {
+    if (!$sent) {
       $this->handleError('Failed to send data');
     }
   }

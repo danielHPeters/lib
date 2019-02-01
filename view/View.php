@@ -16,7 +16,7 @@ use function preg_match;
  * after executing the <code>load()</code> method.
  *
  * @package lib\view
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 class View {
@@ -95,7 +95,7 @@ class View {
   }
 
   public function setVar (string $key, string $value): void {
-    $this->vars[ $key ] = $value;
+    $this->vars[$key] = $value;
   }
 
   /**

@@ -8,7 +8,7 @@ use lib\util\Enum;
  * Class Sql.
  *
  * @package lib\database
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 class Sql extends Enum {

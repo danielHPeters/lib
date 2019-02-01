@@ -9,7 +9,7 @@ use lib\util\Enum;
  * See https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html for more info about usage of individual http methods.
  *
  * @package lib\http
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 abstract class Method extends Enum {

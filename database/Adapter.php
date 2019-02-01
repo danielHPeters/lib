@@ -19,7 +19,7 @@ interface Adapter {
 
   public function query (string $query): Adapter;
 
-  public function fetch();
+  public function fetch ();
 
   public function fetchArray (): array;
 
@@ -27,7 +27,7 @@ interface Adapter {
 
   public function bindParam (string $placeholder, string $data): Adapter;
 
-  public function execute(): Adapter;
+  public function execute (): Adapter;
 
   /**
    * Generate and execute a select statement.

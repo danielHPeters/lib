@@ -22,7 +22,7 @@ use function mysqli_query;
  * Class MysqlAdapter.
  *
  * @package lib\database
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 class MysqlAdapter implements Adapter {
@@ -57,7 +57,7 @@ class MysqlAdapter implements Adapter {
       );
     }
 
-    if ( ! $this->link) {
+    if (!$this->link) {
       throw new RuntimeException('Failed to connect to database. ' . mysqli_connect_error());
     }
 
@@ -80,7 +80,7 @@ class MysqlAdapter implements Adapter {
 
     $this->result = mysqli_query($this->link, $query);
 
-    if ( ! $this->result) {
+    if (!$this->result) {
       throw new RuntimeException('Error executing query ' . $query . mysqli_error($this->link));
     }
 

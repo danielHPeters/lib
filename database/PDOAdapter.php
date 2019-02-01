@@ -87,7 +87,7 @@ class PDOAdapter implements Adapter {
    * @throws DatabaseException
    */
   private function throwErrorOnFalseStatement ($message) {
-    if ( ! $this->statement) {
+    if (!$this->statement) {
       throw new DatabaseException($message);
     }
   }
@@ -177,12 +177,14 @@ class PDOAdapter implements Adapter {
    * @param string $limit
    * @param string $offset
    */
-  public function select (string $table,
-                          string $fields = '*',
-                          string $conditions = null,
-                          string $order = null,
-                          string $limit = null,
-                          string $offset = null) {
+  public function select (
+    string $table,
+    string $fields = '*',
+    string $conditions = null,
+    string $order = null,
+    string $limit = null,
+    string $offset = null
+  ) {
     // TODO: Implement select() method.
   }
 

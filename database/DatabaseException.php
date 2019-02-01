@@ -1,14 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: daniel
- * Date: 14.11.18
- * Time: 10:58
- */
 
 namespace lib\database;
 
 use Exception;
 
+/**
+ * Class DatabaseException.
+ *
+ * @package lib\database
+ * @author Daniel Peters
+ * @version 1.0
+ */
 class DatabaseException extends Exception {
 }

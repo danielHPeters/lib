@@ -8,7 +8,7 @@ use lib\util\Enum;
  * Class FileExtension.
  *
  * @package lib\file
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 abstract class FileExtension extends Enum {

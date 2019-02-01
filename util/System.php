@@ -12,7 +12,7 @@ use const PHP_EOL;
  * Class System.
  *
  * @package lib\util
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 abstract class System {

@@ -12,7 +12,7 @@ use function trim;
  * Class AbstractMapper.
  *
  * @package lib\database
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 abstract class AbstractMapper implements Mapper {
@@ -78,26 +78,26 @@ abstract class AbstractMapper implements Mapper {
   }
 
   public function insert (Entity $entity) {
-    if ( ! $entity instanceof $this->class) {
+    if (!$entity instanceof $this->class) {
       throw new InvalidArgumentException('The entity must be an instance of ' . $this->class . '.');
     }
 
-    return $this->adapter->insert($this->table, $entity->toArray());
+    return $this->adapter->insert($this->table, $entity->jsonSerialize());
   }
 
   public function update (Entity $entity) {
-    if ( ! $entity instanceof $this->class) {
+    if (!$entity instanceof $this->class) {
       throw new InvalidArgumentException('The entity must be an instance of ' . $this->class . '.');
     }
     $id = $entity->getId();
-    $data = $entity->toArray();
+    $data = $entity->jsonSerialize();
     unset($data['id']);
 
     return $this->adapter->update($this->table, $data, 'id = ' . $id);
   }
 
   public function delete (Entity $entity) {
-    if ( ! $entity instanceof $this->class) {
+    if (!$entity instanceof $this->class) {
       throw new InvalidArgumentException('The entity must be an instance of ' . $this->class . '.');
     }
     $id = $entity->getId();

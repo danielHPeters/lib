@@ -12,7 +12,7 @@ use function ob_start;
  * Wrapper class for output buffer.
  *
  * @package lib\util
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 abstract class OutputBuffer {
@@ -42,7 +42,7 @@ abstract class OutputBuffer {
   final public static function endClean () {
     $success = ob_end_clean();
 
-    if ( ! $success) {
+    if (!$success) {
       throw new Exception('Could not clean and close the output buffer.');
     }
   }

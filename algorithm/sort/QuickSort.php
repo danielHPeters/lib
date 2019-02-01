@@ -9,7 +9,7 @@ use function count;
  * Class QuickSort.
  *
  * @package lib\algorithm\sort
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 abstract class QuickSort {
@@ -22,7 +22,7 @@ abstract class QuickSort {
       $right = [];
 
       for ($i = 1; $i < count($arr); $i++) {
-        $current = $arr[ $i ];
+        $current = $arr[$i];
 
         if ($current < $pivot) {
           $left[] = $current;
@@ -38,21 +38,21 @@ abstract class QuickSort {
   }
 
   private static function partition (array &$arr, int $leftIndex, int $rightIndex): int {
-    $pivot = $arr[ ($leftIndex + $rightIndex) / 2 ];
+    $pivot = $arr[($leftIndex + $rightIndex) / 2];
 
     while ($leftIndex <= $rightIndex) {
-      while ($arr[ $leftIndex ] < $pivot) {
+      while ($arr[$leftIndex] < $pivot) {
         $leftIndex++;
       }
 
-      while ($arr[ $rightIndex ] > $pivot) {
+      while ($arr[$rightIndex] > $pivot) {
         $rightIndex--;
       }
 
       if ($leftIndex <= $rightIndex) {
-        $tmp = $arr[ $leftIndex ];
-        $arr[ $leftIndex ] = $arr[ $rightIndex ];
-        $arr[ $rightIndex ] = $tmp;
+        $tmp = $arr[$leftIndex];
+        $arr[$leftIndex] = $arr[$rightIndex];
+        $arr[$rightIndex] = $tmp;
         $leftIndex++;
         $rightIndex--;
       }

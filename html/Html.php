@@ -11,7 +11,7 @@ use function implode;
  * Class Html.
  *
  * @package lib\html
- * @author Daniel Peters <daniel.peters.ch@gmail.com>
+ * @author Daniel Peters
  * @version 1.0
  */
 class Html implements DomNode {
@@ -61,7 +61,7 @@ class Html implements DomNode {
       });
     }
 
-    if ( ! $this->attributes->isEmpty()) {
+    if (!$this->attributes->isEmpty()) {
       $attrs = $this->attributes->toArray();
       foreach ($attrs as $key => $value) {
         $attributes .= ' ' . $key . '="' . $value . '"';
@@ -70,7 +70,7 @@ class Html implements DomNode {
 
     return '<' . $this->tagName . '' .
       (($this->getId() !== '') ? ' id="' . $this->getId() . '" ' : '') .
-      (( ! $this->classList->isEmpty()) ? 'class="' . implode(' ', $this->classList->toArray()) . '"' : '')
+      ((!$this->classList->isEmpty()) ? 'class="' . implode(' ', $this->classList->toArray()) . '"' : '')
       . $attributes . '>' .
       $content .
       '</' . $this->tagName . '>';

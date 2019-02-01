@@ -108,7 +108,7 @@ class Path {
    * @throws Exception
    */
   public static function createDirectoryFromUri (string $uri): Path {
-    if ( ! is_dir($uri)) {
+    if (!is_dir($uri)) {
       mkdir($uri);
     }
 
@@ -130,7 +130,7 @@ class Path {
    * @throws Exception
    */
   public static function createFileFromUri (string $uri): Path {
-    if ( ! is_file($uri)) {
+    if (!is_file($uri)) {
       $filePointer = fopen($uri, self::MODE_WRITE);
       fclose($filePointer);
     }
@@ -146,14 +146,14 @@ class Path {
   }
 
   public function open (string $mode): void {
-    if ( ! is_resource($this->resource)) {
+    if (!is_resource($this->resource)) {
       if ($this->isFile()) {
         $this->resource = fopen($this->getFullPath(), $mode);
       } else if ($this->isDirectory()) {
         $this->resource = opendir($this->getFullPath());
       }
 
-      if ( ! $this->resource) {
+      if (!$this->resource) {
         throw new Exception('Failed to open file: ' . $this->getFullPath() . '.');
       }
     }
@@ -176,7 +176,7 @@ class Path {
   }
 
   public function getFullPath (): string {
-    return $this->path . '/' . $this->name . (! empty($this->extension) ? '.' . $this->extension : '');
+    return $this->path . '/' . $this->name . (!empty($this->extension) ? '.' . $this->extension : '');
   }
 
   public function append ($data): void {
