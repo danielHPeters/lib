@@ -12,8 +12,8 @@ use function preg_match;
  * @version 1.0
  */
 abstract class ValidatorHelper {
-  const VALID_EMAIL = "/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/";
-  const VALID_FILENAME = "/^([a-z\d.-]+)\.([a-z\d]+)$/";
+  const VALID_EMAIL = "/^[\w\-\.]+@([\w-]+\.)+[\w-]{2,4}$/";
+  const VALID_FILENAME = "/^([a-z\d.\-]+)\.([a-z\d]+)$/";
 
   /**
    * Test email addresses for validity according to VALID_EMAIL regex.
