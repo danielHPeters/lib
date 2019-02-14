@@ -51,7 +51,7 @@ class PDOAdapter implements Adapter {
         $this->connection = new PDO($dsn, $this->config->getUser(), $this->config->getPassword(), $this->options);
       }
     } catch (PDOException $e) {
-      throw new DatabaseException('Failed to open database connection.', 0, $e);
+      throw new DatabaseException('Failed to open database connection. ' . $e->getMessage());
     }
 
     return $this;
