@@ -4,11 +4,13 @@ namespace lib\route;
 
 use lib\collection\ArrayList;
 use lib\collection\ListInterface;
+use lib\file\MIMEType;
 use lib\http\Method;
 use function file_get_contents;
 use function parse_str;
 use function parse_url;
 use function trim;
+use function json_decode;
 use const PHP_URL_PATH;
 
 /**
@@ -53,15 +55,24 @@ class RequestStandard implements Request {
     $this->uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
     $this->headers = new ArrayList();
     $this->queryParams = $_GET;
+    $contentType = explode(';', $_SERVER['CONTENT_TYPE'])[0];
 
     // Make sure only POST and PUT requests have a body.
     if ($this->method === Method::POST) {
-      $this->body = new RequestBodyStandard($_POST);
-      $this->files = $_FILES;
+      if (isset($contentType) && $contentType === MIMEType::JSON) {
+        $this->body = new RequestBodyStandard($contentType, json_decode(file_get_contents('php://input'), true));
+      } else {
+        $this->body = new RequestBodyStandard($contentType, $_POST);
+        $this->files = $_FILES;
+      }
     } else if ($this->method === Method::PUT) {
       $putVariables = [];
-      parse_str(file_get_contents('php://input'), $putVariables);
-      $this->body = new RequestBodyStandard($putVariables);
+      if (isset($contentType) && $contentType === MIMEType::JSON) {
+        $putVariables = json_decode(file_get_contents('php://input'), true);
+      } else {
+        parse_str(file_get_contents('php://input'), $putVariables);
+      }
+      $this->body = new RequestBodyStandard($contentType, $putVariables);
       $this->files = $_FILES;
     } else {
       $this->body = null;

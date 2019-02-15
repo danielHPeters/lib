@@ -13,11 +13,16 @@ use lib\filter\ValidationException;
  */
 class RequestBodyStandard implements RequestBody {
   /**
+   * @var string
+   */
+  private $contentType;
+  /**
    * @var array
    */
   private $variables;
 
-  public function __construct ($variables) {
+  public function __construct (string $conentType, $variables) {
+    $this->contentType = $conentType;
     $this->variables = $variables;
   }
 
@@ -32,6 +37,10 @@ class RequestBodyStandard implements RequestBody {
    */
   public function validate (array $variableMap): void {
     throw new ValidationException();
+  }
+
+  public function getContentType (): string {
+    return $this->contentType;
   }
 
   /**
