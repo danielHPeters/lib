@@ -55,10 +55,11 @@ class RequestStandard implements Request {
     $this->uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
     $this->headers = new ArrayList();
     $this->queryParams = $_GET;
-    $contentType = explode(';', $_SERVER['CONTENT_TYPE'])[0];
 
     // Make sure only POST and PUT requests have a body.
     if ($this->method === Method::POST) {
+      $contentType = explode(';', $_SERVER['CONTENT_TYPE'])[0];
+
       if (isset($contentType) && $contentType === MIMEType::JSON) {
         $this->body = new RequestBodyStandard($contentType, json_decode(file_get_contents('php://input'), true));
       } else {
@@ -67,6 +68,8 @@ class RequestStandard implements Request {
       }
     } else if ($this->method === Method::PUT) {
       $putVariables = [];
+      $contentType = explode(';', $_SERVER['CONTENT_TYPE'])[0];
+
       if (isset($contentType) && $contentType === MIMEType::JSON) {
         $putVariables = json_decode(file_get_contents('php://input'), true);
       } else {
