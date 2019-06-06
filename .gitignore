@@ -28,4 +28,8 @@ fabric.properties
 .directory
 Thumbs.db
 
+# Composer dependencies
 vendor/
+
+# Phpunit generated
+.phpunit.result.cache

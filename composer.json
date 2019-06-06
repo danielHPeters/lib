@@ -9,7 +9,12 @@
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "lib\\": "/"
+      "lib\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-0": {
+      "lib\\tests\\": "test/"
     }
   },
   "require": {
@@ -18,5 +23,8 @@
     "ext-mysqli": "*",
     "ext-pdo": "*",
     "ext-gd": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.1"
   }
 }

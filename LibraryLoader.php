@@ -19,7 +19,7 @@ use function str_replace;
 abstract class LibraryLoader {
   public static function register () {
     spl_autoload_register(function (string $class) {
-      $file = __DIR__ . '/../' . str_replace('\\', '/', $class) . '.php';
+      $file = __DIR__ . '/' . str_replace(['lib/', '\\'], ['', '/'], $class) . '.php';
 
       if (file_exists($file)) {
         require $file;

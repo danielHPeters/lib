@@ -11,5 +11,4 @@ use Exception;
  * @author Daniel Peters
  * @version 1.0
  */
-class ValidationException extends Exception {
-}
+class ValidationException extends Exception {}
