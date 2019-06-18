@@ -12,7 +12,7 @@ use function ob_start;
  * Wrapper class for output buffer.
  *
  * @package lib\util
- * @author Daniel Peters
+ * @author  Daniel Peters
  * @version 1.0
  */
 abstract class OutputBuffer {

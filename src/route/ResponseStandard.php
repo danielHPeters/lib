@@ -16,7 +16,7 @@ use function json_encode;
  * Class Response.
  *
  * @package lib\route
- * @author Daniel Peters
+ * @author  Daniel Peters
  * @version 1.0
  */
 class ResponseStandard implements Response {
@@ -45,6 +45,14 @@ class ResponseStandard implements Response {
    */
   private $charset;
 
+  /**
+   * ResponseStandard constructor.
+   *
+   * @param RenderingEngine $renderingEngine Rendering engine used to render html
+   * @param string $version                  Initial Http version
+   * @param int $status                      Initial http status code
+   * @param string $charset                  Initial content charset
+   */
   public function __construct (
     RenderingEngine $renderingEngine,
     string $version = self::DEFAULT_HTTP_VERSION,
@@ -71,6 +79,12 @@ class ResponseStandard implements Response {
     echo $data;
   }
 
+  /**
+   * Render a view. Acts as a facade for the internal rendering engine render method.
+   *
+   * @param string $view The name of the view file
+   * @param array $data  Key value pairs used to replace a key in the template with the value
+   */
   public function render (string $view, array $data = []): void {
     $this->send($this->renderingEngine->render($view, $data));
   }
@@ -84,29 +98,47 @@ class ResponseStandard implements Response {
     $this->send(json_encode($data), MIMEType::JSON);
   }
 
+  /**
+   * Using header('Location $URI') to redirect to another page.
+   *
+   * @param string $location New location
+   */
   public function redirect (string $location): void {
     header('Location: ' . $location);
   }
 
+  /**
+   * Get the headers ArrayList.
+   *
+   * @return ListInterface Current headers (all in string format)
+   */
   public function getHeaders (): ListInterface {
     return $this->headers;
   }
 
   /**
-   * @return int
+   * @return int The current status code
    */
   public function getStatus (): int {
     return $this->status;
   }
 
   /**
-   * @param int $status
+   * Changes the response status code.
+   *
+   * @param int $status New status code
    */
   public function setStatus (int $status): void {
     $this->status = $status;
   }
 
-  private function getContentTypeHeader ($contentType): string {
+  /**
+   * Create and get the content type header.
+   *
+   * @param string $contentType The content type of the response
+   * @return string Generated content-type header
+   */
+  private function getContentTypeHeader (string $contentType): string {
     return "Content-Type: $contentType; charset=$this->charset";
   }
 }

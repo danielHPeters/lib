@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
  * Class Vector2Test.
  *
  * @package lib\test\math
- * @author Daniel Peters
+ * @author  Daniel Peters
  * @version 1.0
  */
 class Vector2Test extends TestCase {
@@ -22,14 +22,34 @@ class Vector2Test extends TestCase {
 
     $vector2->addVector($vector1);
 
-    $this->assertEquals(
-      $vector2->getX(),
-      $expectedResultVector2x
-    );
+    $this->assertEquals($vector2->getX(), $expectedResultVector2x);
+    $this->assertEquals($vector2->getY(), $expectedResultVector2y);
+  }
 
-    $this->assertEquals(
-      $vector2->getY(),
-      $expectedResultVector2y
-    );
+  /** @test */
+  public function valuesCanChange (): void {
+    $vector = new Vector2(2, 2);
+    $newX = 6;
+    $newY = 19;
+
+    $vector->setX($newX);
+    $vector->setY($newY);
+
+    $this->assertEquals($vector->getX(), $newX);
+    $this->assertEquals($vector->getY(), $newY);
+  }
+
+  /** @test */
+  public function primitiveNumbersCanBeAdded (): void {
+    $startX = 2;
+    $startY = 2;
+    $vector = new Vector2($startX, $startY);
+    $addX = 34;
+    $addY = 7;
+
+    $vector->add($addX, $addY);
+
+    $this->assertEquals($vector->getX(), $startX + $addX);
+    $this->assertEquals($vector->getY(), $startY + $addY);
   }
 }

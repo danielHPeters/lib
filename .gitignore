@@ -33,3 +33,4 @@ vendor/
 
 # Phpunit generated
 .phpunit.result.cache
+tmp/

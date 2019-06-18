@@ -11,7 +11,7 @@ use const AF_UNIX;
  * Enum class Domain.
  *
  * @package lib\util\socket
- * @author Daniel Peters
+ * @author  Daniel Peters
  * @version 1.0
  */
 abstract class Domain extends Enum {

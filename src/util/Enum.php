@@ -13,7 +13,7 @@ use function in_array;
  * Class Enum.
  *
  * @package lib\util
- * @author Daniel Peters
+ * @author  Daniel Peters
  * @version 1.0
  */
 abstract class Enum {

@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<phpunit bootstrap="./vendor/autoload.php">
+<phpunit
+  bootstrap="./vendor/autoload.php"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/6.3/phpunit.xsd">
 
   <testsuites>
     <testsuite name="The project's test suite">
       <directory>./test</directory>
     </testsuite>
   </testsuites>
+  <filter>
+    <whitelist processUncoveredFilesFromWhitelist="true">
+      <directory suffix=".php">./src</directory>
+    </whitelist>
+  </filter>
+  <logging>
+    <log type="coverage-html" target="./tmp/report"/>
+    <log type="coverage-clover" target="./tmp/coverage.xml"/>
+    <log type="coverage-text" target="php://stdout"/>
+    <log type="junit" target="./tmp/logfile.xml"/>
+    <log type="testdox-html" target="./tmp/testdox.html"/>
+    <log type="testdox-text" target="./tmp/testdox.txt"/>
+  </logging>
 </phpunit>

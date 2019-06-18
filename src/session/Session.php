@@ -5,13 +5,14 @@ namespace lib\session;
 use DateInterval;
 use DateTimeImmutable;
 use lib\model\entity\User;
+use Exception;
 use function session_regenerate_id;
 
 /**
  * Class Session.
  *
  * @package lib\session
- * @author Daniel Peters
+ * @author  Daniel Peters
  * @version 1.0
  */
 class Session {
@@ -48,6 +49,17 @@ class Session {
    */
   private $https;
 
+  /**
+   * Session constructor.
+   *
+   * @param string $id
+   * @param User $user
+   * @param int $limit
+   * @param string $domain
+   * @param string $path
+   * @param bool $https
+   * @throws Exception
+   */
   public function __construct (string $id, User $user, int $limit, string $domain, string $path, bool $https) {
     $this->id = $id;
     $this->user = $user;

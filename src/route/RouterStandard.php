@@ -13,7 +13,7 @@ use function count;
  * RouterStandard class for route handlers.
  *
  * @package lib\route
- * @author Daniel Peters
+ * @author  Daniel Peters
  * @version 1.0
  */
 class RouterStandard implements Router {
@@ -23,6 +23,10 @@ class RouterStandard implements Router {
    */
   private $routes;
 
+  /**
+   * RouterStandard constructor.
+   * Initializes all route lists.
+   */
   public function __construct () {
     $this->routes = new HashMap();
     $this->routes->put(Method::GET, new ArrayList());
@@ -66,6 +70,14 @@ class RouterStandard implements Router {
     $this->routes->get(Method::OPTIONS)->add(new RouteStandard($uri, $action));
   }
 
+  /**
+   * Adds an error handler. All error handlers are registered by response status code.
+   * This should only be used for frontend error handling. Use logging and/or exceptions when dealing with internal
+   * errors and send a 500 error to the frontend.
+   *
+   * @param int $errorKey
+   * @param string $action
+   */
   public function setErrorHandler (int $errorKey, string $action): void {
     $this->routes->get(self::ERROR)->put($errorKey, new RouteStandard('', $action));
   }

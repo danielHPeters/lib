@@ -10,7 +10,7 @@ use lib\file\Path;
  * Class ApplicationLogger.
  *
  * @package lib\util\logger
- * @author Daniel Peters
+ * @author  Daniel Peters
  * @version 1.0
  */
 class ApplicationLogger extends Logger {

@@ -18,7 +18,7 @@ use function strlen;
  * The socket extension needs to be configured and enabled in php.ini.
  *
  * @package rafisa\lib\util\socket
- * @author Daniel Peters
+ * @author  Daniel Peters
  * @version 1.0
  */
 class Socket {
@@ -30,11 +30,11 @@ class Socket {
   /**
    * Constructor.
    *
-   * @param int $domain @see Domain
-   * @param int $type @see Type
+   * @param int $domain   @see Domain
+   * @param int $type     @see Type
    * @param int $protocol @see Protocol
    *
-   * @throws Exception When failed to create socket
+   * @throws Exception When creation of the socket failed
    */
   public function __construct (int $domain, int $type, int $protocol = 0) {
     $this->resource = socket_create($domain, $type, $protocol);
@@ -49,11 +49,14 @@ class Socket {
    *
    * @throws Exception
    */
-  private function handleError (string $message) {
+  private function handleError (string $message): void {
     $err = $this->getLastError();
     throw new Exception($message . ': [' . $err['code'] . '] ' . $err['message']);
   }
 
+  /**
+   * @return array
+   */
   private function getLastError (): array {
     $errCode = socket_last_error();
     $errMsg = socket_strerror($errCode);
@@ -69,7 +72,7 @@ class Socket {
    *
    * @throws Exception
    */
-  public function connectToRemote (string $address, int $port = 80) {
+  public function connectToRemote (string $address, int $port = 80): void {
     $connected = socket_connect($this->resource, $address, $port);
 
     if (!$connected) {
@@ -83,7 +86,7 @@ class Socket {
    *
    * @throws Exception
    */
-  public function bind (string $address = '127.0.0.1', int $port = 5000) {
+  public function bind (string $address = '127.0.0.1', int $port = 5000): void {
     $bound = socket_bind($this->resource, $address, $port);
 
     if (!$bound) {
@@ -91,8 +94,16 @@ class Socket {
     }
   }
 
-  public function listen (int $backlog = 10) {
-    socket_listen($this->resource, $backlog);
+  /**
+   * @param int $backlog
+   * @throws Exception
+   */
+  public function listen (int $backlog = 10): void {
+    $listening = socket_listen($this->resource, $backlog);
+
+    if ($listening) {
+      $this->handleError('Could not start listening.');
+    }
   }
 
   /**
@@ -101,7 +112,7 @@ class Socket {
    *
    * @throws Exception
    */
-  public function send ($data, int $flags = 0) {
+  public function send ($data, int $flags = 0): void {
     $sent = socket_send($this->resource, $data, strlen($data), $flags);
 
     if (!$sent) {
@@ -112,7 +123,7 @@ class Socket {
   /**
    * Close the socket.
    */
-  public function close () {
+  public function close (): void {
     socket_close($this->resource);
   }
 }

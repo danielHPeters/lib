@@ -16,7 +16,7 @@ use function preg_match;
  * after executing the <code>load()</code> method.
  *
  * @package lib\view
- * @author Daniel Peters
+ * @author  Daniel Peters
  * @version 1.0
  */
 class View {
@@ -64,6 +64,10 @@ class View {
     }
   }
 
+  /**
+   * @param bool $escape
+   * @throws Exception
+   */
   private function prepareView (bool $escape): void {
     $extendPattern = "/^\@extend\:\:\w+$/m";
     $firstLine = strstr($this->html, "\n", true);

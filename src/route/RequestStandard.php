@@ -17,7 +17,7 @@ use const PHP_URL_PATH;
  * Class RequestStandard. Basic implementation of the {@link Request} interface.
  *
  * @package lib\route
- * @author Daniel Peters
+ * @author  Daniel Peters
  * @version 1.0
  */
 class RequestStandard implements Request {
@@ -82,26 +82,44 @@ class RequestStandard implements Request {
     }
   }
 
+  /**
+   * @return string The request method
+   */
   public function getMethod (): string {
     return $this->method;
   }
 
+  /**
+   * @return ListInterface The request headers
+   */
   public function getHeaders (): ListInterface {
     return $this->headers;
   }
 
+  /**
+   * @return string The request uri
+   */
   public function getUri (): string {
     return $this->uri;
   }
 
+  /**
+   * @return array The request query parameters ( eg. ?value=key )
+   */
   public function getQueryParams (): array {
     return $this->queryParams;
   }
 
+  /**
+   * @return RequestBody Get the request body object
+   */
   public function getBody (): RequestBody {
     return $this->body;
   }
 
+  /**
+   * @return array Get the request files array
+   */
   public function getFiles (): array {
     return $this->files;
   }
