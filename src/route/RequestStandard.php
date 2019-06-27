@@ -2,16 +2,20 @@
 
 namespace lib\route;
 
+use function Couchbase\defaultDecoder;
 use lib\collection\ArrayList;
 use lib\collection\ListInterface;
 use lib\file\MIMEType;
 use lib\http\Method;
 use function file_get_contents;
+use function filter_input;
 use function parse_str;
 use function parse_url;
 use function trim;
 use function json_decode;
+use function in_array;
 use const PHP_URL_PATH;
+use const INPUT_SERVER;
 
 /**
  * Class RequestStandard. Basic implementation of the {@link Request} interface.
@@ -51,35 +55,38 @@ class RequestStandard implements Request {
   private $files;
 
   public function __construct () {
-    $this->method = $_SERVER['REQUEST_METHOD'];
-    $this->uri = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+    $this->method = filter_input(INPUT_SERVER, 'REQUEST_METHOD');
+    $this->uri = trim(parse_url(filter_input(INPUT_SERVER, 'REQUEST_URI'), PHP_URL_PATH), '/');
     $this->headers = new ArrayList();
     $this->queryParams = $_GET;
+    $this->body = null;
+    $this->files = null;
 
     // Make sure only POST and PUT requests have a body.
-    if ($this->method === Method::POST) {
-      $contentType = explode(';', $_SERVER['CONTENT_TYPE'])[0];
-
-      if (isset($contentType) && $contentType === MIMEType::JSON) {
-        $this->body = new RequestBodyStandard($contentType, json_decode(file_get_contents('php://input'), true));
-      } else {
-        $this->body = new RequestBodyStandard($contentType, $_POST);
-        $this->files = $_FILES;
-      }
-    } else if ($this->method === Method::PUT) {
-      $putVariables = [];
-      $contentType = explode(';', $_SERVER['CONTENT_TYPE'])[0];
-
-      if (isset($contentType) && $contentType === MIMEType::JSON) {
-        $putVariables = json_decode(file_get_contents('php://input'), true);
-      } else {
-        parse_str(file_get_contents('php://input'), $putVariables);
-      }
-      $this->body = new RequestBodyStandard($contentType, $putVariables);
-      $this->files = $_FILES;
-    } else {
-      $this->body = null;
+    if (in_array($this->method, [Method::POST, Method::PATCH, Method::PUT])) {
+      $this->initializeRequestBody();
     }
+  }
+
+  private function initializeRequestBody (): void {
+    $requestData = [];
+    $contentType = explode(';', filter_input(INPUT_SERVER, 'CONTENT_TYPE'))[0];
+
+    if (isset($contentType) && $contentType === MIMEType::JSON) {
+      $requestData = json_decode(file_get_contents('php://input'), true);
+    } else {
+      switch ($this->method) {
+        case Method::POST:
+          $requestData = $_POST;
+          break;
+        case Method::PATCH:
+        case Method::PUT:
+          parse_str(file_get_contents('php://input'), $requestData);
+      }
+    }
+
+    $this->body = new RequestBodyStandard($contentType, $requestData);
+    $this->files = $_FILES;
   }
 
   /**
