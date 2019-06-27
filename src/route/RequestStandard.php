@@ -2,7 +2,6 @@
 
 namespace lib\route;
 
-use function Couchbase\defaultDecoder;
 use lib\collection\ArrayList;
 use lib\collection\ListInterface;
 use lib\file\MIMEType;
