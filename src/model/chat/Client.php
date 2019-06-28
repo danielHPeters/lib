@@ -8,7 +8,7 @@ use lib\model\entity\User;
 use lib\session\Session;
 
 /**
- * Class Client.
+ * Class MongoClient.
  *
  * @package lib\model\chat
  * @author Daniel Peters

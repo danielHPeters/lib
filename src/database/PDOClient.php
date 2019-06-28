@@ -8,13 +8,13 @@ use PDOStatement;
 use InvalidArgumentException;
 
 /**
- * Class PDOAdapter.
+ * Class PDOClient.
  *
  * @package lib\database
  * @author Daniel Peters
  * @version 1.0
  */
-class PDOAdapter implements Adapter {
+class PDOClient implements Client {
   /**
    * @var Configuration
    */
@@ -41,7 +41,7 @@ class PDOAdapter implements Adapter {
   /**
    * @throws DatabaseException
    */
-  public function connect (): Adapter {
+  public function connect (): Client {
     try {
       if ($this->connection === null) {
         $dsn = $this->config->getDriver()
@@ -64,11 +64,11 @@ class PDOAdapter implements Adapter {
   /**
    * @param string $query
    *
-   * @return Adapter reference to $this to allow chaining of method calls
+   * @return Client reference to $this to allow chaining of method calls
    * @throws InvalidArgumentException
    * @throws DatabaseException
    */
-  public function query (string $query): Adapter {
+  public function query (string $query): Client {
     if (empty($query)) {
       throw new InvalidArgumentException('The query string is empty!');
     }
@@ -121,10 +121,10 @@ class PDOAdapter implements Adapter {
   /**
    * @param string $query
    *
-   * @return Adapter
+   * @return Client
    * @throws DatabaseException
    */
-  public function prepare (string $query): Adapter {
+  public function prepare (string $query): Client {
     try {
       $this->statement = $this->connection->prepare($query);
     } catch (PDOException $e) {
@@ -138,10 +138,10 @@ class PDOAdapter implements Adapter {
    * @param string $placeholder
    * @param string $data
    *
-   * @return Adapter
+   * @return Client
    * @throws DatabaseException
    */
-  public function bindParam (string $placeholder, string $data): Adapter {
+  public function bindParam (string $placeholder, string $data): Client {
     try {
       $this->throwErrorOnFalseStatement('Trying to bind parameters on an invalid statement.');
       $this->statement->bindParam($placeholder, $data);
@@ -156,7 +156,7 @@ class PDOAdapter implements Adapter {
    * @return $this
    * @throws DatabaseException
    */
-  public function execute (): Adapter {
+  public function execute (): Client {
     try {
       $this->throwErrorOnFalseStatement('Failed to execute sta');
       $this->statement->execute();

@@ -10,5 +10,5 @@ namespace lib\database;
  * @version 1.0
  */
 interface DatabaseConnectionManager {
-  public function getAdapter (string $adapterClass): Adapter;
+  public function getClient (string $clientClass): Client;
 }

@@ -19,13 +19,13 @@ use function mysqli_num_rows;
 use function mysqli_query;
 
 /**
- * Class MysqlAdapter.
+ * Class MysqlClient.
  *
  * @package lib\database
- * @author Daniel Peters
+ * @author  Daniel Peters
  * @version 1.0
  */
-class MysqlAdapter implements Adapter {
+class MysqlClient implements Client {
   /**
    * @var Configuration
    */
@@ -46,7 +46,7 @@ class MysqlAdapter implements Adapter {
   /**
    * Connect to the database.
    */
-  public function connect (): Adapter {
+  public function connect (): Client {
     // Only one connection
     if ($this->link === null) {
       $this->link = mysqli_connect(
@@ -73,7 +73,7 @@ class MysqlAdapter implements Adapter {
     }
   }
 
-  public function query (string $query): Adapter {
+  public function query (string $query): Client {
     if (empty($query)) {
       throw new InvalidArgumentException('The query string is empty!');
     }
@@ -90,12 +90,12 @@ class MysqlAdapter implements Adapter {
   /**
    * Generate and execute a select query
    *
-   * @param string $table the table to be queried
-   * @param string $fields attributes to be selected (default is *)
+   * @param string $table      the table to be queried
+   * @param string $fields     attributes to be selected (default is *)
    * @param string $conditions WHERE conditions
-   * @param string $order ordering criteria
-   * @param string $limit limit
-   * @param string $offset offset
+   * @param string $order      ordering criteria
+   * @param string $limit      limit
+   * @param string $offset     offset
    *
    * @return int
    */
@@ -122,7 +122,7 @@ class MysqlAdapter implements Adapter {
    * Generate and execute an insert statement.
    *
    * @param string $table Table
-   * @param array $data Data
+   * @param array $data   Data
    *
    * @return int | null | string The insert id
    */
@@ -138,8 +138,8 @@ class MysqlAdapter implements Adapter {
   /**
    * Perform update operation on a table with conditions.
    *
-   * @param string $table Table
-   * @param array $data Data
+   * @param string $table      Table
+   * @param array $data        Data
    * @param string $conditions Where conditions
    *
    * @return int Number of affected rows
@@ -161,7 +161,7 @@ class MysqlAdapter implements Adapter {
   /**
    * Perform delete operations with conditions.
    *
-   * @param string $table Table
+   * @param string $table      Table
    * @param string $conditions Where conditions
    *
    * @return int Number of affected rows
@@ -197,7 +197,7 @@ class MysqlAdapter implements Adapter {
   /**
    * Free the result set.
    */
-  public function freeResult () {
+  public function freeResult (): void {
     if ($this->result !== null) {
       mysqli_free_result($this->result);
     }
@@ -214,15 +214,15 @@ class MysqlAdapter implements Adapter {
     // TODO: Implement fetch() method.
   }
 
-  public function prepare (string $query): Adapter {
+  public function prepare (string $query): Client {
     // TODO: Implement prepare() method.
   }
 
-  public function bindParam (string $placeholder, string $data): Adapter {
+  public function bindParam (string $placeholder, string $data): Client {
     // TODO: Implement bindParam() method.
   }
 
-  public function execute (): Adapter {
+  public function execute (): Client {
     // TODO: Implement execute() method.
   }
 }

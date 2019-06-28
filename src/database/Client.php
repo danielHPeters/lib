@@ -3,31 +3,31 @@
 namespace lib\database;
 
 /**
- * Interface Adapter which defines the CRUD and connection methods.
+ * Interface Client which defines the CRUD and connection methods.
  *
  * @package lib\database
  * @author Daniel Peters
  * @version 1.0
  */
-interface Adapter {
+interface Client {
   /**
    * @throws DatabaseException
    */
-  public function connect (): Adapter;
+  public function connect (): Client;
 
   public function close (): void;
 
-  public function query (string $query): Adapter;
+  public function query (string $query): Client;
 
   public function fetch ();
 
   public function fetchArray (): array;
 
-  public function prepare (string $query): Adapter;
+  public function prepare (string $query): Client;
 
-  public function bindParam (string $placeholder, string $data): Adapter;
+  public function bindParam (string $placeholder, string $data): Client;
 
-  public function execute (): Adapter;
+  public function execute (): Client;
 
   /**
    * Generate and execute a select statement.

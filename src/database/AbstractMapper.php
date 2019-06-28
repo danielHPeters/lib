@@ -17,7 +17,7 @@ use function trim;
  */
 abstract class AbstractMapper implements Mapper {
   /**
-   * @var Adapter
+   * @var Client
    */
   private $adapter;
   /**
@@ -29,13 +29,13 @@ abstract class AbstractMapper implements Mapper {
    */
   private $class;
 
-  public function __construct (Adapter $adapter, string $table, Entity $class) {
+  public function __construct (Client $adapter, string $table, Entity $class) {
     $this->adapter = $adapter;
     $this->table = $table;
     $this->class = $class;
   }
 
-  public function getAdapter (): Adapter {
+  public function getAdapter (): Client {
     return $this->adapter;
   }
 

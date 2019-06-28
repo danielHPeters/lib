@@ -32,16 +32,16 @@ class DatabaseConnectionManagerBasic implements DatabaseConnectionManager {
   }
 
   /**
-   * @param string $adapterClass
+   * @param string $clientClass
    *
-   * @return Adapter
+   * @return Client
    * @throws InvalidArgumentException
    */
-  public function getAdapter (string $adapterClass): Adapter {
-    $adapter = new $adapterClass($this->config, $this->options);
+  public function getClient (string $clientClass): Client {
+    $adapter = new $clientClass($this->config, $this->options);
 
-    if (!($adapter instanceof Adapter)) {
-      throw new InvalidArgumentException('Parameter class must be of type Adapter!');
+    if (!($adapter instanceof Client)) {
+      throw new InvalidArgumentException('Parameter class must be of type Client!');
     }
 
     return $adapter;

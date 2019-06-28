@@ -2,11 +2,11 @@
 
 namespace lib\application;
 
-use lib\database\Adapter;
+use lib\database\Client;
 use lib\database\Configuration;
 use lib\database\DatabaseConnectionManager;
 use lib\database\DatabaseConnectionManagerBasic;
-use lib\database\PDOAdapter;
+use lib\database\PDOClient;
 use lib\route\FrontController;
 use lib\route\Router;
 use lib\route\RouterStandard;
@@ -104,7 +104,7 @@ abstract class ApplicationWeb implements Application {
       ->log($message);
   }
 
-  public static function getAdapter (string $adapterClass = PDOAdapter::class): Adapter {
-    return static::$instance->databaseManager->getAdapter($adapterClass);
+  public static function getAdapter (string $adapterClass = PDOClient::class): Client {
+    return static::$instance->databaseManager->getClient($adapterClass);
   }
 }
