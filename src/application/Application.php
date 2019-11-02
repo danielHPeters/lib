@@ -3,6 +3,7 @@
 namespace lib\application;
 
 use lib\database\Client;
+use lib\database\PDOClient;
 use lib\util\logger\LogLevel;
 
 /**
@@ -17,5 +18,5 @@ interface Application {
 
   public static function log (string $message, LogLevel $level): void;
 
-  public static function getAdapter (string $adapterClass): Client;
+  public static function getDb (string $adapterClass = PDOClient::class): Client;
 }

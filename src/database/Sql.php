@@ -20,4 +20,5 @@ class Sql extends Enum {
   const OFFSET = 'OFFSET';
   const AS_ = 'AS';
   const SELECT = 'SELECT';
+  const FROM = 'FROM';
 }

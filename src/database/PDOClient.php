@@ -6,6 +6,8 @@ use PDO;
 use PDOException;
 use PDOStatement;
 use InvalidArgumentException;
+use function array_keys;
+use function implode;
 
 /**
  * Class PDOClient.
@@ -62,7 +64,7 @@ class PDOClient implements Client {
   }
 
   /**
-   * @param string $query
+   * @param  string  $query
    *
    * @return Client reference to $this to allow chaining of method calls
    * @throws InvalidArgumentException
@@ -82,7 +84,7 @@ class PDOClient implements Client {
   }
 
   /**
-   * @param string $message
+   * @param  string  $message
    *
    * @throws DatabaseException
    */
@@ -107,10 +109,9 @@ class PDOClient implements Client {
    * @throws DatabaseException
    */
   public function fetchArray (): array {
-    $data = null;
     try {
       $this->throwErrorOnFalseStatement('Invalid statement when trying to fetch all rows as array.');
-      $data = $this->statement->fetchAll(PDO::FETCH_OBJ);
+      $data = $this->statement->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
       throw new DatabaseException('Failed to fetch data.');
     }
@@ -119,7 +120,7 @@ class PDOClient implements Client {
   }
 
   /**
-   * @param string $query
+   * @param  string  $query
    *
    * @return Client
    * @throws DatabaseException
@@ -135,8 +136,8 @@ class PDOClient implements Client {
   }
 
   /**
-   * @param string $placeholder
-   * @param string $data
+   * @param  string  $placeholder
+   * @param  string  $data
    *
    * @return Client
    * @throws DatabaseException
@@ -170,12 +171,12 @@ class PDOClient implements Client {
   /**
    * Generate and execute a select statement.
    *
-   * @param string $table
-   * @param string $conditions
-   * @param string $fields
-   * @param string $order
-   * @param string $limit
-   * @param string $offset
+   * @param  string  $table
+   * @param  string  $conditions
+   * @param  string  $fields
+   * @param  string  $order
+   * @param  string  $limit
+   * @param  string  $offset
    */
   public function select (
     string $table,
@@ -185,39 +186,52 @@ class PDOClient implements Client {
     string $limit = null,
     string $offset = null
   ) {
-    // TODO: Implement select() method.
+    $conditionString = $conditions !== null ?" " . Sql::WHERE . " $conditions" : "";
+
+    $this->query(Sql::SELECT . " $fields " . Sql::FROM . " $table$conditionString");
   }
 
   /**
    * Generate and execute an insert statement.
    *
-   * @param string $table the table to be affected
-   * @param array $data associative array with key as col and value as content
+   * @param  string  $table  the table to be affected
+   * @param  array  $data  associative array with key as col and value as content
+   * @throws DatabaseException
    */
-  public function insert (string $table, array $data) {
-    // TODO: Implement insert() method.
+  public function insert (string $table, array $data): void {
+    $fields = implode(',', array_keys($data));
+    $values = implode($table, $data);
+    $query = 'INSERT INTO ' . $table . ' (' . $fields . ') ' . 'VALUES (' . $values . ')';
+    $this->query($query);
   }
 
   /**
    * Generate and execute an update statement.
    *
-   * @param string $table
-   * @param array $data associative array with key as col and value as content
-   * @param string $conditions
-   *
-   * @return int Number of affected rows
+   * @param  string  $table
+   * @param  array  $data  associative array with key as col and value as content
+   * @param  string  $conditions
+   * @throws DatabaseException
    */
-  public function update (string $table, array $data, string $conditions): int {
-    // TODO: Implement update() method.
+  public function update (string $table, array $data, string $conditions): void {
+    $set = [];
+
+    foreach ($data as $field => $value) {
+      $set[] = $field . '=' . $value;
+    }
+
+    $set = implode(',', $set);
+    $query = 'UPDATE ' . $table . ' SET ' . $set . ' WHERE ' . $conditions;
+    $this->query($query);
   }
 
   /**
    * Generate and execute a delete statement.
    *
-   * @param string $table
-   * @param string $conditions
+   * @param  string  $table
+   * @param  string  $conditions
    */
-  public function delete (string $table, string $conditions) {
+  public function delete (string $table, string $conditions): void {
     // TODO: Implement delete() method.
   }
 }

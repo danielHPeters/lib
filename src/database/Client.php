@@ -32,12 +32,12 @@ interface Client {
   /**
    * Generate and execute a select statement.
    *
-   * @param string $table
-   * @param string $conditions
-   * @param string $fields
-   * @param string $order
-   * @param string $limit
-   * @param string $offset
+   * @param  string  $table
+   * @param  string  $conditions
+   * @param  string  $fields
+   * @param  string  $order
+   * @param  string  $limit
+   * @param  string  $offset
    */
   public function select (
     string $table,
@@ -51,27 +51,25 @@ interface Client {
   /**
    * Generate and execute an insert statement.
    *
-   * @param string $table the table to be affected
-   * @param array $data associative array with key as col and value as content
+   * @param  string  $table  the table to be affected
+   * @param  array  $data  associative array with key as col and value as content
    */
-  public function insert (string $table, array $data);
+  public function insert (string $table, array $data): void;
 
   /**
    * Generate and execute an update statement.
    *
-   * @param string $table
-   * @param array $data associative array with key as col and value as content
-   * @param string $conditions
-   *
-   * @return int Number of affected rows
+   * @param  string  $table
+   * @param  array  $data  associative array with key as col and value as content
+   * @param  string  $conditions
    */
-  public function update (string $table, array $data, string $conditions): int;
+  public function update (string $table, array $data, string $conditions): void;
 
   /**
    * Generate and execute a delete statement.
    *
-   * @param string $table
-   * @param string $conditions
+   * @param  string  $table
+   * @param  string  $conditions
    */
-  public function delete (string $table, string $conditions);
+  public function delete (string $table, string $conditions): void;
 }

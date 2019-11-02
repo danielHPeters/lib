@@ -4,6 +4,7 @@ namespace lib\entity;
 
 use DateTimeImmutable;
 use JsonSerializable;
+use function get_object_vars;
 
 /**
  * Class Entity.
@@ -58,6 +59,12 @@ abstract class Entity implements JsonSerializable {
     return $this->deletedAt;
   }
 
+  /**
+   * Serializes the entity to an array which can be used in json_encode.
+   * Also serializes member entities.
+   *
+   * @return array This entity in array form
+   */
   public function jsonSerialize (): array {
     $array = get_object_vars($this);
     foreach ($array as &$value) {

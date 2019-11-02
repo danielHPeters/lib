@@ -2,6 +2,8 @@
 
 namespace lib\application;
 
+use lib\database\BaseActiveRecord;
+use lib\database\ActiveRecord;
 use lib\database\Client;
 use lib\database\Configuration;
 use lib\database\DatabaseConnectionManager;
@@ -91,6 +93,7 @@ abstract class ApplicationWeb implements Application {
     $this->router = new RouterStandard();
     $this->frontController = new FrontController($this->router, $this->renderingEngine);
     $this->databaseManager = new DatabaseConnectionManagerBasic($this->config);
+    BaseActiveRecord::setDb(self::getDb());
     $this->configureRoutes($this->router);
     $this->frontController->run();
   }
@@ -104,7 +107,7 @@ abstract class ApplicationWeb implements Application {
       ->log($message);
   }
 
-  public static function getAdapter (string $adapterClass = PDOClient::class): Client {
+  public static function getDb (string $adapterClass = PDOClient::class): Client {
     return static::$instance->databaseManager->getClient($adapterClass);
   }
 }

@@ -5,19 +5,29 @@ namespace lib\file;
 use lib\collection\ArrayList;
 use lib\collection\ListInterface;
 use Exception;
+use function array_diff;
 use function fclose;
 use function filesize;
 use function fopen;
 use function fwrite;
-use function is_file;
-use function mime_content_type;
-use function realpath;
-use function mkdir;
 use function glob;
-use function rtrim;
-use function opendir;
+use function is_file;
 use function is_resource;
-use function array_diff;
+use function mime_content_type;
+use function mkdir;
+use function opendir;
+use function pathinfo;
+use function preg_replace;
+use function realpath;
+use function rtrim;
+use function scandir;
+use function str_replace;
+use function strtolower;
+use function unlink;
+use const GLOB_NOSORT;
+use const PATHINFO_DIRNAME;
+use const PATHINFO_EXTENSION;
+use const PATHINFO_FILENAME;
 
 /**
  * Class Path. Wrapper class for files and directories.
@@ -43,8 +53,10 @@ class Path {
    */
   const MAC_OLD = "\r";
 
-  const MODE_APPEND = 'a';
+  const DOT = '.';
+  const SLASH = '\\';
 
+  const MODE_APPEND = 'a';
   const MODE_WRITE = 'w';
 
   /**
@@ -73,6 +85,14 @@ class Path {
    */
   private $size;
 
+  /**
+   * Path constructor.
+   * @param  string  $name
+   * @param  string  $path
+   * @param  int  $size
+   * @param  string  $extension
+   * @param  string  $mimeType
+   */
   private function __construct (string $name, string $path, int $size, string $extension = '', string $mimeType = '') {
     $this->name = $name;
     $this->path = realpath($path);
@@ -85,14 +105,17 @@ class Path {
    * Calculate the folder size.
    * Based on https://gist.github.com/eusonlito/5099936.
    *
-   * @param string $dir The directory to get the size from.
+   * @param  string  $dir  The directory to get the size from.
    *
    * @return int size of a the folder
    */
   private static function calculateFolderSize (string $dir) {
     $size = 0;
-    foreach (glob(rtrim($dir, '/') . '/*', GLOB_NOSORT) as $each) {
-      $size += is_file($each) ? filesize($each) : self::calculateFolderSize($each);
+
+    if (is_dir($dir)) {
+      foreach (glob(rtrim($dir, '/') . '/*', GLOB_NOSORT) as $each) {
+        $size += is_file($each) ? filesize($each) : self::calculateFolderSize($each);
+      }
     }
 
     return $size;
@@ -102,7 +125,7 @@ class Path {
    * Pass an URI string which then gets converted into a Path object.
    * Creates the directory if it does not exist.
    *
-   * @param string $uri The URI
+   * @param  string  $uri  The URI
    *
    * @return Path
    * @throws Exception
@@ -124,13 +147,13 @@ class Path {
    * Pass an URI string which then gets converted into a Path object.
    * Creates the file if it does not exist.
    *
-   * @param string $uri The URI
+   * @param  string  $uri  The URI
    *
    * @return Path
    * @throws Exception
    */
   public static function createFileFromUri (string $uri): Path {
-    if (!is_file($uri)) {
+    if (!is_file($uri) && !is_dir($uri)) {
       $filePointer = fopen($uri, self::MODE_WRITE);
       fclose($filePointer);
     }
@@ -145,11 +168,51 @@ class Path {
     return new Path($name, $path, $size, $extension, $mimeType);
   }
 
+  /**
+   * Normalize file names to lower case and convert accent and umlaut characters to ascii conforming characters.
+   * Also removes any special characters except "-".
+   *
+   * @param  string  $fileName  Can be a full path or only file name.
+   * @return string The normalized file name including full path.
+   */
+  public static function normalizeFileName (string $fileName): string {
+    $filterChars = ['ä', 'ö', 'ü', 'ß', 'è', 'é', 'à'];
+    $replace = ['ae', 'oe', 'ue', 'ss', 'e', 'e', 'a'];
+    $path = pathinfo($fileName, PATHINFO_DIRNAME);
+    // Make filename lowercase and replace all accent and umlaut characters to conform to ascii alphabet
+    $normalizedFileName = str_replace($filterChars, $replace, strtolower(pathinfo($fileName, PATHINFO_FILENAME)));
+    // Replace all characters which are not alphanumeric or a "-".
+    $normalizedFileName = preg_replace('/[^a-z\d-]+/', '-', $normalizedFileName);
+    $normalizedExtension = self::normalizeFileExtension(pathinfo($fileName, PATHINFO_EXTENSION));
+
+    return $path . self::SLASH . $normalizedFileName . self::DOT . $normalizedExtension;
+  }
+
+  /**
+   * Normalize file extension to lower case and change jpeg to jpg.
+   *
+   * @param  string  $fileExtension  The file extension
+   * @return string The normalized file extension
+   */
+  public static function normalizeFileExtension (string $fileExtension): string {
+    $normalizedExtension = strtolower($fileExtension);
+
+    if ($normalizedExtension === FileExtension::JPEG) {
+      $normalizedExtension = FileExtension::JPG;
+    }
+
+    return $normalizedExtension;
+  }
+
+  /**
+   * @param  string  $mode
+   * @throws Exception
+   */
   public function open (string $mode): void {
     if (!is_resource($this->resource)) {
       if ($this->isFile()) {
         $this->resource = fopen($this->getFullPath(), $mode);
-      } else if ($this->isDirectory()) {
+      } elseif ($this->isDirectory()) {
         $this->resource = opendir($this->getFullPath());
       }
 
@@ -163,7 +226,7 @@ class Path {
     return unlink($this->getFullPath());
   }
 
-  public function exists () {
+  public function exists (): bool {
     return file_exists($this->getFullPath());
   }
 

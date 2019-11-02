@@ -123,16 +123,12 @@ class MysqlClient implements Client {
    *
    * @param string $table Table
    * @param array $data   Data
-   *
-   * @return int | null | string The insert id
    */
-  public function insert (string $table, array $data) {
+  public function insert (string $table, array $data): void {
     $fields = implode(',', array_keys($data));
     $values = implode($table, $data);
     $query = 'INSERT INTO ' . $table . ' (' . $fields . ') ' . 'VALUES (' . $values . ')';
     $this->query($query);
-
-    return $this->getInsertId();
   }
 
   /**
@@ -144,7 +140,7 @@ class MysqlClient implements Client {
    *
    * @return int Number of affected rows
    */
-  public function update (string $table, array $data, string $conditions): int {
+  public function update (string $table, array $data, string $conditions): void {
     $set = [];
 
     foreach ($data as $field => $value) {
@@ -154,8 +150,6 @@ class MysqlClient implements Client {
     $set = implode(',', $set);
     $query = 'UPDATE ' . $table . ' SET ' . $set . ' WHERE ' . $conditions;
     $this->query($query);
-
-    return $this->getAffectedRows();
   }
 
   /**
