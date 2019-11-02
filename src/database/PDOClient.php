@@ -78,7 +78,7 @@ class PDOClient implements Client {
       throw new InvalidArgumentException('The query string is empty!');
     }
     try {
-      Application::log($query, LogLevel::INFO);
+      ApplicationWeb::log($query, LogLevel::INFO);
       $this->statement = $this->connection->query($query);
     } catch (PDOException $e) {
       throw new DatabaseException('Failed to execute query: ' . $query);
