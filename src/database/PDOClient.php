@@ -2,6 +2,9 @@
 
 namespace lib\database;
 
+use lib\application\Application;
+use lib\application\ApplicationWeb;
+use lib\util\logger\LogLevel;
 use PDO;
 use PDOException;
 use PDOStatement;
@@ -75,6 +78,7 @@ class PDOClient implements Client {
       throw new InvalidArgumentException('The query string is empty!');
     }
     try {
+      Application::log($query, LogLevel::INFO);
       $this->statement = $this->connection->query($query);
     } catch (PDOException $e) {
       throw new DatabaseException('Failed to execute query: ' . $query);
@@ -177,6 +181,7 @@ class PDOClient implements Client {
    * @param  string  $order
    * @param  string  $limit
    * @param  string  $offset
+   * @throws DatabaseException
    */
   public function select (
     string $table,
@@ -186,9 +191,9 @@ class PDOClient implements Client {
     string $limit = null,
     string $offset = null
   ) {
-    $conditionString = $conditions !== null ?" " . Sql::WHERE . " $conditions" : "";
-
-    $this->query(Sql::SELECT . " $fields " . Sql::FROM . " $table$conditionString");
+    $conditionString = $conditions !== null ? " " . Sql::WHERE . " $conditions" : "";
+    $queryString = Sql::SELECT . " $fields " . Sql::FROM . " $table$conditionString";
+    $this->connect()->query($queryString);
   }
 
   /**

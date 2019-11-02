@@ -2,11 +2,8 @@
 
 namespace lib\database;
 
-use lib\collection\Collection;
-use lib\entity\Entity;
-
 /**
- * Interface Mapper.
+ * Interface ActiveRecord.
  *
  * @package lib\database
  * @author Daniel Peters

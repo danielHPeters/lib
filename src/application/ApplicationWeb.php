@@ -3,7 +3,6 @@
 namespace lib\application;
 
 use lib\database\BaseActiveRecord;
-use lib\database\ActiveRecord;
 use lib\database\Client;
 use lib\database\Configuration;
 use lib\database\DatabaseConnectionManager;

@@ -3,6 +3,7 @@
 namespace lib\collection;
 
 use Closure;
+use JsonSerializable;
 
 /**
  * Interface Collection.
@@ -11,7 +12,7 @@ use Closure;
  * @author Daniel Peters
  * @version 1.0
  */
-interface Collection {
+interface Collection extends JsonSerializable {
   public function add ($obj): void;
 
   public function addAll (array $arr): void;

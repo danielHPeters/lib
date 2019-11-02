@@ -16,7 +16,7 @@ use lib\util\logger\LogLevel;
 interface Application {
   public static function boot (): void;
 
-  public static function log (string $message, LogLevel $level): void;
+  public static function log (string $message, string $level): void;
 
   public static function getDb (string $adapterClass = PDOClient::class): Client;
 }

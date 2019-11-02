@@ -26,6 +26,11 @@ class BaseActiveRecord implements ActiveRecord, JsonSerializable {
    */
   protected static $table;
 
+  /**
+   * @var string
+   */
+  protected $id;
+
   public static function setDb (Client $db) {
     static::$db = $db;
   }
@@ -34,12 +39,14 @@ class BaseActiveRecord implements ActiveRecord, JsonSerializable {
     return static::$db;
   }
 
-  public static function find (string $conditions = ''): Collection {
+  public static function find (string $conditions = null): Collection {
     $collection = new ArrayList();
-    static::$db->select(static::$table, $conditions);
+    static::$db->select(static::$table, '*', $conditions);
 
-    while ($data = static::$db->fetchArray()) {
-      $collection->add(self::instantiate($data));
+    $rows = static::$db->fetchArray();
+
+    foreach ($rows as $row) {
+      $collection->add(self::instantiate($row));
     }
 
     return $collection;
@@ -91,5 +98,12 @@ class BaseActiveRecord implements ActiveRecord, JsonSerializable {
     }
 
     return $array;
+  }
+
+  /**
+   * @return string
+   */
+  public function getId(): string {
+    return $this->id;
   }
 }
